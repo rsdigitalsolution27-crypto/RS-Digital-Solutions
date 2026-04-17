@@ -1,10 +1,13 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect, Component } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { Component } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import BackToTop from './components/BackToTop'
+import Chatbot from './components/Chatbot'
+import SmoothScroll from './components/SmoothScroll'
+import GrainOverlay from './components/GrainOverlay'
 import { useScrollAnimations } from './components/ScrollAnimations'
 import { ui } from './content'
 import Home from './pages/Home'
@@ -37,31 +40,14 @@ class ErrorBoundary extends Component {
   }
 }
 
-function ScrollToTop() {
-  const { pathname, hash } = useLocation()
-
-  useEffect(() => {
-    if (hash) {
-      const el = document.querySelector(hash)
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' })
-        }, 100)
-        return
-      }
-    }
-    window.scrollTo(0, 0)
-  }, [pathname, hash])
-
-  return null
-}
 
 function App() {
   useScrollAnimations()
 
   return (
     <HelmetProvider>
-      <ScrollToTop />
+      <SmoothScroll />
+      <GrainOverlay />
       <Navbar />
       <ErrorBoundary>
         <Routes>
@@ -75,6 +61,7 @@ function App() {
         </Routes>
       </ErrorBoundary>
       <Footer />
+      <Chatbot />
       <WhatsAppButton />
       <BackToTop />
     </HelmetProvider>

@@ -20,6 +20,8 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false);
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    if (window.lenis) window.lenis.start();
   }, [location]);
 
   // Scroll behavior
@@ -77,16 +79,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [mobileOpen]);
 
+  const lockScroll = () => {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    if (window.lenis) window.lenis.stop();
+  };
+
+  const unlockScroll = () => {
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    if (window.lenis) window.lenis.start();
+  };
+
   const toggleMobile = () => {
     setMobileOpen(prev => {
-      document.body.style.overflow = !prev ? 'hidden' : '';
+      if (!prev) lockScroll();
+      else unlockScroll();
       return !prev;
     });
   };
 
   const closeMobile = () => {
     setMobileOpen(false);
-    document.body.style.overflow = '';
+    unlockScroll();
   };
 
   const scrollToKontakt = (e) => {
@@ -94,7 +109,9 @@ export default function Navbar() {
     closeMobile();
     if (isHome) {
       const el = document.getElementById('kontakt');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (!el) return;
+      if (window.lenis) window.lenis.scrollTo(el, { offset: -70 });
+      else el.scrollIntoView({ behavior: 'smooth' });
     } else {
       window.location.href = '/#kontakt';
     }
@@ -138,7 +155,7 @@ export default function Navbar() {
       <div className={`mobile-menu-overlay${mobileOpen ? ' active' : ''}`}>
         <div className="mobile-menu-content">
           <div className="mobile-menu-brand">
-            <Logo width={36} height={35} className="logo-svg" />
+            <Logo width={56} height={56} className="logo-svg mobile-brand-logo" viewBox="130 30 200 175" />
             <span className="logo-text">{company.nameSuffix}</span>
           </div>
           <ul className="mobile-nav-links">

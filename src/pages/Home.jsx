@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Beams from '../components/Beams';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
-import BlurText from '../components/ui/BlurText';
+import MaskRevealText from '../components/ui/MaskRevealText';
 import Seo from '../components/Seo';
 import TrustedMarquee from '../components/TrustedMarquee';
-import { homePage, company } from '../content';
+import FeatureSteps from '../components/FeatureSteps';
+import ServicesAccordion from '../components/ServicesAccordion';
+import { smoothScrollTo } from '../utils/smoothScroll';
+import { homePage, company, referenzenPage } from '../content';
 
 
 export default function Home() {
@@ -66,13 +69,12 @@ export default function Home() {
         <div className="hero-overlay"></div>
         <div className="hero-content" ref={heroContentRef}>
           <div className="hero-float-wrapper">
-            <BlurText
-              text={`${homePage.hero.titleLine1} ${homePage.hero.titleGradient} ${homePage.hero.titleLine3}`}
+            <MaskRevealText
+              text={[homePage.hero.titleLine1, homePage.hero.titleGradient, homePage.hero.titleLine3].filter(Boolean).join(' ')}
               className="hero-title-new"
-              delay={80}
-              animateBy="words"
-              direction="top"
-              stepDuration={0.35}
+              stagger={0.08}
+              duration={0.85}
+              delay={0.15}
               highlight={{ text: homePage.hero.titleGradient, className: 'hero-gradient-text' }}
             />
             <p className="hero-subtitle-new">
@@ -80,7 +82,7 @@ export default function Home() {
             </p>
           </div>
           <div className="hero-buttons-new">
-            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
+            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { smoothScrollTo('kontakt'); }} />
             <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
               {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
             </button>
@@ -90,6 +92,164 @@ export default function Home() {
 
       {/* Trusted By Marquee */}
       <TrustedMarquee />
+
+      {/* Stats Bar */}
+      <section className="stats-bar-section">
+        <div className="container">
+          <div className="stats-bar" data-animate="fade-up">
+            {homePage.stats.map((stat, i) => (
+              <div key={i} className="stats-bar-item" style={{ transitionDelay: `${i * 80}ms` }}>
+                <span className="stats-bar-value">
+                  {stat.value}
+                  <span className="stats-bar-suffix">{stat.suffix}</span>
+                </span>
+                <span className="stats-bar-label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Alles aus einer Hand */}
+      <section id="all-in-one" className="all-in-one-section landing-section">
+        <div className="container">
+          <div className="all-in-one-header" data-animate="fade-up">
+            <span className="section-tag">{homePage.allInOne.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.allInOne.title }}></h2>
+            <p className="all-in-one-description">{homePage.allInOne.description}</p>
+          </div>
+          <div className="all-in-one-grid">
+            {homePage.allInOne.cards.map((card, i) => (
+              <div
+                key={i}
+                className="all-in-one-card"
+                data-animate="fade-up"
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <div className="all-in-one-icon"><i className={card.icon}></i></div>
+                <h3 className="all-in-one-card-title">{card.title}</h3>
+                <p className="all-in-one-card-desc">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Overview (Carousel) */}
+      <section id="services" className="services-overview-section landing-section">
+        <div className="container">
+          <div className="services-overview-header" data-animate="fade-up">
+            <span className="section-tag">{homePage.servicesOverview.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.servicesOverview.title }}></h2>
+            <p className="services-overview-description">{homePage.servicesOverview.description}</p>
+          </div>
+          <div data-animate="fade-up">
+            <ServicesAccordion
+              items={homePage.servicesOverview.items}
+              defaultOpen={0}
+              ctaLabel="Mehr erfahren"
+              onCtaClick={() => navigate('/leistungen')}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Prozess */}
+      <section id="prozess" className="process-section landing-section">
+        <div className="container">
+          <div className="process-header" data-animate="fade-up">
+            <span className="section-tag">{homePage.process.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.process.title }}></h2>
+            <p className="process-description">{homePage.process.description}</p>
+          </div>
+          <div data-animate="fade-up">
+            <FeatureSteps steps={homePage.process.steps} />
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="pricing-section landing-section">
+        <div className="container">
+          <div className="pricing-header" data-animate="fade-up">
+            <span className="section-tag">{homePage.pricing.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.pricing.title }}></h2>
+            <p className="pricing-description">{homePage.pricing.description}</p>
+          </div>
+          <div className="pricing-grid">
+            {homePage.pricing.packages.map((pkg, i) => (
+              <div
+                key={i}
+                className={`pricing-card${pkg.highlighted ? ' pricing-card-highlight' : ''}`}
+                data-animate="fade-up"
+                style={{ transitionDelay: `${i * 120}ms` }}
+              >
+                {pkg.badge && <div className="pricing-badge">{pkg.badge}</div>}
+                <div className="pricing-card-header">
+                  <h3 className="pricing-card-name">{pkg.name}</h3>
+                  <p className="pricing-card-desc">{pkg.desc}</p>
+                </div>
+                <div className="pricing-price">
+                  {pkg.priceLabel && <span className="pricing-price-label">{pkg.priceLabel}</span>}
+                  <span className="pricing-price-value">
+                    {pkg.price}
+                    {pkg.currency && <span className="pricing-price-currency">{pkg.currency}</span>}
+                  </span>
+                  <span className="pricing-price-period">{pkg.period}</span>
+                </div>
+                <ul className="pricing-features">
+                  {pkg.features.map((feature, j) => (
+                    <li key={j} className="pricing-feature">
+                      <svg className="pricing-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  type="button"
+                  className={`pricing-cta${pkg.highlighted ? ' pricing-cta-primary' : ''}`}
+                  onClick={() => smoothScrollTo('kontakt')}
+                >
+                  {pkg.cta} <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            ))}
+          </div>
+          <p className="pricing-footnote" data-animate="fade-up">{homePage.pricing.footnote}</p>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="kundenstimmen" className="testimonials-section landing-section">
+        <div className="container">
+          <div className="section-header" data-animate="fade-up">
+            <span className="section-tag">{homePage.testimonials.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.testimonials.title }}></h2>
+            <p className="section-subtitle">{homePage.testimonials.description}</p>
+          </div>
+          <div className="testimonials-grid">
+            {referenzenPage.testimonials.map((t, i) => (
+              <div key={i} className="testimonial-card" data-animate="fade-up" data-delay={i * 100}>
+                <div className="testimonial-stars">
+                  {Array.from({ length: t.stars }).map((_, j) => (
+                    <i key={j} className="fas fa-star"></i>
+                  ))}
+                </div>
+                <p className="testimonial-text">{t.text}</p>
+                <div className="testimonial-author">
+                  <div className="author-avatar">{t.avatar}</div>
+                  <div className="author-info">
+                    <span className="author-name">{t.name}</span>
+                    <span className="author-role">{t.role}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Kontakt Section */}
       <section id="kontakt" className="kontakt-section">

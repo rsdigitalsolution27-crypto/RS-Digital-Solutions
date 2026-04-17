@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
@@ -9,6 +10,8 @@ import { leistungenPage, ctaPerPage } from '../content';
 export default function Leistungen() {
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const activeService = leistungenPage.services[activeIndex];
+  const labels = leistungenPage.detailLabels;
 
   return (
     <>
@@ -50,6 +53,56 @@ export default function Leistungen() {
                 ))}
               </div>
             </div>
+          </div>
+
+          <div className="service-detail" data-animate="fade-up">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                className="service-detail-inner"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div className="service-detail-top">
+                  <div className="service-detail-icon-wrap">
+                    <i className={activeService.icon}></i>
+                  </div>
+                  <div className="service-detail-head">
+                    <h3 className="service-detail-headline">{activeService.headline}</h3>
+                    <p className="service-detail-intro">{activeService.intro}</p>
+                  </div>
+                </div>
+
+                <div className="service-detail-grid">
+                  <div className="service-detail-features-block">
+                    <span className="service-detail-label">{labels.features}</span>
+                    <ul className="service-detail-features">
+                      {activeService.features.map((f, j) => (
+                        <li key={j} className="service-detail-feature">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="service-detail-meta">
+                    <div className="service-detail-meta-item">
+                      <span className="service-detail-label">{labels.forWhom}</span>
+                      <p>{activeService.forWhom}</p>
+                    </div>
+                    <div className="service-detail-meta-item service-detail-result">
+                      <span className="service-detail-label">{labels.result}</span>
+                      <p>{activeService.result}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </section>

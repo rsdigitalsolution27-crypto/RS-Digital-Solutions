@@ -11,7 +11,7 @@ export default function BackToTop() {
   }, []);
 
   return (
-    <button className={`back-to-top${visible ? ' visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label={ui.backToTop.ariaLabel}>
+    <button className={`back-to-top${visible ? ' visible' : ''}`} onClick={() => window.lenis ? window.lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label={ui.backToTop.ariaLabel}>
       <i className="fas fa-chevron-up"></i>
     </button>
   );
