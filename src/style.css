@@ -7050,6 +7050,14 @@ html.light-theme .form-group textarea {
     top: calc(50% + 240px);
 }
 
+/* Position that hovers just above the MacBook (lower-left of the desk scene).
+   Used by the Router segment so its badge "points to" the MacBook rather
+   than reusing the right-side iMac position. */
+.hero-scrub-badge--above-macbook {
+    left: calc(50% - 330px);
+    top: calc(50% - 160px);
+}
+
 .hero-scrub-badge:hover {
     background: rgba(255, 255, 255, 0.16);
     border-color: rgba(255, 255, 255, 0.38);
@@ -7124,7 +7132,8 @@ html.light-theme .form-group textarea {
        the same time so they can share the same spot. */
     .hero-scrub-badge--right,
     .hero-scrub-badge--left,
-    .hero-scrub-badge--center {
+    .hero-scrub-badge--center,
+    .hero-scrub-badge--above-macbook {
         left: 50%;
         right: auto;
         top: auto;

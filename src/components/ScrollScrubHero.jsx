@@ -165,10 +165,20 @@ export default function ScrollScrubHero({
               const adjP = startOffset > 0
                 ? Math.max(0, (localP - startOffset) / (1 - startOffset))
                 : localP;
-              // forward 0→0.5, reverse 0.5→1.0
+              // Per-segment playback mode:
+              //  - default: forward 0→0.5, reverse 0.5→1.0 (boomerang)
+              //  - forwardOnly: play forward only and hold on last frame
+              //    after `playUntil` (defaults to 1). Used for the final
+              //    transition segment so it ends on its end-state.
               let t;
-              if (adjP <= 0.5) t = (adjP / 0.5) * dur;
-              else t = (1 - (adjP - 0.5) / 0.5) * dur;
+              if (segments[i]?.forwardOnly) {
+                const playUntil = segments[i]?.playUntil ?? 1;
+                t = Math.min(1, adjP / playUntil) * dur;
+              } else if (adjP <= 0.5) {
+                t = (adjP / 0.5) * dur;
+              } else {
+                t = (1 - (adjP - 0.5) / 0.5) * dur;
+              }
               const clamped = Math.min(dur - 0.05, Math.max(0, t));
               if (Math.abs(clamped - lastTimeRef.current[i]) > 0.02) {
                 lastTimeRef.current[i] = clamped;
@@ -255,6 +265,16 @@ export default function ScrollScrubHero({
       tl.to(v, { opacity: 1, duration: fadeWindow * 2, ease: 'none' }, boundary - fadeWindow)
         .set(prev, { opacity: 0 }, boundary + fadeWindow);
     });
+
+    // Final fade-out: in the last ~8% of scroll progress, the whole sticky
+    // hero fades away so the transition into the next section feels smooth
+    // instead of cutting abruptly to black.
+    const fadeOutStart = 0.92;
+    tl.to(
+      sticky,
+      { opacity: 0, duration: 1 - fadeOutStart, ease: 'power2.in' },
+      fadeOutStart
+    );
 
     // Badges: each fades in/out around its own peak. The window is sized so
     // adjacent badges never overlap — we look at the distance to the nearest

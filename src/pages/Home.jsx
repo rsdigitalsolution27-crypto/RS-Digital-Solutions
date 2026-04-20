@@ -31,19 +31,20 @@ export default function Home() {
   return (
     <>
       <Seo page="home" />
-      {/* Hero – Combined Scroll-Scrubbed Video (iMac → MacBook) */}
+      {/* Hero – Combined Scroll-Scrubbed Video (iMac → MacBook → iPhone → Router → Xray) */}
       <ScrollScrubHero
         id="hero"
-        pinLengthVh={900}
+        pinLengthVh={1120}
         videos={[
-          // iMac bekommt weight 1.5 → grösseres Scroll-Fenster, damit das
-          // Video nach der Text-Phase nicht hetzt. videoStartAt 0.47 (in
-          // segment-local terms) hält den Start-Punkt bei pin 0.20 =
-          // "halber Text entfernt".
+          // iMac bekommt weight 3 → großes Scroll-Fenster, damit das Video
+          // erst *nach* dem Text-Unreveal anfängt zu scrubben. Mit
+          // videoStartAt 0.70 (segment-local) startet das Video bei globaler
+          // Pin-Progress ~0.30 — dann ist nur noch die letzte Textzeile zu
+          // sehen.
           {
             src: '/hero-video/imac-scrub.mp4',
-            weight: 1.5,
-            videoStartAt: 0.47,
+            weight: 3,
+            videoStartAt: 0.70,
             mobileFocus: '78% 50%',
           },
           {
@@ -54,28 +55,51 @@ export default function Home() {
             src: '/hero-video/iphone-scrub.mp4',
             mobileFocus: '72% 65%',
           },
+          {
+            src: '/hero-video/router-scrub.mp4',
+            mobileFocus: '20% 45%',
+          },
+          // X-Ray/Digital Transition: letztes Segment - dient als weicher
+          // Übergang zur restlichen Seite (statt hartem Cut auf Schwarz).
+          // forwardOnly + playUntil 0.5 → Video spielt linear vorwärts,
+          // erreicht das letzte Frame (digitaler Zustand) etwa bei Scroll-
+          // Progress 0.93 und hält es, während der globale Fade-Out bei
+          // 0.92 einsetzt. So endet der Hero auf dem digitalen Bild.
+          {
+            src: '/hero-video/xray-scrub.mp4',
+            mobileFocus: 'center center',
+            forwardOnly: true,
+            playUntil: 0.5,
+          },
         ]}
         badges={[
           {
             eyebrow: 'Unser Service',
             label: '48h Website-Relaunch',
             to: '/48h',
-            peakAt: 0.32,
+            peakAt: 0.36,
             side: 'right',
           },
           {
             eyebrow: 'Unser Service',
             label: 'E-Commerce & Online Shop',
             to: '/leistungen',
-            peakAt: 0.57,
+            peakAt: 0.50,
             side: 'left',
           },
           {
             eyebrow: 'Unser Service',
             label: 'Social Media & SEO',
             to: '/leistungen',
-            peakAt: 0.86,
+            peakAt: 0.64,
             side: 'center',
+          },
+          {
+            eyebrow: 'Unser Service',
+            label: 'Hosting & Domain',
+            to: '/leistungen',
+            peakAt: 0.78,
+            side: 'above-macbook',
           },
         ]}
       >
@@ -109,26 +133,6 @@ export default function Home() {
           </h1>
         </div>
       </ScrollScrubHero>
-
-      {/* Trusted By Marquee */}
-      <TrustedMarquee />
-
-      {/* Stats Bar */}
-      <section className="stats-bar-section">
-        <div className="container">
-          <div className="stats-bar" data-animate="fade-up">
-            {homePage.stats.map((stat, i) => (
-              <div key={i} className="stats-bar-item" style={{ transitionDelay: `${i * 80}ms` }}>
-                <span className="stats-bar-value">
-                  {stat.value}
-                  <span className="stats-bar-suffix">{stat.suffix}</span>
-                </span>
-                <span className="stats-bar-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Alles aus einer Hand */}
       <section id="all-in-one" className="all-in-one-section landing-section">
@@ -240,6 +244,26 @@ export default function Home() {
           <p className="pricing-footnote" data-animate="fade-up">{homePage.pricing.footnote}</p>
         </div>
       </section>
+
+      {/* Stats Bar (Zahlen-Beweis direkt nach Pricing) */}
+      <section className="stats-bar-section">
+        <div className="container">
+          <div className="stats-bar" data-animate="fade-up">
+            {homePage.stats.map((stat, i) => (
+              <div key={i} className="stats-bar-item" style={{ transitionDelay: `${i * 80}ms` }}>
+                <span className="stats-bar-value">
+                  {stat.value}
+                  <span className="stats-bar-suffix">{stat.suffix}</span>
+                </span>
+                <span className="stats-bar-label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted By Marquee (Social Proof vor Testimonials) */}
+      <TrustedMarquee />
 
       {/* Testimonials */}
       <section id="kundenstimmen" className="testimonials-section landing-section">
