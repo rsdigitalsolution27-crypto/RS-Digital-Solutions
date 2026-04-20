@@ -244,17 +244,26 @@ export default function ScrollScrubHero({
         .set(prev, { opacity: 0 }, boundary + fadeWindow);
     });
 
-    // Badges: each fades in/out around its own peak. The window is sized to
-    // fit comfortably inside its own segment so we don't see a previous
-    // segment's badge still on screen while the next video is already active.
-    const badgeWindow = 0.9 / segCount; // tightens with more segments
+    // Badges: each fades in/out around its own peak. The window is sized so
+    // adjacent badges never overlap — we look at the distance to the nearest
+    // neighbouring peak and clamp the visibility window to half of that gap
+    // (with a small safety margin) on each side.
+    const peaks = badgeList.map(
+      (b, i) => b.peakAt ?? ((i + 0.5) / Math.max(1, badgeList.length))
+    );
     badgeList.forEach((b, i) => {
       const el = badgeEls[i];
       if (!el) return;
-      const peak = b.peakAt ?? ((i + 0.5) / Math.max(1, badgeList.length));
-      const inStart = Math.max(0, peak - badgeWindow * 0.55);
-      const holdEnd = Math.min(1, peak + badgeWindow * 0.3);
-      const outEnd = Math.min(1, peak + badgeWindow * 0.55);
+      const peak = peaks[i];
+      const prev = i > 0 ? peaks[i - 1] : -0.3;
+      const next = i < peaks.length - 1 ? peaks[i + 1] : 1.3;
+      const leftGap = (peak - prev) * 0.45; // safety margin
+      const rightGap = (next - peak) * 0.45;
+      const fadeIn = Math.min(0.12, leftGap);
+      const fadeOut = Math.min(0.12, rightGap);
+      const inStart = Math.max(0, peak - fadeIn);
+      const holdEnd = Math.min(1, peak + fadeOut * 0.4);
+      const outEnd = Math.min(1, peak + fadeOut);
 
       tl.to(
         el,
