@@ -7086,43 +7086,38 @@ html.light-theme .form-group textarea {
     transform: translateX(4px);
 }
 
-/* Mobile adjustments — Apple-style layout:
-   Video fills the upper portion of the hero at its natural 4:3 aspect so
-   nothing on the desk is cropped. Content + badges live in the black area
-   below. Applied only in portrait; landscape keeps the desktop cover layout. */
+/* Mobile adjustments — Apple-style full-bleed:
+   Video fills the full viewport, navbar sits transparent over it, badges
+   overlaid at the bottom. Accepts side cropping on the 4:3 source. */
 @media (max-width: 768px) and (orientation: portrait) {
     .hero-scrub-video {
-        top: 72px;
-        bottom: auto;
+        top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
         width: 100%;
-        height: 75vw;
+        height: 100%;
         object-fit: cover;
-        object-position: center center;
+        object-position: center 50%;
         transform-origin: 50% 50%;
     }
 
     .hero-scrub-overlay {
-        top: 72px;
-        bottom: auto;
+        top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
-        height: 75vw;
-        background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.22) 0%,
-            rgba(0, 0, 0, 0.12) 55%,
-            rgba(0, 0, 0, 0.5) 100%
+        height: 100%;
+        background: radial-gradient(
+            ellipse at 50% 45%,
+            rgba(0, 0, 0, 0.18) 0%,
+            rgba(0, 0, 0, 0.4) 55%,
+            rgba(0, 0, 0, 0.72) 100%
         );
     }
 
     .hero-scrub-content {
-        padding-top: calc(72px + 75vw + 32px);
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-bottom: 120px;
-        align-items: flex-start;
+        padding: 120px 16px 60px;
     }
 
     .hero-scrub-badge {
@@ -7134,15 +7129,15 @@ html.light-theme .form-group textarea {
         text-align: left;
     }
 
-    /* On mobile every badge sits centered at the bottom. They never appear
-       simultaneously so occupying the same spot is fine. */
+    /* All badges overlaid at the bottom of the video. They never appear at
+       the same time so they can share the same spot. */
     .hero-scrub-badge--right,
     .hero-scrub-badge--left,
     .hero-scrub-badge--center {
         left: 50%;
         right: auto;
         top: auto;
-        bottom: 40px;
+        bottom: 80px;
     }
 
     .hero-scrub-badge-eyebrow {
