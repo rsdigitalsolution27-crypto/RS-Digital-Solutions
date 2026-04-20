@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Beams from '../components/Beams';
+import ScrollScrubHero from '../components/ScrollScrubHero';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import MaskRevealText from '../components/ui/MaskRevealText';
 import Seo from '../components/Seo';
@@ -13,27 +13,6 @@ import { homePage, company, referenzenPage } from '../content';
 
 export default function Home() {
   const navigate = useNavigate();
-  const heroContentRef = useRef(null);
-
-  // Hero parallax (rAF optimized)
-  useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(() => {
-          const heroContent = heroContentRef.current;
-          if (heroContent && window.scrollY < window.innerHeight) {
-            heroContent.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-            heroContent.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.8));
-          }
-          ticking = false;
-        });
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const [formState, setFormState] = useState('idle');
 
@@ -52,43 +31,72 @@ export default function Home() {
   return (
     <>
       <Seo page="home" />
-      {/* Hero Section */}
-      <section id="hero" className="hero-section">
-        <div className="beams-canvas">
-          <Beams
-            beamWidth={2.5}
-            beamHeight={18}
-            beamNumber={15}
-            lightColor="#ffffff"
-            speed={2.5}
-            noiseIntensity={2}
-            scale={0.15}
-            rotation={43}
-          />
+      {/* Hero – Combined Scroll-Scrubbed Video (iMac → MacBook) */}
+      <ScrollScrubHero
+        id="hero"
+        pinLengthVh={750}
+        videos={[
+          // videoStartAt 0.60 (in segment-local terms) = animation starts at
+          // pin-progress 0.20, right in the middle of line 2's unreveal
+          // (= half of the three-line text has disappeared).
+          { src: '/hero-video/imac-scrub.mp4', videoStartAt: 0.60 },
+          { src: '/hero-video/macbook-scrub.mp4' },
+          { src: '/hero-video/iphone-scrub.mp4' },
+        ]}
+        badges={[
+          {
+            eyebrow: 'Unser Service',
+            label: '48h Website-Relaunch',
+            to: '/48h',
+            peakAt: 0.27,
+            side: 'right',
+          },
+          {
+            eyebrow: 'Unser Service',
+            label: 'E-Commerce & Online Shop',
+            to: '/leistungen',
+            peakAt: 0.50,
+            side: 'left',
+          },
+          {
+            eyebrow: 'Unser Service',
+            label: 'Social Media & SEO',
+            to: '/leistungen',
+            peakAt: 0.83,
+            side: 'center',
+          },
+        ]}
+      >
+        <div className="hero-float-wrapper">
+          <h1 className="hero-title-new">
+            {(() => {
+              // Split the gradient text into two visual lines at its natural
+              // midpoint so line 2 and line 3 each get their own clip-path
+              // animation (otherwise browser-wrapped lines inside a single
+              // span animate together).
+              const gradWords = (homePage.hero.titleGradient || '').split(' ');
+              const mid = Math.ceil(gradWords.length / 2);
+              const gradA = gradWords.slice(0, mid).join(' ');
+              const gradB = gradWords.slice(mid).join(' ');
+              const lines = [
+                { text: homePage.hero.titleLine1, gradient: false },
+                { text: gradA, gradient: true },
+                { text: gradB, gradient: true },
+                { text: homePage.hero.titleLine3, gradient: false },
+              ].filter((l) => l.text);
+              return lines.map((l, i) => (
+                <span key={i} className="hero-title-line">
+                  {l.gradient ? (
+                    <span className="hero-gradient-text">{l.text}</span>
+                  ) : (
+                    l.text
+                  )}
+                </span>
+              ));
+            })()}
+          </h1>
         </div>
-        <div className="hero-overlay"></div>
-        <div className="hero-content" ref={heroContentRef}>
-          <div className="hero-float-wrapper">
-            <MaskRevealText
-              text={[homePage.hero.titleLine1, homePage.hero.titleGradient, homePage.hero.titleLine3].filter(Boolean).join(' ')}
-              className="hero-title-new"
-              stagger={0.08}
-              duration={0.85}
-              delay={0.15}
-              highlight={{ text: homePage.hero.titleGradient, className: 'hero-gradient-text' }}
-            />
-            <p className="hero-subtitle-new">
-              {homePage.hero.subtitle}
-            </p>
-          </div>
-          <div className="hero-buttons-new">
-            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { smoothScrollTo('kontakt'); }} />
-            <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
-              {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
-      </section>
+      </ScrollScrubHero>
 
       {/* Trusted By Marquee */}
       <TrustedMarquee />
