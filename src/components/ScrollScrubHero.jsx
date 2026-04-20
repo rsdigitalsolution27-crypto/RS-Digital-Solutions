@@ -339,23 +339,6 @@ export default function ScrollScrubHero({
   return (
     <section ref={sectionRef} className="hero-scrub" id={id} data-scrub-hero>
       <div ref={stickyRef} className="hero-scrub-sticky">
-        {/* Blurred background copies — only visible on portrait mobile via CSS.
-            Fills the side gutter left by the contained foreground video. */}
-        {segments.map((s, i) => (
-          <video
-            key={`bg-${s.src}`}
-            ref={(el) => { videoBgRefs.current[i] = el; }}
-            className="hero-scrub-video-bg"
-            src={s.src}
-            muted
-            playsInline
-            preload="auto"
-            disablePictureInPicture
-            aria-hidden="true"
-            style={{ opacity: i === 0 ? 1 : 0 }}
-          />
-        ))}
-        {/* Sharp foreground videos */}
         {segments.map((s, i) => (
           <video
             key={s.src}
@@ -368,7 +351,12 @@ export default function ScrollScrubHero({
             preload="auto"
             disablePictureInPicture
             aria-hidden="true"
-            style={{ opacity: i === 0 ? 1 : 0 }}
+            style={{
+              opacity: i === 0 ? 1 : 0,
+              // `--mobile-focus` is picked up by the mobile-portrait CSS so each
+              // segment can frame its own device in the centre of the viewport.
+              '--mobile-focus': s.mobileFocus || 'center center',
+            }}
           />
         ))}
         <div className="hero-scrub-overlay" />

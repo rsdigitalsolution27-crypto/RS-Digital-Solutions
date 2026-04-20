@@ -39,9 +39,22 @@ export default function Home() {
           // videoStartAt 0.60 (in segment-local terms) = animation starts at
           // pin-progress 0.20, right in the middle of line 2's unreveal
           // (= half of the three-line text has disappeared).
-          { src: '/hero-video/imac-scrub.mp4', videoStartAt: 0.60 },
-          { src: '/hero-video/macbook-scrub.mp4' },
-          { src: '/hero-video/iphone-scrub.mp4' },
+          // mobileFocus values frame each device in the centre of the portrait
+          // viewport: X% shifts the horizontal object-position when the video
+          // is scaled to cover the screen.
+          {
+            src: '/hero-video/imac-scrub.mp4',
+            videoStartAt: 0.60,
+            mobileFocus: '78% 50%',
+          },
+          {
+            src: '/hero-video/macbook-scrub.mp4',
+            mobileFocus: '18% 50%',
+          },
+          {
+            src: '/hero-video/iphone-scrub.mp4',
+            mobileFocus: '72% 65%',
+          },
         ]}
         badges={[
           {
