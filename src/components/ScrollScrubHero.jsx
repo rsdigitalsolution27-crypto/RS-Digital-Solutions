@@ -37,7 +37,6 @@ export default function ScrollScrubHero({
   const sectionRef = useRef(null);
   const stickyRef = useRef(null);
   const videoRefs = useRef([]);
-  const videoBgRefs = useRef([]);
   const contentRef = useRef(null);
   const badgeRefs = useRef([]);
   const readyRef = useRef([]);
@@ -51,7 +50,6 @@ export default function ScrollScrubHero({
     const section = sectionRef.current;
     const sticky = stickyRef.current;
     const videoEls = videoRefs.current;
-    const videoBgEls = videoBgRefs.current;
     const content = contentRef.current;
     const badgeEls = badgeRefs.current;
     if (!section || !sticky || videoEls.length === 0) return;
@@ -91,15 +89,6 @@ export default function ScrollScrubHero({
         });
       }
     });
-    // Prime the blurred background videos so they're ready to mirror
-    videoBgEls.forEach((v) => {
-      if (!v) return;
-      v.pause();
-      v.load();
-      const p = v.play();
-      if (p && typeof p.then === 'function') p.then(() => v.pause()).catch(() => v.pause());
-    });
-
     // Sync with Lenis smooth scroll
     const onLenisScroll = () => ScrollTrigger.update();
     if (window.lenis && typeof window.lenis.on === 'function') {
@@ -125,10 +114,9 @@ export default function ScrollScrubHero({
         });
       }
     });
-    // Only the first video visible by default (foreground + background mirror)
+    // Only the first video visible by default
     videoEls.forEach((v, i) => {
       gsap.set(v, { opacity: i === 0 ? 1 : 0 });
-      if (videoBgEls[i]) gsap.set(videoBgEls[i], { opacity: i === 0 ? 1 : 0 });
     });
 
     const segCount = segments.length;
@@ -169,7 +157,6 @@ export default function ScrollScrubHero({
                 lastTimeRef.current[i] = clamped;
                 try {
                   v.currentTime = clamped;
-                  if (videoBgEls[i]) videoBgEls[i].currentTime = clamped;
                 } catch {}
               }
             } else {
@@ -178,7 +165,6 @@ export default function ScrollScrubHero({
                 lastTimeRef.current[i] = 0;
                 try {
                   v.currentTime = 0;
-                  if (videoBgEls[i]) videoBgEls[i].currentTime = 0;
                 } catch {}
               }
             }
@@ -255,15 +241,6 @@ export default function ScrollScrubHero({
       const prev = videoEls[i - 1];
       tl.to(v, { opacity: 1, duration: fadeWindow * 2, ease: 'none' }, boundary - fadeWindow)
         .set(prev, { opacity: 0 }, boundary + fadeWindow);
-      // Mirror the same fade on the blurred background pair
-      const vBg = videoBgEls[i];
-      const prevBg = videoBgEls[i - 1];
-      if (vBg) {
-        tl.to(vBg, { opacity: 1, duration: fadeWindow * 2, ease: 'none' }, boundary - fadeWindow);
-      }
-      if (prevBg) {
-        tl.set(prevBg, { opacity: 0 }, boundary + fadeWindow);
-      }
     });
 
     // Badges: each fades in/out around its own peak. The window is sized so
