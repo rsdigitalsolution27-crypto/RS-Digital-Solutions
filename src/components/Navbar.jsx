@@ -26,8 +26,22 @@ export default function Navbar() {
 
   // Scroll behavior
   useEffect(() => {
-    const APPEAR_THRESHOLD = typeof window !== 'undefined' ? window.innerHeight : 800;
     let ticking = false;
+
+    // Dynamic threshold: on the home page wait until ALL scroll-scrub heroes
+    // (pinned by GSAP) are fully passed. Elsewhere keep the default 1 viewport.
+    const getAppearThreshold = () => {
+      if (typeof window === 'undefined') return 800;
+      if (isHome) {
+        const heroes = document.querySelectorAll('[data-scrub-hero]');
+        if (heroes.length > 0) {
+          const last = heroes[heroes.length - 1];
+          const bottom = last.offsetTop + last.offsetHeight;
+          if (bottom > 0) return bottom - 40;
+        }
+      }
+      return window.innerHeight;
+    };
 
     const onScroll = () => {
       if (ticking) return;
@@ -36,6 +50,7 @@ export default function Navbar() {
         const currentScrollY = window.scrollY;
         const delta = currentScrollY - lastScrollY.current;
         const navbarHeight = navbarRef.current?.offsetHeight || 70;
+        const APPEAR_THRESHOLD = getAppearThreshold();
 
         if (currentScrollY <= navbarHeight) {
           setNavFixed(false);
@@ -77,7 +92,7 @@ export default function Navbar() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [mobileOpen]);
+  }, [mobileOpen, isHome]);
 
   const lockScroll = () => {
     document.body.style.overflow = 'hidden';
