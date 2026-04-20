@@ -34,17 +34,16 @@ export default function Home() {
       {/* Hero – Combined Scroll-Scrubbed Video (iMac → MacBook) */}
       <ScrollScrubHero
         id="hero"
-        pinLengthVh={750}
+        pinLengthVh={900}
         videos={[
-          // videoStartAt 0.60 (in segment-local terms) = animation starts at
-          // pin-progress 0.20, right in the middle of line 2's unreveal
-          // (= half of the three-line text has disappeared).
-          // mobileFocus values frame each device in the centre of the portrait
-          // viewport: X% shifts the horizontal object-position when the video
-          // is scaled to cover the screen.
+          // iMac bekommt weight 1.5 → grösseres Scroll-Fenster, damit das
+          // Video nach der Text-Phase nicht hetzt. videoStartAt 0.47 (in
+          // segment-local terms) hält den Start-Punkt bei pin 0.20 =
+          // "halber Text entfernt".
           {
             src: '/hero-video/imac-scrub.mp4',
-            videoStartAt: 0.60,
+            weight: 1.5,
+            videoStartAt: 0.47,
             mobileFocus: '78% 50%',
           },
           {
@@ -61,21 +60,21 @@ export default function Home() {
             eyebrow: 'Unser Service',
             label: '48h Website-Relaunch',
             to: '/48h',
-            peakAt: 0.27,
+            peakAt: 0.32,
             side: 'right',
           },
           {
             eyebrow: 'Unser Service',
             label: 'E-Commerce & Online Shop',
             to: '/leistungen',
-            peakAt: 0.50,
+            peakAt: 0.57,
             side: 'left',
           },
           {
             eyebrow: 'Unser Service',
             label: 'Social Media & SEO',
             to: '/leistungen',
-            peakAt: 0.83,
+            peakAt: 0.86,
             side: 'center',
           },
         ]}

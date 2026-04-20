@@ -120,6 +120,23 @@ export default function ScrollScrubHero({
     });
 
     const segCount = segments.length;
+    // Each segment can optionally override its relative size via `weight`
+    // (defaults to 1 = equal shares). We convert weights into cumulative
+    // boundaries once here so the onUpdate callback can look them up cheaply.
+    const totalWeight = segments.reduce((s, seg) => s + (seg.weight ?? 1), 0);
+    const segBounds = [];
+    let acc = 0;
+    segments.forEach((seg) => {
+      const start = acc;
+      acc += (seg.weight ?? 1) / totalWeight;
+      segBounds.push({ start, end: acc });
+    });
+    const findActiveIdx = (p) => {
+      for (let i = 0; i < segBounds.length; i++) {
+        if (p < segBounds[i].end) return i;
+      }
+      return segBounds.length - 1;
+    };
 
     // Master timeline: handles pinning, scrubs videos, fades content and badges
     const tl = gsap.timeline({
@@ -134,9 +151,9 @@ export default function ScrollScrubHero({
         onUpdate: (self) => {
           if (reducedMotion) return;
           const p = self.progress;
-          const segSize = 1 / segCount;
-          const activeIdx = Math.min(segCount - 1, Math.floor(p / segSize));
-          const localP = Math.min(1, Math.max(0, (p - activeIdx * segSize) / segSize));
+          const activeIdx = findActiveIdx(p);
+          const { start, end } = segBounds[activeIdx];
+          const localP = Math.min(1, Math.max(0, (p - start) / (end - start)));
 
           videoEls.forEach((v, i) => {
             if (!readyRef.current[i]) return;
@@ -215,11 +232,10 @@ export default function ScrollScrubHero({
       );
     }
 
-    // Phase: subtle zoom on each video — peaks mid-segment
+    // Phase: subtle zoom on each video — peaks mid-segment (using weighted bounds)
     segments.forEach((_, i) => {
-      const start = i / segCount;
-      const mid = start + (1 / segCount) * 0.5;
-      const end = (i + 1) / segCount;
+      const { start, end } = segBounds[i];
+      const mid = start + (end - start) * 0.5;
       const v = videoEls[i];
       if (!v) return;
       tl.fromTo(
@@ -231,12 +247,9 @@ export default function ScrollScrubHero({
     });
 
     // Crossfade between videos at segment boundaries.
-    // Keep the previous video at full opacity during the fade and only fade IN
-    // the next one on top — otherwise both would be semi-transparent at the
-    // midpoint and the black background bleeds through, causing a dark flash.
     videoEls.forEach((v, i) => {
       if (i === 0) return;
-      const boundary = i / segCount;
+      const boundary = segBounds[i].start;
       const fadeWindow = 0.015;
       const prev = videoEls[i - 1];
       tl.to(v, { opacity: 1, duration: fadeWindow * 2, ease: 'none' }, boundary - fadeWindow)
