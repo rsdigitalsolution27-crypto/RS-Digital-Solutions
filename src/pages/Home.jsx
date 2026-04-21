@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Beams from '../components/Beams';
+import LightRays from '../components/LightRays';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import MaskRevealText from '../components/ui/MaskRevealText';
 import Seo from '../components/Seo';
@@ -54,15 +54,19 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="hero-section">
         <div className="beams-canvas">
-          <Beams
-            beamWidth={2.5}
-            beamHeight={18}
-            beamNumber={15}
-            lightColor="#ffffff"
-            speed={2.5}
-            noiseIntensity={2}
-            scale={0.15}
-            rotation={43}
+          <LightRays
+            raysOrigin="top-center"
+            raysColor="#7ea5d9"
+            raysSpeed={1.2}
+            lightSpread={1.3}
+            rayLength={3}
+            pulsating={false}
+            fadeDistance={1.6}
+            saturation={1.4}
+            followMouse
+            mouseInfluence={0.12}
+            noiseAmount={0}
+            distortion={0}
           />
         </div>
         <div className="hero-overlay"></div>
