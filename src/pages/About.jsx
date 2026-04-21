@@ -56,7 +56,7 @@ export default function About() {
       {/* About Section */}
       <section className="about-section">
         <div className="container">
-          <div className="about-grid">
+          <div className="about-grid" style={{ gridTemplateColumns: '1fr' }}>
             <div className="about-content" data-animate="fade-right">
               <span className="section-tag">{aboutPage.intro.tag}</span>
               <h2 className="section-title" dangerouslySetInnerHTML={{ __html: aboutPage.intro.title }}></h2>
@@ -71,19 +71,6 @@ export default function About() {
                     <p>{v.desc}</p>
                   </div>
                 ))}
-              </div>
-            </div>
-            <div className="about-visual" data-animate="fade-left">
-              <div className="about-card">
-                <div className="about-card-bg"></div>
-                <div className="about-card-content">
-                  {aboutPage.stats.map((s, i) => (
-                    <div key={i} className="about-stat">
-                      <span className="about-stat-number" data-count={s.value}>0</span><span className="about-stat-plus">{s.suffix}</span>
-                      <span className="about-stat-label">{s.label}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>

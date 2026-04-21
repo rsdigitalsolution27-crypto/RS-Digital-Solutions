@@ -170,14 +170,21 @@ export default function ScrollScrubHero({
               //  - forwardOnly: play forward only and hold on last frame
               //    after `playUntil` (defaults to 1). Used for the final
               //    transition segment so it ends on its end-state.
+              //
+              // `videoSkipStart`/`videoSkipEnd` (seconds) schneiden
+              // schwarze oder unerwünschte Frames am Video-Anfang/Ende
+              // ab, ohne die Video-Datei selbst zu ändern.
+              const skipStart = segments[i]?.videoSkipStart ?? 0;
+              const skipEnd = segments[i]?.videoSkipEnd ?? 0;
+              const effectiveDur = Math.max(0.1, dur - skipStart - skipEnd);
               let t;
               if (segments[i]?.forwardOnly) {
                 const playUntil = segments[i]?.playUntil ?? 1;
-                t = Math.min(1, adjP / playUntil) * dur;
+                t = skipStart + Math.min(1, adjP / playUntil) * effectiveDur;
               } else if (adjP <= 0.5) {
-                t = (adjP / 0.5) * dur;
+                t = skipStart + (adjP / 0.5) * effectiveDur;
               } else {
-                t = (1 - (adjP - 0.5) / 0.5) * dur;
+                t = skipStart + (1 - (adjP - 0.5) / 0.5) * effectiveDur;
               }
               const clamped = Math.min(dur - 0.05, Math.max(0, t));
               if (Math.abs(clamped - lastTimeRef.current[i]) > 0.02) {
@@ -187,11 +194,13 @@ export default function ScrollScrubHero({
                 } catch {}
               }
             } else {
-              // Reset inactive videos to frame 0 so they're ready when activated
-              if (lastTimeRef.current[i] !== 0) {
-                lastTimeRef.current[i] = 0;
+              // Reset inactive videos auf den Skip-Start-Punkt, damit
+              // sie bei Aktivierung nicht auf einem schwarzen Frame stehen.
+              const resetTo = segments[i]?.videoSkipStart ?? 0;
+              if (lastTimeRef.current[i] !== resetTo) {
+                lastTimeRef.current[i] = resetTo;
                 try {
-                  v.currentTime = 0;
+                  v.currentTime = resetTo;
                 } catch {}
               }
             }
@@ -266,13 +275,14 @@ export default function ScrollScrubHero({
         .set(prev, { opacity: 0 }, boundary + fadeWindow);
     });
 
-    // Final fade-out: in the last ~8% of scroll progress, the whole sticky
-    // hero fades away so the transition into the next section feels smooth
-    // instead of cutting abruptly to black.
-    const fadeOutStart = 0.92;
+    // Langer, smoother Fade-Out am Pin-Ende. Beginnt direkt nach dem
+    // Video-End-Zustand und läuft über ~28% der Pin-Strecke, damit der
+    // Übergang vom digitalen Frame in die nächste Section weich wirkt
+    // statt abrupt ins Schwarz zu kippen.
+    const fadeOutStart = 0.72;
     tl.to(
       sticky,
-      { opacity: 0, duration: 1 - fadeOutStart, ease: 'power2.in' },
+      { opacity: 0, duration: 1 - fadeOutStart, ease: 'power2.inOut' },
       fadeOutStart
     );
 

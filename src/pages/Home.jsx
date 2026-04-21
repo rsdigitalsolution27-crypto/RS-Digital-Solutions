@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ScrollScrubHero from '../components/ScrollScrubHero';
+import Beams from '../components/Beams';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import MaskRevealText from '../components/ui/MaskRevealText';
 import Seo from '../components/Seo';
@@ -13,6 +13,26 @@ import { homePage, company, referenzenPage } from '../content';
 
 export default function Home() {
   const navigate = useNavigate();
+  const heroContentRef = useRef(null);
+
+  useEffect(() => {
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const heroContent = heroContentRef.current;
+          if (heroContent && window.scrollY < window.innerHeight) {
+            heroContent.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+            heroContent.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.8));
+          }
+          ticking = false;
+        });
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const [formState, setFormState] = useState('idle');
 
@@ -31,108 +51,43 @@ export default function Home() {
   return (
     <>
       <Seo page="home" />
-      {/* Hero – Combined Scroll-Scrubbed Video (iMac → MacBook → iPhone → Router → Xray) */}
-      <ScrollScrubHero
-        id="hero"
-        pinLengthVh={1120}
-        videos={[
-          // iMac bekommt weight 3 → großes Scroll-Fenster, damit das Video
-          // erst *nach* dem Text-Unreveal anfängt zu scrubben. Mit
-          // videoStartAt 0.70 (segment-local) startet das Video bei globaler
-          // Pin-Progress ~0.30 — dann ist nur noch die letzte Textzeile zu
-          // sehen.
-          {
-            src: '/hero-video/imac-scrub.mp4',
-            weight: 3,
-            videoStartAt: 0.70,
-            mobileFocus: '78% 50%',
-          },
-          {
-            src: '/hero-video/macbook-scrub.mp4',
-            mobileFocus: '18% 50%',
-          },
-          {
-            src: '/hero-video/iphone-scrub.mp4',
-            mobileFocus: '72% 65%',
-          },
-          {
-            src: '/hero-video/router-scrub.mp4',
-            mobileFocus: '20% 45%',
-          },
-          // X-Ray/Digital Transition: letztes Segment - dient als weicher
-          // Übergang zur restlichen Seite (statt hartem Cut auf Schwarz).
-          // forwardOnly + playUntil 0.5 → Video spielt linear vorwärts,
-          // erreicht das letzte Frame (digitaler Zustand) etwa bei Scroll-
-          // Progress 0.93 und hält es, während der globale Fade-Out bei
-          // 0.92 einsetzt. So endet der Hero auf dem digitalen Bild.
-          {
-            src: '/hero-video/xray-scrub.mp4',
-            mobileFocus: 'center center',
-            forwardOnly: true,
-            playUntil: 0.5,
-          },
-        ]}
-        badges={[
-          {
-            eyebrow: 'Unser Service',
-            label: '48h Website-Relaunch',
-            to: '/48h',
-            peakAt: 0.36,
-            side: 'right',
-          },
-          {
-            eyebrow: 'Unser Service',
-            label: 'E-Commerce & Online Shop',
-            to: '/leistungen',
-            peakAt: 0.50,
-            side: 'left',
-          },
-          {
-            eyebrow: 'Unser Service',
-            label: 'Social Media & SEO',
-            to: '/leistungen',
-            peakAt: 0.64,
-            side: 'center',
-          },
-          {
-            eyebrow: 'Unser Service',
-            label: 'Hosting & Domain',
-            to: '/leistungen',
-            peakAt: 0.78,
-            side: 'above-macbook',
-          },
-        ]}
-      >
-        <div className="hero-float-wrapper">
-          <h1 className="hero-title-new">
-            {(() => {
-              // Split the gradient text into two visual lines at its natural
-              // midpoint so line 2 and line 3 each get their own clip-path
-              // animation (otherwise browser-wrapped lines inside a single
-              // span animate together).
-              const gradWords = (homePage.hero.titleGradient || '').split(' ');
-              const mid = Math.ceil(gradWords.length / 2);
-              const gradA = gradWords.slice(0, mid).join(' ');
-              const gradB = gradWords.slice(mid).join(' ');
-              const lines = [
-                { text: homePage.hero.titleLine1, gradient: false },
-                { text: gradA, gradient: true },
-                { text: gradB, gradient: true },
-                { text: homePage.hero.titleLine3, gradient: false },
-              ].filter((l) => l.text);
-              return lines.map((l, i) => (
-                <span key={i} className="hero-title-line">
-                  {l.gradient ? (
-                    <span className="hero-gradient-text">{l.text}</span>
-                  ) : (
-                    l.text
-                  )}
-                </span>
-              ));
-            })()}
-          </h1>
+      {/* Hero Section */}
+      <section id="hero" className="hero-section">
+        <div className="beams-canvas">
+          <Beams
+            beamWidth={2.5}
+            beamHeight={18}
+            beamNumber={15}
+            lightColor="#ffffff"
+            speed={2.5}
+            noiseIntensity={2}
+            scale={0.15}
+            rotation={43}
+          />
         </div>
-      </ScrollScrubHero>
+        <div className="hero-overlay"></div>
+        <div className="hero-content" ref={heroContentRef}>
+          <div className="hero-float-wrapper">
+            <MaskRevealText
+              text={[homePage.hero.titleLine1, homePage.hero.titleGradient, homePage.hero.titleLine3].filter(Boolean).join(' ')}
+              className="hero-title-new"
+              stagger={0.08}
+              duration={0.85}
+              delay={0.15}
+              highlight={{ text: homePage.hero.titleGradient, className: 'hero-gradient-text' }}
+            />
+            <p className="hero-subtitle-new">
+              {homePage.hero.subtitle}
+            </p>
+          </div>
+          <div className="hero-buttons-new">
+            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { smoothScrollTo('kontakt'); }} />
+            <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
+              {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
 
       {/* Alles aus einer Hand */}
       <section id="all-in-one" className="all-in-one-section landing-section">
@@ -188,76 +143,6 @@ export default function Home() {
           </div>
           <div data-animate="fade-up">
             <FeatureSteps steps={homePage.process.steps} />
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="pricing-section landing-section">
-        <div className="container">
-          <div className="pricing-header" data-animate="fade-up">
-            <span className="section-tag">{homePage.pricing.tag}</span>
-            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.pricing.title }}></h2>
-            <p className="pricing-description">{homePage.pricing.description}</p>
-          </div>
-          <div className="pricing-grid">
-            {homePage.pricing.packages.map((pkg, i) => (
-              <div
-                key={i}
-                className={`pricing-card${pkg.highlighted ? ' pricing-card-highlight' : ''}`}
-                data-animate="fade-up"
-                style={{ transitionDelay: `${i * 120}ms` }}
-              >
-                {pkg.badge && <div className="pricing-badge">{pkg.badge}</div>}
-                <div className="pricing-card-header">
-                  <h3 className="pricing-card-name">{pkg.name}</h3>
-                  <p className="pricing-card-desc">{pkg.desc}</p>
-                </div>
-                <div className="pricing-price">
-                  {pkg.priceLabel && <span className="pricing-price-label">{pkg.priceLabel}</span>}
-                  <span className="pricing-price-value">
-                    {pkg.price}
-                    {pkg.currency && <span className="pricing-price-currency">{pkg.currency}</span>}
-                  </span>
-                  <span className="pricing-price-period">{pkg.period}</span>
-                </div>
-                <ul className="pricing-features">
-                  {pkg.features.map((feature, j) => (
-                    <li key={j} className="pricing-feature">
-                      <svg className="pricing-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  className={`pricing-cta${pkg.highlighted ? ' pricing-cta-primary' : ''}`}
-                  onClick={() => smoothScrollTo('kontakt')}
-                >
-                  {pkg.cta} <span aria-hidden="true">→</span>
-                </button>
-              </div>
-            ))}
-          </div>
-          <p className="pricing-footnote" data-animate="fade-up">{homePage.pricing.footnote}</p>
-        </div>
-      </section>
-
-      {/* Stats Bar (Zahlen-Beweis direkt nach Pricing) */}
-      <section className="stats-bar-section">
-        <div className="container">
-          <div className="stats-bar" data-animate="fade-up">
-            {homePage.stats.map((stat, i) => (
-              <div key={i} className="stats-bar-item" style={{ transitionDelay: `${i * 80}ms` }}>
-                <span className="stats-bar-value">
-                  {stat.value}
-                  <span className="stats-bar-suffix">{stat.suffix}</span>
-                </span>
-                <span className="stats-bar-label">{stat.label}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>
