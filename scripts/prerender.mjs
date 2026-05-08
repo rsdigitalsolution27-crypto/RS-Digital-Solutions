@@ -10,7 +10,35 @@
 import http from 'node:http';
 import { createReadStream, statSync, mkdirSync, writeFileSync } from 'node:fs';
 import { resolve, join, extname, dirname } from 'node:path';
-import puppeteer from 'puppeteer';
+
+/**
+ * Detect serverless build environment (Vercel, AWS Lambda).
+ * On these platforms, regular puppeteer's bundled Chromium fails because
+ * the host container lacks shared libraries (libnspr4, libnss3, etc.).
+ * We use @sparticuz/chromium + puppeteer-core which bundles a Linux-
+ * compatible Chromium with all required libs.
+ *
+ * Locally (developer machine), we use regular puppeteer for simplicity.
+ */
+const isServerless = !!(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY);
+
+async function launchBrowser() {
+  if (isServerless) {
+    const { default: chromium } = await import('@sparticuz/chromium');
+    const { default: puppeteerCore } = await import('puppeteer-core');
+    return puppeteerCore.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+    });
+  }
+  const { default: puppeteer } = await import('puppeteer');
+  return puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+}
 
 const PORT = 5174;
 const DIST = resolve('dist');
@@ -121,10 +149,8 @@ await new Promise((r, reject) => {
 });
 console.log(`> Prerender server listening on http://localhost:${PORT}`);
 
-const browser = await puppeteer.launch({
-  headless: 'new',
-  args: ['--no-sandbox', '--disable-setuid-sandbox'],
-});
+console.log(`> Environment: ${isServerless ? 'serverless (Vercel/Lambda)' : 'local'}`);
+const browser = await launchBrowser();
 
 let succeeded = 0;
 let failed = 0;
