@@ -92,8 +92,8 @@ export const seo = {
 /* ─── Home Page ─── */
 export const homePage = {
   hero: {
-    titleLine1: 'Digitale Infrastruktur',
-    titleGradient: 'für den Mittelstand.',
+    titleLine1: 'KI-Systeme, die Ihre',
+    titleGradient: 'Geschäftsprozesse automatisieren',
     titleLine3: '',
     subtitle:
       'Websites, Online-Shops und KI-Integration — aus einer Hand.',
@@ -112,7 +112,7 @@ export const homePage = {
         label: 'KI & Automatisierung',
         title: 'KI-Automatisierung & Zeitersparnis',
         desc: 'Intelligente Chatbots, Terminbuchung und Lead-Qualifizierung — 24/7 automatisch. Bis zu 15 Stunden Zeitersparnis pro Woche.',
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop',
+        image: '/images/ki-automation.png',
       },
       {
         id: 'webdesign',
@@ -206,21 +206,25 @@ export const homePage = {
         icon: 'fas fa-globe',
         title: 'Domain & Hosting',
         desc: 'Wir registrieren Ihre Wunsch-Domain und hosten Ihre Website auf Premium-Servern — inkl. SSL, Backups und 99,9% Uptime.',
+        video: '/videos/card-domain',
       },
       {
         icon: 'fas fa-shield-alt',
         title: 'Wartung & Updates',
         desc: 'Sicherheit, Speed und Content-Änderungen übernehmen wir. Ihre Website bleibt immer aktuell, sicher und performant.',
+        video: '/videos/card-wartung',
       },
       {
         icon: 'fas fa-robot',
         title: 'KI & Automatisierung',
         desc: 'Intelligente Chatbots, automatische Terminbuchung und Lead-Qualifizierung — 24/7 im Einsatz für Ihr Business.',
+        video: '/videos/card-ki',
       },
       {
         icon: 'fas fa-headset',
         title: '24/7 Support',
         desc: 'Ein Ansprechpartner, ein Team, volle Verantwortung. Schnelle Reaktionszeiten und persönlicher Service.',
+        video: '/videos/tile-c3-1',
       },
     ],
   },
@@ -281,7 +285,7 @@ export const leistungenPage = {
   services: [
     {
       label: 'KI-Automa\u00ADtisierung & Zeitersparnis',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop',
+      image: '/images/ki-automation.png',
       icon: 'fas fa-robot',
       headline: 'Ihr digitaler Mitarbeiter — 24/7.',
       intro:

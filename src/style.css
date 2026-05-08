@@ -635,9 +635,9 @@ html.light-theme section + section::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
-    padding: 140px 24px 80px;
+    padding: 18vh 24px 80px;
 }
 
 .aurora-canvas {
@@ -661,6 +661,16 @@ html.light-theme section + section::before {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
+}
+
+.hero-bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     z-index: 0;
 }
 
@@ -697,12 +707,16 @@ html.light-theme section + section::before {
 /* New Title Styling – Bold display font, cinematic impact */
 .hero-title-new {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 7vw, 5.3rem);
+    font-size: clamp(1.6rem, 4.4vw, 3.3rem);
     font-weight: 900;
     line-height: 1.15;
     margin-bottom: 28px;
     letter-spacing: 0px;
     color: var(--text-primary);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
 }
 
 .hero-gradient-text {
@@ -732,7 +746,7 @@ html.light-theme section + section::before {
     font-weight: 300;
     color: var(--text-primary);
     max-width: 560px;
-    margin: 0 auto;
+    margin: 44vh auto 0;
     line-height: 1.8;
     letter-spacing: 0.2px;
 }
@@ -3889,6 +3903,45 @@ html.light-theme .process-step-number {
     z-index: 1;
 }
 
+.all-in-one-card--video {
+    overflow: hidden;
+    position: relative;
+}
+
+.all-in-one-card-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.all-in-one-card--video::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.22) 0%,
+        rgba(0, 0, 0, 0.42) 55%,
+        rgba(0, 0, 0, 0.72) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.all-in-one-card--video .all-in-one-card-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.all-in-one-card--video .all-in-one-card-title,
+.all-in-one-card--video .all-in-one-card-desc {
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 .all-in-one-card-title {
     font-family: var(--font-primary);
     font-size: 1.25rem;
@@ -5997,7 +6050,7 @@ html.light-theme .chatbot-input:focus {
     }
     
     .hero-section {
-        padding: 100px 16px 60px;
+        padding: 14vh 16px 60px;
     }
     
     .hero-title {
@@ -6005,8 +6058,12 @@ html.light-theme .chatbot-input:focus {
     }
 
     .hero-title-new {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
         letter-spacing: 0px;
+    }
+
+    .hero-subtitle-new {
+        margin-top: 40vh;
     }
 
     .hero-gradient-text {

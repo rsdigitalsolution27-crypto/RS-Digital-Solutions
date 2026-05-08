@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LightRays from '../components/LightRays';
+import VideoMedia from '../components/VideoMedia';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import MaskRevealText from '../components/ui/MaskRevealText';
 import Seo from '../components/Seo';
@@ -53,37 +53,26 @@ export default function Home() {
       <Seo page="home" />
       {/* Hero Section */}
       <section id="hero" className="hero-section">
-        <div className="beams-canvas">
-          <LightRays
-            raysOrigin="top-center"
-            raysColor="#7ea5d9"
-            raysSpeed={1.2}
-            lightSpread={1.3}
-            rayLength={3}
-            pulsating={false}
-            fadeDistance={1.6}
-            saturation={1.4}
-            followMouse
-            mouseInfluence={0.12}
-            noiseAmount={0}
-            distortion={0}
-          />
-        </div>
+        <VideoMedia
+          src="/videos/hero-rs-loop"
+          className="hero-bg-video"
+          aria-hidden="true"
+        />
         <div className="hero-overlay"></div>
         <div className="hero-content" ref={heroContentRef}>
           <div className="hero-float-wrapper">
             <MaskRevealText
               text={[homePage.hero.titleLine1, homePage.hero.titleGradient, homePage.hero.titleLine3].filter(Boolean).join(' ')}
               className="hero-title-new"
-              stagger={0.08}
-              duration={0.85}
-              delay={0.15}
+              stagger={0.16}
+              duration={1.4}
+              delay={0.25}
               highlight={{ text: homePage.hero.titleGradient, className: 'hero-gradient-text' }}
             />
-            <p className="hero-subtitle-new">
-              {homePage.hero.subtitle}
-            </p>
           </div>
+          <p className="hero-subtitle-new">
+            {homePage.hero.subtitle}
+          </p>
           <div className="hero-buttons-new">
             <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { smoothScrollTo('kontakt'); }} />
             <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
@@ -105,13 +94,26 @@ export default function Home() {
             {homePage.allInOne.cards.map((card, i) => (
               <div
                 key={i}
-                className="all-in-one-card"
+                className={`all-in-one-card${card.video ? ' all-in-one-card--video' : ''}`}
                 data-animate="fade-up"
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <div className="all-in-one-icon"><i className={card.icon}></i></div>
-                <h3 className="all-in-one-card-title">{card.title}</h3>
-                <p className="all-in-one-card-desc">{card.desc}</p>
+                {card.video && (
+                  <VideoMedia
+                    src={card.video}
+                    className="all-in-one-card-bg"
+                    aria-hidden="true"
+                  />
+                )}
+                <div className="all-in-one-card-inner">
+                  {!card.video && (
+                    <div className="all-in-one-icon">
+                      <i className={card.icon}></i>
+                    </div>
+                  )}
+                  <h3 className="all-in-one-card-title">{card.title}</h3>
+                  <p className="all-in-one-card-desc">{card.desc}</p>
+                </div>
               </div>
             ))}
           </div>

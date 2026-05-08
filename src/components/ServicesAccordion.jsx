@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import VideoMedia from './VideoMedia';
 
 function AccordionItem({ item, index, isOpen, onToggle, onCtaClick, ctaLabel }) {
   const contentRef = useRef(null);
@@ -55,12 +56,21 @@ function AccordionItem({ item, index, isOpen, onToggle, onCtaClick, ctaLabel }) 
                 </button>
               </div>
               <div className="sa-content-image-wrap">
-                <img
-                  className="sa-content-image"
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                />
+                {item.video ? (
+                  <VideoMedia
+                    src={item.video}
+                    poster={item.image}
+                    className="sa-content-image"
+                    aria-label={item.title}
+                  />
+                ) : (
+                  <img
+                    className="sa-content-image"
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                  />
+                )}
                 <div className="sa-content-image-overlay" aria-hidden="true" />
               </div>
             </div>

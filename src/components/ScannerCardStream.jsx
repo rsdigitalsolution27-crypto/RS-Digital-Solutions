@@ -75,11 +75,11 @@ const injectStyles = () => {
     @keyframes glitch{0%,16%,50%,100%{opacity:1}15%,99%{opacity:.9}49%{opacity:.8}}
     @keyframes scanPulse{0%{opacity:.75;transform:scaleY(1)}100%{opacity:1;transform:scaleY(1.03)}}
 
-    .scanner-stream-root{position:relative;width:100%;height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 8%,rgba(0,0,0,1) 92%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 8%,rgba(0,0,0,1) 92%,transparent 100%)}
+    .scanner-stream-root{position:relative;width:100%;height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 8%,rgba(0,0,0,1) 92%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 8%,rgba(0,0,0,1) 92%,transparent 100%)}
     .scanner-stream-root canvas{position:absolute;top:50%;left:0;transform:translateY(-50%);width:100%;pointer-events:none}
-    .scanner-stream-root .particle-canvas{height:250px;z-index:0}
-    .scanner-stream-root .scanner-canvas{height:300px;z-index:10}
-    .scanner-line{position:absolute;top:50%;left:40%;height:280px;width:2px;
+    .scanner-stream-root .particle-canvas{height:340px;z-index:0}
+    .scanner-stream-root .scanner-canvas{height:400px;z-index:10}
+    .scanner-line{position:absolute;top:50%;left:40%;height:380px;width:2px;
       transform:translate(-50%,-50%);
       background:linear-gradient(to bottom,transparent,#8b5cf6,transparent);
       border-radius:9999px;z-index:20;pointer-events:none;
@@ -92,7 +92,7 @@ const injectStyles = () => {
     .card-line{display:flex;align-items:center;position:absolute;width:max-content;cursor:grab;user-select:none;will-change:transform}
     .card-line:active{cursor:grabbing}
 
-    .card-wrapper{position:relative;width:400px;height:250px;flex-shrink:0}
+    .card-wrapper{position:relative;width:540px;height:340px;flex-shrink:0}
     .card-wrapper .card{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:15px;overflow:hidden}
     .card-wrapper .card-normal{z-index:2;background:transparent;
       box-shadow:0 15px 40px rgba(0,0,0,.4);
@@ -117,7 +117,7 @@ const injectStyles = () => {
     .card-overlay .card-overlay-link:hover{color:#fff}
 
     .card-wrapper .ascii-content{position:absolute;top:0;left:0;width:100%;height:100%;
-      color:rgba(220,210,255,.6);font-family:monospace;font-size:11px;line-height:13px;
+      color:rgba(220,210,255,.6);font-family:monospace;font-size:15px;line-height:18px;
       overflow:hidden;white-space:pre;margin:0;padding:0;text-align:left;
       mask-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 30%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.4) 80%,rgba(0,0,0,.2) 100%);
       -webkit-mask-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 30%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.4) 80%,rgba(0,0,0,.2) 100%);
@@ -140,9 +140,10 @@ const injectStyles = () => {
     }
 
     @media(max-width:768px){
-      .scanner-stream-root{height:220px}
-      .card-wrapper{width:280px;height:175px}
-      .scanner-line{height:200px}
+      .scanner-stream-root{height:270px}
+      .card-wrapper{width:340px;height:215px}
+      .card-wrapper .ascii-content{font-size:13px;line-height:15px}
+      .scanner-line{height:240px}
     }
   `;
   document.head.appendChild(style);

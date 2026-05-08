@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# Sibling project — separate repo, not part of this site
+my-clone/
+
