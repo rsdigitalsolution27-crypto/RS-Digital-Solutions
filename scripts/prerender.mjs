@@ -43,7 +43,7 @@ async function launchBrowser() {
 const PORT = 5174;
 const DIST = resolve('dist');
 const ROUTES = ['/', '/leistungen', '/referenzen', '/about', '/48h', '/ki'];
-const SETTLE_MS = 1200;
+const SETTLE_MS = 3000;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -159,11 +159,14 @@ for (const route of ROUTES) {
   try {
     const page = await browser.newPage();
     await page.setViewport({ width: 1440, height: 900 });
+    // Use 'domcontentloaded' instead of 'networkidle0' — pages with infinite
+    // animations (Scanner, particles) never reach network-idle. We just need
+    // React + Helmet to mount, then capture.
     await page.goto(`http://localhost:${PORT}${route}`, {
-      waitUntil: 'networkidle0',
-      timeout: 30000,
+      waitUntil: 'domcontentloaded',
+      timeout: 60000,
     });
-    // Give Helmet + Motion + scroll-animations time to settle
+    // Give React + Helmet + initial scroll-animations time to settle
     await new Promise((r) => setTimeout(r, SETTLE_MS));
 
     const html = dedupeHead(await page.content());
