@@ -77,7 +77,7 @@ html.light-theme .page-transition {
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-body: rgba(255, 255, 255, 0.85);
-    --text-muted: rgba(255, 255, 255, 0.4);
+    --text-muted: rgba(255, 255, 255, 0.62);
 
     --border-color: rgba(255, 255, 255, 0.12);
     --border-light: rgba(255, 255, 255, 0.12);
@@ -421,11 +421,17 @@ ul {
 .hamburger {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 6px;
     cursor: pointer;
     z-index: 1003;
+    min-width: 44px;
+    min-height: 44px;
     padding: 4px;
     flex-shrink: 0;
+    background: none;
+    border: none;
 }
 
 .hamburger span {
@@ -6158,7 +6164,7 @@ html.light-theme {
     --text-primary: #1a1a2e;
     --text-secondary: rgba(26, 26, 46, 0.65);
     --text-body: rgba(26, 26, 46, 0.75);
-    --text-muted: rgba(26, 26, 46, 0.4);
+    --text-muted: rgba(26, 26, 46, 0.6);
 
     --border-hover: rgba(45, 90, 142, 0.25);
     --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -7156,5 +7162,51 @@ html.light-theme .form-group textarea {
 @media (max-width: 640px) {
     .challenges-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ═══ Accessibility: Skip-Link, Fokus, reduzierte Bewegung ═══ */
+.skip-link {
+    position: fixed;
+    top: -100px;
+    left: 16px;
+    z-index: 2000;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: var(--primary, #355b8c);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+    top: 16px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--accent, #9fb8d9);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-animate] {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }

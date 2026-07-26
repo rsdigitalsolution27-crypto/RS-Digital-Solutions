@@ -41,10 +41,20 @@ export default function Leistungen() {
                     key={i}
                     className={`accordion-item${i === activeIndex ? ' active' : ''}`}
                     data-index={i}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={i === activeIndex}
+                    aria-label={item.label.replace(/­/g, '')}
                     onMouseEnter={() => {
                       if (!('ontouchstart' in window)) setActiveIndex(i);
                     }}
                     onClick={() => setActiveIndex(i)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setActiveIndex(i);
+                      }
+                    }}
                   >
                     <img src={item.image} alt={item.label} loading="lazy" decoding="async" />
                     <div className="accordion-overlay"></div>

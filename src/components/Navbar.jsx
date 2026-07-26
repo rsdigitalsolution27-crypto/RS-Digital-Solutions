@@ -159,15 +159,22 @@ export default function Navbar() {
             ))}
           </ul>
           <ThemeToggle />
-          <div className={`hamburger${mobileOpen ? ' active' : ''}`} onClick={toggleMobile}>
+          <button
+            type="button"
+            className={`hamburger${mobileOpen ? ' active' : ''}`}
+            onClick={toggleMobile}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={mobileOpen ? 'Menü schließen' : 'Menü öffnen'}
+          >
             <span></span>
             <span></span>
             <span></span>
-          </div>
+          </button>
         </div>
       </nav>
 
-      <div className={`mobile-menu-overlay${mobileOpen ? ' active' : ''}`}>
+      <div id="mobile-menu" className={`mobile-menu-overlay${mobileOpen ? ' active' : ''}`}>
         <div className="mobile-menu-content">
           <div className="mobile-menu-brand">
             <Logo width={56} height={56} className="logo-svg mobile-brand-logo" viewBox="130 30 200 175" />

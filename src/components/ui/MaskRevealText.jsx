@@ -14,6 +14,9 @@ export default function MaskRevealText({
   const words = text.split(' ').filter(Boolean);
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
+  const reducedMotion =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const highlightIndices = useMemo(() => {
     if (!highlight) return new Set();
@@ -63,8 +66,8 @@ export default function MaskRevealText({
             <motion.span
               className={innerClass}
               style={{ display: 'inline-block', willChange: 'transform' }}
-              initial={{ y: '110%', opacity: 0 }}
-              animate={inView ? { y: '0%', opacity: 1 } : { y: '110%', opacity: 0 }}
+              initial={reducedMotion ? { y: '0%', opacity: 1 } : { y: '110%', opacity: 0 }}
+              animate={reducedMotion || inView ? { y: '0%', opacity: 1 } : { y: '110%', opacity: 0 }}
               transition={{
                 duration,
                 delay: delay + i * stagger,

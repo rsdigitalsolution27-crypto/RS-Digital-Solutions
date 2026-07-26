@@ -98,7 +98,7 @@ export default function ShimmerButton({
       type="button"
       className={`shimmer-btn ${isIcon ? "shimmer-icon" : ""} ${className}`}
       onClick={onClick}
-      aria-label={label}
+      aria-label={isIcon ? label : undefined}
     >
       {isIcon ? (
         <IconComponent size={16} />

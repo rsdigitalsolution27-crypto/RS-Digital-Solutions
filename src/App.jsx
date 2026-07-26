@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { Component, Suspense, lazy } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
+import { Analytics } from '@vercel/analytics/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
@@ -50,10 +51,12 @@ function App() {
 
   return (
     <HelmetProvider>
+      <a className="skip-link" href="#main-content">Zum Inhalt springen</a>
       <SmoothScroll />
       <GrainOverlay />
       <Navbar />
       <ErrorBoundary>
+        <main id="main-content">
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -67,10 +70,12 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+        </main>
       </ErrorBoundary>
       <Footer />
       <Chatbot />
       <BackToTop />
+      <Analytics />
     </HelmetProvider>
   )
 }

@@ -6,6 +6,9 @@ export default function SmoothScroll() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    // Nutzer mit reduzierter Bewegung bekommen natives Scrollen
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     const lenis = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -15,11 +18,12 @@ export default function SmoothScroll() {
       touchMultiplier: 1.5,
     });
 
+    let rafId;
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    const rafId = requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     window.lenis = lenis;
 

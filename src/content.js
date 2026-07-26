@@ -255,7 +255,7 @@ export const homePage = {
         number: '02',
         name: 'Konzept & Design',
         title: 'Konzept & Design',
-        desc: 'Unser Team erstellt ein maßgeschneidertes Konzept inklusive Wireframes und finalem Design — perfekt auf Ihre Marke abgestimmt.',
+        desc: 'Wir erstellen ein maßgeschneidertes Konzept inklusive Wireframes und finalem Design — perfekt auf Ihre Marke abgestimmt.',
         image: '/images/process-design.webp',
       },
       {
@@ -306,7 +306,7 @@ export const homePage = {
       {
         icon: 'fas fa-headset',
         title: '24/7 Support',
-        desc: 'Ein Ansprechpartner, ein Team, volle Verantwortung. Schnelle Reaktionszeiten und persönlicher Service.',
+        desc: 'Ein persönlicher Ansprechpartner, volle Verantwortung. Schnelle Reaktionszeiten und persönlicher Service.',
         video: '/videos/tile-c3-1',
       },
     ],
@@ -655,7 +655,7 @@ export const aboutPage = {
     title: 'Nicht nur eine Agentur – Ihr <span class="highlight">digitaler Partner</span>',
     paragraphs: [
       'Bei RS Digital Solutions geht es um mehr als nur Webdesign. Wir sind eine Full-Service-Digitalagentur, die Unternehmen dabei unterstützt, im digitalen Zeitalter nicht nur präsent zu sein, sondern zu dominieren.',
-      'Unser Team verbindet kreatives Design mit technischer Exzellenz. Von der ersten Beratung über das Konzept bis hin zur Umsetzung und darüber hinaus – wir sind an Ihrer Seite.',
+      'Wir verbinden kreatives Design mit technischer Exzellenz. Von der ersten Beratung über das Konzept bis hin zur Umsetzung und darüber hinaus – wir sind an Ihrer Seite.',
     ],
   },
   values: [
@@ -673,7 +673,7 @@ export const aboutPage = {
       },
       {
         q: 'Schafft ihr wirklich eine Website in 48 Stunden?',
-        a: 'Ja! Mit unserem optimierten Workflow und einem eingespielten Team setzen wir Ihr Projekt in nur 48 Stunden um – ohne Kompromisse bei der Qualität.',
+        a: 'Ja! Mit unserem optimierten Workflow und erprobten Abläufen setzen wir Ihr Projekt in nur 48 Stunden um – ohne Kompromisse bei der Qualität.',
       },
       {
         q: 'Was ist ein KI-Chatbot und brauche ich das?',
@@ -711,7 +711,7 @@ export const fortyEightHoursPage = {
     {
       icon: 'fas fa-rocket',
       title: 'Blitzschnelle Umsetzung',
-      desc: 'Vom Briefing bis zur Liveschaltung in nur 48 Stunden – dank optimierter Prozesse und einem eingespielten Team.',
+      desc: 'Vom Briefing bis zur Liveschaltung in nur 48 Stunden – dank optimierter Prozesse und erprobter Abläufe.',
     },
     {
       icon: 'fas fa-shopping-cart',
@@ -731,7 +731,7 @@ export const fortyEightHoursPage = {
   ],
   steps: [
     { number: '01', title: 'Briefing & Analyse', desc: 'Wir hören zu, analysieren Ihre Branche und definieren Ziele für Ihren digitalen Auftritt.' },
-    { number: '02', title: 'Konzept & Design', desc: 'Unser Designteam erstellt ein maßgeschneidertes Konzept, das Ihre Marke perfekt repräsentiert.' },
+    { number: '02', title: 'Konzept & Design', desc: 'Wir erstellen ein maßgeschneidertes Konzept, das Ihre Marke perfekt repräsentiert.' },
     { number: '03', title: 'Entwicklung & Integration', desc: 'Technische Umsetzung mit modernsten Technologien – responsive, schnell und SEO-optimiert.' },
     { number: '04', title: 'Go Live & Support', desc: 'Nach finalem Testing geht Ihre Website live. Wir bleiben an Ihrer Seite für Updates und Support.' },
   ],
@@ -830,7 +830,7 @@ export const chatbot = {
   triggerAriaLabel: 'KI-Assistent öffnen',
   closeAriaLabel: 'KI-Assistent schließen',
   panelTitle: 'RS Digital Assistent',
-  status: 'Online · Antwortet in Sekunden',
+  status: 'Automatischer Assistent · Antwortet sofort',
   avatar: 'RS',
   badge: 'KI',
   greeting: [
