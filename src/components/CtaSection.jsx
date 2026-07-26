@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import ShimmerButton from './ui/shimmer-button.tsx';
-import { ctaDefaults, company } from '../content';
+import { ctaDefaults } from '../content';
 
-export default function CtaSection({ title, subtitle, showPhone = false }) {
+export default function CtaSection({ title, subtitle }) {
   const navigate = useNavigate();
 
   return (
@@ -14,9 +14,6 @@ export default function CtaSection({ title, subtitle, showPhone = false }) {
           <p>{subtitle || ctaDefaults.subtitle}</p>
           <div className="cta-buttons">
             <ShimmerButton label={ctaDefaults.primaryButton} onClick={() => navigate('/#kontakt')} />
-            {showPhone && (
-              <ShimmerButton label={ctaDefaults.secondaryButton} onClick={() => { window.location.href = company.phoneTel; }} />
-            )}
           </div>
         </div>
       </div>

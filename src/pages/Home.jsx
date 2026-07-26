@@ -36,16 +36,30 @@ export default function Home() {
 
   const [formState, setFormState] = useState('idle');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.target;
     setFormState('sending');
-    setTimeout(() => {
+    try {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const res = await fetch(`https://formsubmit.co/ajax/${company.email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...data,
+          _subject: `Neue Anfrage über rs-digitalsolutions.de von ${data.name}`,
+          _template: 'table',
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       setFormState('sent');
       setTimeout(() => {
         setFormState('idle');
-        e.target.reset();
-      }, 3000);
-    }, 1500);
+        form.reset();
+      }, 4000);
+    } catch {
+      setFormState('error');
+    }
   };
 
   return (
@@ -205,13 +219,6 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="kontakt-item">
-                  <div className="kontakt-icon"><i className="fas fa-phone"></i></div>
-                  <div>
-                    <span className="kontakt-label">{homePage.contact.labels.phone}</span>
-                    <a href={company.phoneTel}>{company.phone}</a>
-                  </div>
-                </div>
-                <div className="kontakt-item">
                   <div className="kontakt-icon"><i className="fas fa-map-marker-alt"></i></div>
                   <div>
                     <span className="kontakt-label">{homePage.contact.labels.location}</span>
@@ -249,15 +256,32 @@ export default function Home() {
                   <label htmlFor="message" className="sr-only">{homePage.contact.form.message.label}</label>
                   <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder}></textarea>
                 </div>
+                <input type="text" name="_honey" tabIndex="-1" autoComplete="off" className="sr-only" aria-hidden="true" />
+                <div className="form-group form-privacy">
+                  <label htmlFor="privacy" className="form-privacy-label">
+                    <input type="checkbox" id="privacy" name="privacy" value="akzeptiert" required />
+                    <span>
+                      {homePage.contact.form.privacy.labelStart}
+                      <a href="/datenschutz" target="_blank" rel="noopener">{homePage.contact.form.privacy.linkLabel}</a>
+                      {homePage.contact.form.privacy.labelEnd}
+                    </span>
+                  </label>
+                </div>
                 <div className="form-submit-wrapper">
                   <ShimmerButton
-                    label={formState === 'idle' ? homePage.contact.form.submit.default : formState === 'sending' ? homePage.contact.form.submit.loading : homePage.contact.form.submit.success}
+                    label={formState === 'idle' || formState === 'error' ? homePage.contact.form.submit.default : formState === 'sending' ? homePage.contact.form.submit.loading : homePage.contact.form.submit.success}
                     onClick={() => {
-                      if (formState === 'idle') {
+                      if (formState === 'idle' || formState === 'error') {
                         document.getElementById('contactForm').requestSubmit();
                       }
                     }}
                   />
+                  {formState === 'error' && (
+                    <p className="form-error" role="alert">
+                      {homePage.contact.form.error}{' '}
+                      <a href={`mailto:${company.email}`}>{company.email}</a>.
+                    </p>
+                  )}
                 </div>
               </form>
             </div>

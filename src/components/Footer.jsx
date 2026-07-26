@@ -14,11 +14,6 @@ export default function Footer() {
               <span>{company.nameSuffix}</span>
             </Link>
             <p>{footer.description}</p>
-            <div className="footer-social">
-              <a href={company.social.instagram} target="_blank" rel="noopener" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href={company.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a>
-              <a href={company.social.facebook} target="_blank" rel="noopener" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-            </div>
           </div>
 
           {/* Right: Contact */}
@@ -28,10 +23,6 @@ export default function Footer() {
               <li>
                 <i className="fas fa-envelope"></i>
                 <a href={`mailto:${company.email}`}>{company.email}</a>
-              </li>
-              <li>
-                <i className="fas fa-phone"></i>
-                <a href={company.phoneTel}>{company.phone}</a>
               </li>
               <li>
                 <i className="fas fa-map-marker-alt"></i>

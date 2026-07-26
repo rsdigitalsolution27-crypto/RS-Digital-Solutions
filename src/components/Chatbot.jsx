@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { chatbot, company, referenzenPage } from '../content';
+import { chatbot, referenzenPage } from '../content';
 
 const TYPING_DELAY_MIN = 600;
 const TYPING_DELAY_PER_CHAR = 18;
@@ -30,10 +30,6 @@ function handleFollowUpAction(label) {
   const lower = label.toLowerCase();
   if (lower.includes('kontakt') || lower.includes('formular') || lower.includes('termin') || lower.includes('anfrage') || lower.includes('anfragen') || lower.includes('aufnehmen') || lower.includes('projekt starten') || lower.includes('angebot') || lower.includes('vereinbaren')) {
     scrollToContact();
-    return true;
-  }
-  if (lower.includes('anrufen')) {
-    window.location.href = company.phoneTel;
     return true;
   }
   if (lower.includes('referenz') || lower.includes('beispiel')) {

@@ -3,7 +3,6 @@ import { Component } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import WhatsAppButton from './components/WhatsAppButton'
 import BackToTop from './components/BackToTop'
 import Chatbot from './components/Chatbot'
 import SmoothScroll from './components/SmoothScroll'
@@ -66,7 +65,6 @@ function App() {
       </ErrorBoundary>
       <Footer />
       <Chatbot />
-      <WhatsAppButton />
       <BackToTop />
     </HelmetProvider>
   )

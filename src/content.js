@@ -19,10 +19,7 @@ export const company = {
     city: 'Stuttgart',
     country: 'Deutschland',
   },
-  email: 'info@rs.digitalsolutions.de',
-  phone: '+49 176 1234 5678',
-  phoneTel: 'tel:+4917612345678',
-  whatsapp: 'https://wa.me/4917612345678',
+  email: 'info@rs-digitalsolutions.de',
   location: 'Stuttgart, Deutschland',
   copyright: `© ${new Date().getFullYear()} RS Digital Solutions. Alle Rechte vorbehalten.`,
   social: {
@@ -251,7 +248,6 @@ export const homePage = {
     subtitle:
       'Lassen Sie uns in einem unverbindlichen Gespräch herausfinden, wie wir Ihr Unternehmen online nach vorne bringen können.',
     primaryButton: 'Beratungsgespräch',
-    secondaryButton: 'Jetzt anrufen',
   },
   contact: {
     tag: 'Kontakt',
@@ -260,13 +256,12 @@ export const homePage = {
       'Haben Sie ein Projekt im Kopf? Erzählen Sie uns davon. Wir freuen uns auf Ihre Nachricht und melden uns innerhalb von 24 Stunden bei Ihnen.',
     labels: {
       email: 'E-Mail',
-      phone: 'Telefon',
       location: 'Standort',
     },
     form: {
       name: { label: 'Name *', placeholder: 'Ihr vollständiger Name' },
       email: { label: 'E-Mail *', placeholder: 'ihre@email.de' },
-      phone: { label: 'Telefon', placeholder: '+49 ...' },
+      phone: { label: 'Telefon (für Rückruf)', placeholder: 'Ihre Nummer für einen Rückruf (optional)' },
       service: {
         label: 'Gewünschte Leistung',
         placeholder: 'Bitte wählen...',
@@ -281,7 +276,13 @@ export const homePage = {
         ],
       },
       message: { label: 'Ihre Nachricht *', placeholder: 'Erzählen Sie uns von Ihrem Projekt...' },
+      privacy: {
+        labelStart: 'Ich habe die ',
+        linkLabel: 'Datenschutzerklärung',
+        labelEnd: ' gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *',
+      },
       submit: { default: 'Senden', loading: 'Sendet...', success: 'Gesendet!' },
+      error: 'Das hat leider nicht geklappt. Bitte schreiben Sie uns direkt an',
     },
   },
 };
@@ -612,7 +613,6 @@ export const ctaDefaults = {
   subtitle:
     'Ein kurzes Gespräch, null Verpflichtung – und Sie wissen genau, was möglich ist.',
   primaryButton: 'Beratungsgespräch',
-  secondaryButton: 'Jetzt anrufen',
 };
 
 export const ctaPerPage = {
@@ -653,7 +653,6 @@ export const footer = {
   legalLinks: [
     { label: 'Datenschutz', href: '/datenschutz' },
     { label: 'Impressum', href: '/impressum' },
-    { label: 'AGB', href: '/agb' },
   ],
 };
 
@@ -680,9 +679,8 @@ export const chatbot = {
   typingLabel: 'schreibt',
   fallback:
     'Gute Frage! Das beantworte ich Ihnen lieber persönlich. Möchten Sie direkt Kontakt aufnehmen?',
-  fallbackFollowUps: ['Zum Kontaktformular', 'Anrufen'],
+  fallbackFollowUps: ['Zum Kontaktformular'],
   ctaTarget: { type: 'contact', label: 'Zum Kontaktformular', anchor: '#kontakt' },
-  phoneTarget: { type: 'phone', label: 'Anrufen' },
   intents: [
     {
       keywords: ['preis', 'kosten', 'teuer', 'wie viel', 'was kostet', 'budget'],
@@ -717,8 +715,8 @@ export const chatbot = {
     {
       keywords: ['kontakt', 'anruf', 'anrufen', 'telefon', 'email', 'mail', 'termin', 'beratung', 'gespräch'],
       reply:
-        'Gerne! Sie erreichen uns telefonisch oder per E-Mail — oder Sie nutzen direkt das Kontaktformular. Soll ich Sie dorthin weiterleiten?',
-      followUps: ['Zum Kontaktformular', 'Anrufen'],
+        'Gerne! Sie erreichen uns per E-Mail oder direkt über das Kontaktformular — auf Wunsch rufen wir Sie auch zurück. Soll ich Sie zum Formular weiterleiten?',
+      followUps: ['Zum Kontaktformular'],
     },
     {
       keywords: ['shop', 'e-commerce', 'ecommerce', 'verkauf', 'bestell'],
@@ -754,7 +752,7 @@ export const chatbot = {
       keywords: ['danke', 'merci', 'vielen dank', 'dankeschön'],
       reply:
         'Sehr gerne! Wenn Sie noch Fragen haben, bin ich hier. Oder möchten Sie direkt Kontakt aufnehmen?',
-      followUps: ['Zum Kontaktformular', 'Anrufen'],
+      followUps: ['Zum Kontaktformular'],
     },
   ],
 };
@@ -800,7 +798,6 @@ export const ui = {
   errorBoundary: { heading: 'Etwas ist schiefgelaufen.', message: 'Bitte laden Sie die Seite neu.' },
   scanner: { loading: 'Screenshot wird geladen…', viewProject: 'Ansehen' },
   backToTop: { ariaLabel: 'Nach oben scrollen' },
-  whatsapp: { ariaLabel: 'WhatsApp Chat' },
 };
 
 /* ─── Impressum (§ 5 TMG) ─── */
@@ -824,7 +821,7 @@ export const impressumPage = {
     {
       heading: 'Kontakt',
       lines: [
-        'E-Mail: info@rs.digitalsolutions.de',
+        'E-Mail: info@rs-digitalsolutions.de',
       ],
     },
     {
@@ -885,7 +882,7 @@ export const datenschutzPage = {
         'Rosmarinweg 69',
         '70374 Stuttgart',
         'Deutschland',
-        'E-Mail: info@rs.digitalsolutions.de',
+        'E-Mail: info@rs-digitalsolutions.de',
       ],
     },
     {

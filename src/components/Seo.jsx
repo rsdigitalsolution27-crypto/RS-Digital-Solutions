@@ -30,7 +30,6 @@ export default function Seo({ page, customTitle, customDescription, faqItems }) 
     name: company.name,
     url: seo.siteUrl,
     email: company.email,
-    telephone: company.phone,
     description: seo.defaults.description,
     areaServed: { '@type': 'Country', name: 'DE' },
     sameAs: Object.values(company.social).filter(u => u !== '#'),

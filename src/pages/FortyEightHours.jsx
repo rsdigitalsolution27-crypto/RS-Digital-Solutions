@@ -108,10 +108,7 @@ export default function FortyEightHours() {
         </div>
       </section>
 
-      <CtaSection
-        title={fortyEightHoursPage.customCtaTitle}
-        showPhone={true}
-      />
+      <CtaSection title={fortyEightHoursPage.customCtaTitle} />
     </>
   );
 }

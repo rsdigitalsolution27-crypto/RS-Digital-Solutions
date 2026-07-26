@@ -95,6 +95,7 @@ export default function ShimmerButton({
 
   return (
     <button
+      type="button"
       className={`shimmer-btn ${isIcon ? "shimmer-icon" : ""} ${className}`}
       onClick={onClick}
       aria-label={label}

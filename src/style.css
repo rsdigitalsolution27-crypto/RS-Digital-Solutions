@@ -7294,3 +7294,39 @@ html.light-theme .hero-scrub-overlay {
     }
 }
 
+
+/* ═══ Kontaktformular: Datenschutz-Checkbox & Fehlerzustand ═══ */
+.form-privacy-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.form-privacy-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    flex-shrink: 0;
+    accent-color: var(--accent, #6c63ff);
+    cursor: pointer;
+}
+
+.form-privacy-label a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.form-error {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #e5484d;
+}
+
+.form-error a {
+    color: inherit;
+    text-decoration: underline;
+}
