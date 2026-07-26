@@ -9,7 +9,8 @@ export default function CtaSection({ title, subtitle }) {
     <section className="cta-section">
       <div className="cta-bg-effect"></div>
       <div className="container">
-        <div className="cta-content" data-animate="fade-up">
+        <div className="cta-card" data-animate="fade-up">
+          <span className="section-tag">{ctaDefaults.tag}</span>
           <h2 dangerouslySetInnerHTML={{ __html: title || ctaDefaults.title }}></h2>
           <p>{subtitle || ctaDefaults.subtitle}</p>
           <div className="cta-buttons">
@@ -21,6 +22,16 @@ export default function CtaSection({ title, subtitle }) {
               {ctaDefaults.secondaryButton} <span aria-hidden="true">→</span>
             </button>
           </div>
+          <ul className="cta-trust">
+            {ctaDefaults.trust.map((t) => (
+              <li key={t}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                {t}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

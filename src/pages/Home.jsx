@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ContactForm from '../components/ContactForm';
 import VideoMedia from '../components/VideoMedia';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import MaskRevealText from '../components/ui/MaskRevealText';
@@ -33,34 +34,6 @@ export default function Home() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const [formState, setFormState] = useState('idle');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    setFormState('sending');
-    try {
-      const data = Object.fromEntries(new FormData(form).entries());
-      const res = await fetch(`https://formsubmit.co/ajax/${company.email}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          ...data,
-          _subject: `Neue Anfrage über rs-digitalsolutions.de von ${data.name}`,
-          _template: 'table',
-        }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setFormState('sent');
-      setTimeout(() => {
-        setFormState('idle');
-        form.reset();
-      }, 4000);
-    } catch {
-      setFormState('error');
-    }
-  };
 
   return (
     <>
@@ -260,62 +233,7 @@ export default function Home() {
               </div>
             </div>
             <div className="kontakt-form-wrapper" data-animate="fade-left">
-              <form className="kontakt-form" id="contactForm" onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name" className="sr-only">{homePage.contact.form.name.label}</label>
-                    <input type="text" id="name" name="name" required placeholder={homePage.contact.form.name.placeholder} />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email" className="sr-only">{homePage.contact.form.email.label}</label>
-                    <input type="email" id="email" name="email" required placeholder={homePage.contact.form.email.placeholder} />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="phone" className="sr-only">{homePage.contact.form.phone.label}</label>
-                  <input type="tel" id="phone" name="phone" placeholder={homePage.contact.form.phone.placeholder} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="service" className="sr-only">{homePage.contact.form.service.label}</label>
-                  <select id="service" name="service">
-                    <option value="">{homePage.contact.form.service.placeholder}</option>
-                    {homePage.contact.form.service.options.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="message" className="sr-only">{homePage.contact.form.message.label}</label>
-                  <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder}></textarea>
-                </div>
-                <input type="text" name="_honey" tabIndex="-1" autoComplete="off" className="sr-only" aria-hidden="true" />
-                <div className="form-group form-privacy">
-                  <label htmlFor="privacy" className="form-privacy-label">
-                    <input type="checkbox" id="privacy" name="privacy" value="akzeptiert" required />
-                    <span>
-                      {homePage.contact.form.privacy.labelStart}
-                      <a href="/datenschutz" target="_blank" rel="noopener">{homePage.contact.form.privacy.linkLabel}</a>
-                      {homePage.contact.form.privacy.labelEnd}
-                    </span>
-                  </label>
-                </div>
-                <div className="form-submit-wrapper">
-                  <ShimmerButton
-                    label={formState === 'idle' || formState === 'error' ? homePage.contact.form.submit.default : formState === 'sending' ? homePage.contact.form.submit.loading : homePage.contact.form.submit.success}
-                    onClick={() => {
-                      if (formState === 'idle' || formState === 'error') {
-                        document.getElementById('contactForm').requestSubmit();
-                      }
-                    }}
-                  />
-                  {formState === 'error' && (
-                    <p className="form-error" role="alert">
-                      {homePage.contact.form.error}{' '}
-                      <a href={`mailto:${company.email}`}>{company.email}</a>.
-                    </p>
-                  )}
-                </div>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </div>

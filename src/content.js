@@ -351,7 +351,10 @@ export const homePage = {
         linkLabel: 'Datenschutzerklärung',
         labelEnd: ' gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *',
       },
-      submit: { default: 'Senden', loading: 'Sendet...', success: 'Gesendet!' },
+      submit: { default: 'Nachricht senden', loading: 'Wird gesendet…', success: 'Gesendet!' },
+      successTitle: 'Vielen Dank für Ihre Anfrage!',
+      successText:
+        'Ihre Nachricht ist bei uns angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen — meist deutlich schneller.',
       error: 'Das hat leider nicht geklappt. Bitte schreiben Sie uns direkt an',
     },
   },
@@ -471,7 +474,160 @@ export const leistungenPage = {
     features: 'Was Sie bekommen',
     forWhom: 'Für wen?',
     result: 'Ergebnis',
+    more: 'Details & Praxisbeispiel',
   },
+  useCaseLabels: {
+    real: 'Echtes Projekt',
+    typical: 'Typisches Szenario',
+    situation: 'Ausgangslage',
+    solution: 'Unsere Lösung',
+    result: 'Das Ergebnis',
+    process: 'So läuft es bei Ihnen ab',
+    priceLabel: 'Investition',
+    cta: 'Beratungstermin buchen',
+  },
+  details: [
+    {
+      id: 'ki',
+      tag: 'KI & Automatisierung',
+      title: 'KI-Automatisierung: Ihr Unternehmen antwortet, auch wenn Sie es nicht tun',
+      description:
+        'Die meisten Anfragen kommen dann, wenn niemand Zeit hat: abends, am Wochenende, mitten im Tagesgeschäft. Wir integrieren einen KI-Assistenten in Ihre Website, der auf Ihr Unternehmen trainiert ist — er kennt Ihre Leistungen, Preise und Abläufe, beantwortet Fragen in mehreren Sprachen, bucht Termine und sammelt qualifizierte Anfragen mit Namen und Kontaktdaten.',
+      useCase: {
+        type: 'typical',
+        intro: 'Ein typisches Beispiel aus unserer Zielgruppe:',
+        situation:
+          'Ein Beratungsunternehmen bekommt die meisten Anfragen abends nach Feierabend. Bis jemand am nächsten Tag antwortet, haben Interessenten längst beim Wettbewerber angefragt — ein Großteil der Anfragen verpufft.',
+        solution:
+          'Ein KI-Chatbot auf der Website, trainiert auf Leistungen und Preise des Unternehmens. Er beantwortet die häufigsten Fragen sofort, schlägt freie Beratungstermine vor und übergibt komplexe Anliegen mit allen Kontaktdaten ans Postfach.',
+        result:
+          'Interessenten bekommen sofort eine Antwort statt einer Warteschleife bis zum nächsten Werktag. Das Unternehmen startet morgens mit vorqualifizierten Anfragen inklusive Terminwunsch — statt mit einem vollen Anrufbeantworter.',
+      },
+      process: [
+        'Wir sammeln gemeinsam Ihre häufigsten Kundenfragen, Leistungen und Preise',
+        'Wir trainieren und gestalten den Assistenten passend zu Ihrer Marke und binden ihn in Ihre Website ein',
+        'Nach einer Testphase geht er live — wir überwachen die Antworten und schärfen laufend nach',
+      ],
+      price: 'Individuell je nach Funktionsumfang — Angebot im kostenlosen Beratungsgespräch',
+    },
+    {
+      id: 'webdesign',
+      tag: 'Webdesign',
+      title: 'Webdesign: Websites, die Vertrauen aufbauen und verkaufen',
+      description:
+        'Ihre Website ist oft der erste Kontakt mit Ihrem Unternehmen — und entscheidet in Sekunden, ob jemand bleibt oder geht. Wir gestalten individuelle, schnelle Websites, die Ihre Marke transportieren: responsiv auf allen Geräten, mit Ladezeiten unter 2 Sekunden und SEO-Grundlagen ab dem ersten Tag.',
+      useCase: {
+        type: 'real',
+        intro: 'Aus der Praxis: Akkilinc Buchhaltungsservice, Stuttgart',
+        situation:
+          'Der Buchhaltungsservice betreut Mandanten aus vielen Kulturen und Sprachräumen — hatte aber keinen Webauftritt, der diese Vielfalt abbildete. Interessenten konnten sich vorab kein Bild von den Leistungen machen.',
+        solution:
+          'Eine moderne Unternehmenswebsite in sechs Sprachen: klare Leistungsdarstellung, Vertrauenselemente und direkte Kontaktmöglichkeiten — jede Sprachversion vollwertig gepflegt statt automatisch übersetzt.',
+        result:
+          'Mandanten finden alle Informationen in ihrer Sprache und kommen besser vorbereitet ins Erstgespräch. Der Auftritt ist so hochwertig wie die Beratung selbst — „modern, mehrsprachig und perfekt auf unsere Mandanten zugeschnitten“, so der Inhaber.',
+        link: { label: 'Projekt ansehen', href: '/referenzen' },
+      },
+      process: [
+        'Briefing: Wir analysieren Ihre Marke, Zielgruppe und Wettbewerber',
+        'Design & Umsetzung: Individuelles Konzept, dann Entwicklung — responsiv, schnell, SEO-optimiert',
+        'Go-Live & Betreuung: Domain, Hosting, Wartung und Änderungen aus einer Hand',
+      ],
+      price: 'Ab 1.500 € — Festpreis-Angebot vor Projektstart',
+    },
+    {
+      id: 'ecommerce',
+      tag: 'E-Commerce',
+      title: 'E-Commerce: Ihr Geschäft verkauft — auch nachts und sonntags',
+      description:
+        'Ob Produkte, Gutscheine oder Bestellungen: Ein eigener Online-Shop macht Sie unabhängig von Ladenöffnungszeiten und Plattform-Gebühren. Wir bauen Shops mit Produktkatalog, Warenkorb und sicherer Zahlung über Stripe, PayPal, Klarna und Apple Pay — inklusive automatischer Rechnungen und DSGVO-konformem Checkout.',
+      useCase: {
+        type: 'real',
+        intro: 'Aus der Praxis: Bera Gold & Diamond, Juwelier',
+        situation:
+          'Hochwertiger Schmuck, der bislang nur im Laden zu sehen war. Online fanden Kunden weder Sortiment noch Preise — Kaufinteresse entstand ausschließlich vor Ort.',
+        solution:
+          'Ein E-Commerce-Auftritt mit hochwertiger Produktpräsentation, die dem Schmuck gerecht wird: professionelle Darstellung, Katalog und direkte Kaufmöglichkeit.',
+        result:
+          'Die Online-Präsentation ist heute „genauso hochwertig wie unser Schmuck“ (so der Inhaber) — Kunden stöbern von zu Hause und kommen gezielt zum Kauf. Auch für Gastronomie funktioniert das Prinzip: Für das Stuttgarter Restaurant Antephaus haben wir ein komplettes Online-Bestellsystem umgesetzt.',
+        link: { label: 'Beide Projekte ansehen', href: '/referenzen' },
+      },
+      process: [
+        'Sortiment & Zahlwege klären: Was wird verkauft, wie wird bezahlt, wie wird geliefert?',
+        'Shop-Aufbau: Katalog, Warenkorb, Checkout und Rechnungsautomatik — auf Ihre Marke zugeschnitten',
+        'Launch & Wachstum: Livegang, Einweisung und auf Wunsch laufende Optimierung',
+      ],
+      price: 'Ab 2.500 € — Festpreis-Angebot vor Projektstart',
+    },
+    {
+      id: 'relaunch',
+      tag: '48h-Relaunch',
+      title: '48h-Relaunch: Von der veralteten Website zur neuen — in einem Wochenende',
+      description:
+        'Viele Unternehmer wissen seit Jahren, dass ihre Website nicht mehr zeitgemäß ist — aber ein „Website-Projekt“ klingt nach Monaten Abstimmung. Unser 48-Stunden-Format löst das: Tag 1 gehören Briefing, Konzept und Design, Tag 2 der Entwicklung und dem Go-Live. Zum Festpreis, mit 30 Tagen Support danach.',
+      useCase: {
+        type: 'typical',
+        intro: 'Ein typisches Beispiel aus unserer Zielgruppe:',
+        situation:
+          'Ein Handwerksbetrieb mit voller Auftragslage und einer Website von 2015: nicht mobiltauglich, veraltete Referenzen, Kontakt nur über eine Faxnummer im Impressum. Für ein monatelanges Website-Projekt fehlt schlicht die Zeit.',
+        solution:
+          'Der 48h-Relaunch: Ein einziges Briefing-Gespräch am Morgen von Tag 1, danach übernehmen wir — neues Design, aktuelle Referenzfotos, klare Leistungsübersicht, Kontaktformular und Rückruf-Option. Am Abend von Tag 2 ist die Seite live.',
+        result:
+          'Der Betrieb hat ohne eigenen Zeitaufwand einen Auftritt, der zur Qualität seiner Arbeit passt — mobiltauglich, auffindbar und mit direktem Anfragekanal statt Faxnummer. Aus „müssten wir mal machen“ wurde „ist erledigt“.',
+      },
+      process: [
+        'Tag 0: Kurzes Vorgespräch, Festpreis-Angebot, Terminfixierung',
+        'Tag 1: Briefing am Morgen, dann Konzept und Design',
+        'Tag 2: Entwicklung, Testing, Go-Live am Abend — danach 30 Tage Support',
+      ],
+      price: 'Festpreis ab 1.500 € — verbindlich vor Projektstart',
+    },
+    {
+      id: 'seo',
+      tag: 'SEO & Marketing',
+      title: 'SEO: Gefunden werden, wenn Kunden in Stuttgart suchen',
+      description:
+        'Wer bei Google nicht auf der ersten Seite steht, existiert für viele Kunden nicht. Wir optimieren Ihre Website technisch (Ladezeit, Mobiltauglichkeit, Struktur), inhaltlich (Keywords, Texte, FAQ) und lokal (Google-Business-Profil, Stuttgart-Bezug) — und berichten monatlich, was sich verändert hat.',
+      useCase: {
+        type: 'typical',
+        intro: 'Ein typisches Beispiel aus unserer Zielgruppe:',
+        situation:
+          'Ein lokaler Dienstleister wird bei Google nur über Branchenportale gefunden — die eigenen Seiten tauchen erst auf Seite 3 auf. Neukunden landen bei Portalen, die Provision kosten, oder direkt beim Wettbewerber.',
+        solution:
+          'Technisches SEO (Ladezeit, saubere Struktur, strukturierte Daten), lokal optimierte Inhalte mit den Suchbegriffen der Kunden, ein gepflegtes Google-Business-Profil und ein FAQ-Bereich, der echte Kundenfragen beantwortet.',
+        result:
+          'Die eigene Website verdrängt Schritt für Schritt die Portale bei den relevanten lokalen Suchanfragen. Anfragen kommen direkt und provisionsfrei — und das monatliche Reporting zeigt schwarz auf weiß, welche Suchbegriffe Kunden bringen.',
+      },
+      process: [
+        'SEO-Audit: Wo stehen Sie heute, wonach suchen Ihre Kunden wirklich?',
+        'Umsetzung: Technik, Inhalte und Google-Business-Profil werden optimiert',
+        'Laufende Betreuung: Monatliches Reporting und kontinuierliche Verbesserung',
+      ],
+      price: 'Einmalige Optimierung oder monatliche Betreuung — Angebot nach kostenlosem Audit',
+    },
+    {
+      id: 'termine',
+      tag: 'Terminbuchung',
+      title: 'Online-Terminbuchung: Schluss mit Telefon-Pingpong',
+      description:
+        'Jeder Anruf für eine Terminvereinbarung unterbricht Ihre Arbeit — und wer nicht durchkommt, bucht woanders. Wir integrieren ein Buchungssystem direkt in Ihre Website: Kunden wählen Leistung und Wunschtermin selbst, das System synchronisiert mit Google, Outlook und Apple Calendar und versendet Bestätigungen und Erinnerungen automatisch.',
+      useCase: {
+        type: 'typical',
+        intro: 'Ein typisches Beispiel aus unserer Zielgruppe:',
+        situation:
+          'Ein Friseursalon, in dem das Team mitten im Schnitt ans Telefon muss. In Stoßzeiten kommen Anrufer nicht durch, Termine werden auf Zetteln notiert, und wer abends buchen will, erreicht niemanden. Dazu kommen Kunden, die Termine schlicht vergessen.',
+        solution:
+          'Online-Buchung direkt auf der Website: Kunden wählen Leistung, Mitarbeiter und freie Zeit in unter einer Minute — rund um die Uhr. Automatische Bestätigungen und Erinnerungs-Nachrichten inklusive, der Kalender jedes Mitarbeiters bleibt synchron.',
+        result:
+          'Das Telefon klingelt spürbar seltener, das Team bleibt bei der Arbeit, und Terminausfälle gehen durch die Erinnerungen zurück. Gebucht wird auch dann, wenn der Salon längst geschlossen hat.',
+      },
+      process: [
+        'Setup: Leistungen, Zeiten, Mitarbeiter und Regeln (Puffer, Urlaube) werden hinterlegt',
+        'Integration: Das Buchungssystem wird nahtlos in Ihre Website und Kalender eingebunden',
+        'Feinschliff: Bestätigungs- und Erinnerungstexte in Ihrer Tonalität, dann Go-Live',
+      ],
+      price: 'Individuell je nach Team-Größe und Funktionen — Angebot im kostenlosen Beratungsgespräch',
+    },
+  ],
   faq: {
     tag: 'FAQ',
     title: 'Häufige Fragen zu unseren <span class="highlight">Leistungen</span>',
@@ -777,11 +933,13 @@ export const fortyEightHoursPage = {
 
 /* ─── CTA Section (Defaults + Seitenspezifisch) ─── */
 export const ctaDefaults = {
+  tag: 'Nächster Schritt',
   title: 'Bereit für eine Website,<br><span class="highlight">die Kunden bringt</span> – nicht nur gut aussieht?',
   subtitle:
     'Ein kurzes Gespräch, null Verpflichtung – und Sie wissen genau, was möglich ist.',
   primaryButton: 'Beratungstermin buchen',
   secondaryButton: 'Nachricht schreiben',
+  trust: ['Kostenlos & unverbindlich', 'Antwort innerhalb von 24 h', 'Festpreis vor Projektstart'],
 };
 
 export const ctaPerPage = {

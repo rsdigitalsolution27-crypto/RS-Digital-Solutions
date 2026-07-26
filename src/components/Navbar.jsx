@@ -158,6 +158,14 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <a
+            href={company.calendly}
+            target="_blank"
+            rel="noopener"
+            className="nav-cta"
+          >
+            Termin buchen
+          </a>
           <ThemeToggle />
           <button
             type="button"
@@ -191,6 +199,15 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+          <a
+            href={company.calendly}
+            target="_blank"
+            rel="noopener"
+            className="nav-cta nav-cta-mobile"
+            onClick={closeMobile}
+          >
+            Beratungstermin buchen
+          </a>
         </div>
       </div>
     </>
