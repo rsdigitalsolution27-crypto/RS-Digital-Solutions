@@ -1,0 +1,36 @@
+# RS Digital Solutions
+
+> Webagentur in Stuttgart für professionelle Websites, Online-Shops, KI-Chatbots und Online-Terminbuchung. Bekannt für den 48-Stunden-Website-Relaunch zum Festpreis. Inhaber: Daniel Raja-Nigl. Standort: Stuttgart, Deutschland.
+
+## Leistungen & Preise
+
+- Professionelles Webdesign: ab 1.500 €. Individuelle, responsive, SEO-optimierte Websites mit Ladezeiten unter 2 Sekunden.
+- Online-Shops / E-Commerce: ab 2.500 €. Produktkatalog, Warenkorb, Zahlung via Stripe, PayPal, Klarna und Apple Pay, DSGVO-konformer Checkout.
+- 48h-Website-Relaunch: Vom Briefing zur fertigen Website in 48 Stunden, zum Festpreis, inkl. 30 Tage Support nach Launch.
+- KI-Chatbots: Auf das Unternehmen trainierte Chatbots für Kundenberatung, Terminbuchung und Lead-Qualifizierung, 24/7 und mehrsprachig. Kunden sparen bis zu 15 Stunden pro Woche.
+- SEO & Online-Marketing: Keyword-Analyse, technisches SEO, lokale SEO für Stuttgart (Google Business), monatliches Reporting.
+- Terminbuchungssoftware: In die Website integrierte Online-Buchung mit Google/Outlook/Apple-Calendar-Sync, automatischen Bestätigungen und Erinnerungen.
+- Full-Service: Domain, Hosting (SSL, Backups, 99,9 % Uptime), Wartung und Support aus einer Hand.
+
+## Zielgruppen
+
+Kleine und mittlere Unternehmen in Stuttgart und Umgebung: Gastronomie (Online-Bestellung/Reservierung), terminbasierte Betriebe (Friseure, Praxen, Beratungen), Einzelhandel (E-Commerce) und lokale Dienstleister.
+
+## Vorgehen
+
+1. Briefing & Analyse, 2. Konzept & Design, 3. Entwicklung & KI-Integration, 4. Go-Live & Full-Service-Betreuung.
+
+## Seiten
+
+- [Startseite](https://rs-digitalsolutions.de/): Überblick, typische Herausforderungen & Lösungen, Kontakt
+- [Leistungen](https://rs-digitalsolutions.de/leistungen): Alle Leistungen im Detail mit FAQ und Preisen
+- [KI-Chatbots](https://rs-digitalsolutions.de/ki): KI-Integration für Websites mit FAQ
+- [48h-Website](https://rs-digitalsolutions.de/48h): Das 48-Stunden-Versprechen mit FAQ
+- [Referenzen](https://rs-digitalsolutions.de/referenzen): Projekte aus Stuttgart und Umgebung
+- [Über uns](https://rs-digitalsolutions.de/about): Team, Werte und allgemeine FAQ
+
+## Kontakt
+
+- E-Mail: info@rs-digitalsolutions.de
+- Beratungstermin: https://calendly.com/info-rs-digitalsolutions
+- Standort: Stuttgart, Deutschland

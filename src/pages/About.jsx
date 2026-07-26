@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
+import FaqSection from '../components/FaqSection';
 import Seo from '../components/Seo';
 import { aboutPage, ctaPerPage } from '../content';
 
@@ -23,8 +24,6 @@ function animateCounter(element, target, duration = 2000) {
 }
 
 export default function About() {
-  const [activeFaq, setActiveFaq] = useState(null);
-
   // Counter animation
   useEffect(() => {
     const elements = document.querySelectorAll('.about-stat-number[data-count]');
@@ -77,28 +76,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="faq-section">
-        <div className="container">
-          <div className="section-header" data-animate="fade-up">
-            <span className="section-tag">{aboutPage.faq.tag}</span>
-            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: aboutPage.faq.title }}></h2>
-          </div>
-          <div className="faq-grid" data-animate="fade-up">
-            {aboutPage.faq.items.map((item, i) => (
-              <div key={i} className={`faq-item${activeFaq === i ? ' active' : ''}`}>
-                <button className="faq-question" onClick={() => setActiveFaq(activeFaq === i ? null : i)}>
-                  <span>{item.q}</span>
-                  <i className="fas fa-plus"></i>
-                </button>
-                <div className="faq-answer">
-                  <p>{item.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqSection tag={aboutPage.faq.tag} title={aboutPage.faq.title} items={aboutPage.faq.items} />
 
       <CtaSection title={ctaPerPage.about.title} subtitle={ctaPerPage.about.subtitle} />
     </>

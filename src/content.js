@@ -34,6 +34,8 @@ export const company = {
 export const navigation = [
   { label: 'Home', path: '/' },
   { label: 'Leistungen', path: '/leistungen' },
+  { label: 'KI', path: '/ki' },
+  { label: '48h-Website', path: '/48h' },
   { label: 'Referenzen', path: '/referenzen' },
   { label: 'Über uns', path: '/about' },
   { label: 'Kontakt', path: '#kontakt', isAnchor: true },
@@ -43,61 +45,70 @@ export const navigation = [
 export const seo = {
   siteUrl: 'https://rs-digitalsolutions.de',
   defaults: {
-    title: 'RS Digital Solutions – Ihre Webagentur | Professionelles Webdesign in 48 Stunden',
+    title: 'Webagentur Stuttgart – Webdesign, KI & 48h-Websites | RS',
     description:
-      'RS Digital Solutions – Hochprofessionelle Websites, Online-Shops, KI-Chatbots & Terminbuchung. Die 48-Stunden-Präsenz: In 2 Tagen online. Jetzt Kontakt aufnehmen!',
+      'RS Digital Solutions: Webagentur in Stuttgart für Websites, Online-Shops, KI-Chatbots & Terminbuchung. In 48 Stunden online – Websites ab 1.500 €.',
     ogImage: '/og-image.jpg',
     locale: 'de_DE',
     type: 'website',
   },
   pages: {
     home: {
-      title: 'RS Digital Solutions – Webdesign, KI-Chatbots & 48h Websites',
+      name: 'Home',
+      title: 'Webagentur Stuttgart – Webdesign, KI & 48h-Websites | RS',
       description:
-        'Hochprofessionelle Websites, Online-Shops & intelligente KI-Lösungen – maßgeschneidert und in nur 48 Stunden live.',
+        'RS Digital Solutions: Webagentur in Stuttgart für Websites, Online-Shops, KI-Chatbots & Terminbuchung. In 48 Stunden online – Websites ab 1.500 €.',
       path: '/',
     },
     leistungen: {
-      title: 'Leistungen – Webdesign, E-Commerce, KI & mehr | RS Digital Solutions',
+      name: 'Leistungen',
+      title: 'Leistungen: Webdesign, Shops, KI & SEO | RS Stuttgart',
       description:
-        'Von der ersten Idee bis zum fertigen Produkt – alles aus einer Hand. Webdesign, Online-Shops, KI-Chatbots, SEO & Terminbuchung.',
+        'Webdesign ab 1.500 €, Online-Shops ab 2.500 €, KI-Chatbots, SEO & Terminbuchung – alles aus einer Hand von Ihrer Webagentur in Stuttgart.',
       path: '/leistungen',
     },
     referenzen: {
-      title: 'Referenzen – Unsere Projekte | RS Digital Solutions',
+      name: 'Referenzen',
+      title: 'Referenzen – Projekte aus Stuttgart | RS Digital Solutions',
       description:
-        'Sehen Sie unsere erfolgreich umgesetzten Projekte: Unternehmenswebsites, Restaurants, E-Commerce – alles mit Leidenschaft gebaut.',
+        'Erfolgreiche Projekte aus Stuttgart und Umgebung: Unternehmenswebsites, Restaurant mit Online-Bestellung, E-Commerce für Juweliere.',
       path: '/referenzen',
     },
     about: {
-      title: 'Über uns – Ihr Partner für digitale Exzellenz | RS Digital Solutions',
+      name: 'Über uns',
+      title: 'Über uns – Webagentur in Stuttgart | RS Digital Solutions',
       description:
-        'Mehr als nur Webdesign – wir sind Ihr Partner für digitale Exzellenz. Erfahren Sie, wer wir sind und was uns antreibt.',
+        'Lernen Sie RS Digital Solutions kennen: Ihre Webagentur in Stuttgart für Webdesign, KI-Automatisierung und digitale Sichtbarkeit.',
       path: '/about',
     },
     ki: {
-      title: 'KI-Chatbots & Intelligente Websites | RS Digital Solutions',
+      name: 'KI-Chatbots',
+      title: 'KI-Chatbots für Ihre Website | RS Digital Solutions',
       description:
-        'Ihre Website spricht mit Ihren Kunden – KI-Chatbots für automatische Beratung, Terminvereinbarung & personalisierte Empfehlungen.',
+        'KI-Chatbots, die Kundenfragen beantworten, Termine buchen und Leads qualifizieren – 24/7, mehrsprachig. Von Ihrer Webagentur in Stuttgart.',
       path: '/ki',
     },
     fortyEightHours: {
-      title: 'In 48 Stunden online – Website-Relaunch | RS Digital Solutions',
+      name: '48h-Website',
+      title: 'Website in 48 Stunden – zum Festpreis | RS Stuttgart',
       description:
-        'Vom Briefing zur fertigen Website in nur zwei Tagen. Unser 48-Stunden-Versprechen für Ihren digitalen Erfolg.',
+        'Vom Briefing zur fertigen Website in 2 Tagen: Das 48-Stunden-Versprechen von RS Digital Solutions aus Stuttgart. Festpreis, 30 Tage Support.',
       path: '/48h',
     },
     notFound: {
+      name: '404',
       title: '404 – Seite nicht gefunden | RS Digital Solutions',
       description: 'Die angeforderte Seite wurde nicht gefunden.',
       path: '/404',
     },
     impressum: {
+      name: 'Impressum',
       title: 'Impressum | RS Digital Solutions',
       description: 'Impressum und Anbieterkennzeichnung gemäß § 5 TMG.',
       path: '/impressum',
     },
     datenschutz: {
+      name: 'Datenschutz',
       title: 'Datenschutzerklärung | RS Digital Solutions',
       description: 'Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.',
       path: '/datenschutz',
@@ -169,6 +180,62 @@ export const homePage = {
         title: 'Terminbuchungssoftware',
         desc: 'Professionelle Buchungssysteme direkt in Ihre Website integriert — mit Google-Calendar-Sync und automatischen Bestätigungen.',
         image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop',
+      },
+    ],
+  },
+  challenges: {
+    tag: 'Kennen Sie das?',
+    title: 'Typische Herausforderungen – und <span class="highlight">unsere Lösungen</span>',
+    description:
+      'Die häufigsten Probleme, mit denen Unternehmen aus Stuttgart und Umgebung zu uns kommen — und wie wir sie lösen.',
+    items: [
+      {
+        icon: 'fas fa-phone-volume',
+        problem: '„Das Telefon klingelt ständig wegen Terminanfragen."',
+        solution:
+          'Eine Online-Terminbuchung direkt auf Ihrer Website: Kunden buchen selbst in 30 Sekunden, mit Kalender-Sync und automatischen Erinnerungen. Weniger Anrufe, weniger No-Shows.',
+        linkLabel: 'Terminbuchung ansehen',
+        link: '/leistungen',
+      },
+      {
+        icon: 'fas fa-moon',
+        problem: '„Anfragen kommen abends und am Wochenende — und bleiben unbeantwortet."',
+        solution:
+          'Ein KI-Chatbot, trainiert auf Ihr Unternehmen, beantwortet Fragen, bucht Termine und qualifiziert Anfragen — rund um die Uhr, auch wenn Sie schlafen.',
+        linkLabel: 'KI-Chatbots entdecken',
+        link: '/ki',
+      },
+      {
+        icon: 'fas fa-hourglass-half',
+        problem: '„Unsere Website ist veraltet, aber uns fehlt die Zeit für einen Relaunch."',
+        solution:
+          'Unser 48-Stunden-Relaunch: Tag 1 Konzept & Design, Tag 2 Entwicklung & Go-Live. Zum Festpreis, ohne monatelange Projektschleifen.',
+        linkLabel: 'Zum 48h-Relaunch',
+        link: '/48h',
+      },
+      {
+        icon: 'fas fa-search',
+        problem: '„Bei Google findet uns niemand — Neukunden kommen nur über Empfehlungen."',
+        solution:
+          'Lokale Suchmaschinenoptimierung für Stuttgart: technisches SEO, Google-Business-Profil und Inhalte, die Ihre Kunden wirklich suchen.',
+        linkLabel: 'SEO-Leistungen ansehen',
+        link: '/leistungen',
+      },
+      {
+        icon: 'fas fa-store',
+        problem: '„Im Laden läuft es gut, aber online verkaufen wir nichts."',
+        solution:
+          'Ein Online-Shop mit Katalog, sicherer Zahlung und DSGVO-konformem Checkout — Ihr zweiter Verkaufskanal, der 24/7 geöffnet hat.',
+        linkLabel: 'E-Commerce entdecken',
+        link: '/leistungen',
+      },
+      {
+        icon: 'fas fa-utensils',
+        problem: '„Unsere Gäste rufen an, statt online zu bestellen oder zu reservieren."',
+        solution:
+          'Websites für Gastronomie mit Online-Bestellung und Reservierung — wie beim Stuttgarter Restaurant Antephaus, dessen Kunden heute bequem online bestellen.',
+        linkLabel: 'Referenzen ansehen',
+        link: '/referenzen',
       },
     ],
   },
@@ -405,6 +472,52 @@ export const leistungenPage = {
     forWhom: 'Für wen?',
     result: 'Ergebnis',
   },
+  faq: {
+    tag: 'FAQ',
+    title: 'Häufige Fragen zu unseren <span class="highlight">Leistungen</span>',
+    items: [
+      {
+        q: 'Was kostet eine professionelle Website in Stuttgart?',
+        a: 'Bei RS Digital Solutions beginnt eine professionelle Website ab 1.500 €. Der genaue Preis hängt vom Umfang ab: Anzahl der Seiten, Funktionen wie Terminbuchung oder KI-Chatbot und individuelle Design-Anforderungen. Sie erhalten vorab ein transparentes Festpreis-Angebot.',
+      },
+      {
+        q: 'Was kostet ein Online-Shop?',
+        a: 'Ein voll funktionsfähiger Online-Shop mit Produktkatalog, Warenkorb und sicherer Zahlungsabwicklung (Stripe, PayPal, Klarna, Apple Pay) beginnt bei 2.500 €. Automatische Rechnungsstellung und DSGVO-konformer Checkout sind inklusive.',
+      },
+      {
+        q: 'Wie lange dauert die Erstellung einer Website?',
+        a: 'Mit unserem 48-Stunden-Paket ist Ihre Website in 2 Tagen live. Umfangreichere Projekte mit Shop oder individuellen Funktionen dauern je nach Umfang 2–4 Wochen. Den Zeitplan legen wir vor Projektstart verbindlich fest.',
+      },
+      {
+        q: 'Was kostet ein KI-Chatbot für meine Website?',
+        a: 'Die KI-Integration wird individuell kalkuliert und hängt vom Funktionsumfang ab: reine Fragenbeantwortung, Terminbuchung oder Lead-Qualifizierung mit CRM-Anbindung. In einem kostenlosen Beratungsgespräch erhalten Sie ein konkretes Angebot.',
+      },
+      {
+        q: 'Übernehmt ihr auch Hosting, Domain und Wartung?',
+        a: 'Ja, alles aus einer Hand: Domain-Registrierung, Premium-Hosting mit SSL und täglichen Backups, Sicherheits-Updates und Content-Änderungen. Sie kümmern sich um Ihr Geschäft, wir um die Technik.',
+      },
+      {
+        q: 'Für welche Branchen arbeitet ihr?',
+        a: 'Wir arbeiten vor allem mit kleinen und mittleren Unternehmen aus Stuttgart und Umgebung: Gastronomie mit Online-Bestellung, terminbasierte Betriebe wie Friseure, Praxen und Beratungen mit Online-Terminbuchung sowie Einzelhändler, die online verkaufen möchten.',
+      },
+      {
+        q: 'Hilft eine neue Website auch bei Google-Rankings?',
+        a: 'Jede Website von uns ist ab Tag 1 SEO-optimiert: schnelle Ladezeiten, saubere Struktur, lokale Optimierung für Stuttgart. Zusätzlich bieten wir laufende SEO-Betreuung mit Keyword-Analyse, Google-Business-Optimierung und monatlichem Reporting.',
+      },
+      {
+        q: 'Kann ich meine Website später selbst bearbeiten?',
+        a: 'Ja. Auf Wunsch bauen wir Ihre Website auf einem benutzerfreundlichen CMS auf, sodass Sie Texte, Bilder und Inhalte jederzeit selbst ändern können — ohne Programmierkenntnisse.',
+      },
+      {
+        q: 'Wie funktioniert die Online-Terminbuchung für mein Unternehmen?',
+        a: 'Wir integrieren ein Buchungssystem direkt in Ihre Website: Kunden wählen Leistung und Wunschtermin, das System synchronisiert mit Google, Outlook oder Apple Calendar und versendet automatische Bestätigungen und Erinnerungen. Auch Multi-Mitarbeiter-Verwaltung ist möglich.',
+      },
+      {
+        q: 'Was passiert nach dem Go-Live meiner Website?',
+        a: 'Sie erhalten 30 Tage kostenlosen Support nach dem Launch. Danach können Sie ein Wartungspaket wählen: Updates, Sicherheit, Performance-Monitoring und Inhaltsänderungen — damit Ihre Website dauerhaft aktuell und sicher bleibt.',
+      },
+    ],
+  },
 };
 
 /* ─── Referenzen Page ─── */
@@ -501,6 +614,32 @@ export const kiPage = {
     description:
       'Unsere KI-Lösung lernt kontinuierlich dazu, kennt Ihr Unternehmen in- und auswendig und bietet Ihren Kunden ein Erlebnis, das begeistert – rund um die Uhr, in jeder Sprache.',
     button: 'KI-Demo anfragen',
+  },
+  faq: {
+    tag: 'FAQ',
+    title: 'Häufige Fragen zu <span class="highlight">KI-Chatbots</span>',
+    items: [
+      {
+        q: 'Was macht ein KI-Chatbot auf meiner Website?',
+        a: 'Er beantwortet Kundenfragen in Echtzeit, vereinbart Termine, empfiehlt Produkte und sammelt qualifizierte Anfragen — rund um die Uhr und in mehreren Sprachen. Er wird auf Ihr Unternehmen trainiert und kennt Ihre Leistungen, Preise und Abläufe.',
+      },
+      {
+        q: 'Brauche ich technisches Wissen für einen KI-Chatbot?',
+        a: 'Nein. Wir übernehmen Einrichtung, Training und laufende Pflege komplett. Sie liefern nur die Informationen über Ihr Unternehmen — den Rest erledigen wir.',
+      },
+      {
+        q: 'Wie viel Zeit spart ein KI-Chatbot wirklich?',
+        a: 'Unsere Kunden sparen bis zu 15 Stunden pro Woche, weil wiederkehrende Anfragen zu Öffnungszeiten, Preisen und Terminen automatisch beantwortet werden. Ihr Team konzentriert sich auf die Anfragen, die wirklich persönliche Betreuung brauchen.',
+      },
+      {
+        q: 'Ist ein KI-Chatbot DSGVO-konform?',
+        a: 'Ja. Wir achten bei der Integration auf DSGVO-konforme Datenverarbeitung: transparente Hinweise für Nutzer, Datensparsamkeit und Verarbeitung nach europäischen Standards.',
+      },
+      {
+        q: 'Funktioniert der Chatbot auch mit meinem Kalender und CRM?',
+        a: 'Ja. Der Chatbot lässt sich mit Google, Outlook und Apple Calendar sowie gängigen CRM-Systemen verbinden — gebuchte Termine und qualifizierte Leads landen direkt in Ihren Systemen.',
+      },
+    ],
   },
 };
 
@@ -608,6 +747,32 @@ export const fortyEightHoursPage = {
   },
   customCta: 'Jetzt in 48h online gehen',
   customCtaTitle: 'Ihre neue Website –<br><span class="highlight">in 48 Stunden live</span>. Versprochen.',
+  faq: {
+    tag: 'FAQ',
+    title: 'Häufige Fragen zum <span class="highlight">48h-Versprechen</span>',
+    items: [
+      {
+        q: 'Wie kann eine professionelle Website in nur 48 Stunden entstehen?',
+        a: 'Durch einen optimierten Workflow: Tag 1 gehören Briefing, Konzept und Design, Tag 2 der Entwicklung und dem Go-Live. Wir arbeiten mit erprobten technischen Grundlagen und konzentrieren uns auf das, was Ihr Unternehmen wirklich braucht — ohne Qualitätskompromisse.',
+      },
+      {
+        q: 'Was kostet der 48-Stunden-Website-Service?',
+        a: 'Der 48h-Relaunch läuft zum Festpreis ab 1.500 € — ohne versteckte Kosten. Den genauen Preis erfahren Sie vorab im kostenlosen Beratungsgespräch, abhängig von Umfang und gewünschten Funktionen.',
+      },
+      {
+        q: 'Was passiert, wenn die 48 Stunden nicht eingehalten werden?',
+        a: 'Die 48 Stunden sind unser Versprechen und beziehen sich auf den vereinbarten Projektumfang. Verzögert sich etwas aus Gründen, die bei uns liegen, arbeiten wir ohne Aufpreis weiter, bis Ihre Website live ist.',
+      },
+      {
+        q: 'Was muss ich für den 48h-Start vorbereiten?',
+        a: 'Nur Ihr Logo, Ihre Texte bzw. Stichpunkte zu Ihren Leistungen und vorhandenes Bildmaterial. Fehlt etwas, unterstützen wir bei Texten und nutzen professionelles Bildmaterial. Nach dem Briefing übernehmen wir alles Weitere.',
+      },
+      {
+        q: 'Ist eine 48-Stunden-Website auch SEO-optimiert?',
+        a: 'Ja. Auch im 48h-Paket sind schnelle Ladezeiten, mobile Optimierung, saubere Seitenstruktur und lokale SEO-Grundlagen für Stuttgart enthalten — plus 30 Tage Support nach dem Launch.',
+      },
+    ],
+  },
 };
 
 /* ─── CTA Section (Defaults + Seitenspezifisch) ─── */

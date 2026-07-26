@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
+import FaqSection from '../components/FaqSection';
 import Seo from '../components/Seo';
 import { fortyEightHoursPage } from '../content';
 
@@ -34,7 +35,7 @@ export default function FortyEightHours() {
 
   return (
     <>
-      <Seo page="fortyEightHours" />
+      <Seo page="fortyEightHours" faqItems={fortyEightHoursPage.faq.items} />
       <PageHero
         tag={fortyEightHoursPage.hero.tag}
         title={fortyEightHoursPage.hero.title}
@@ -107,6 +108,8 @@ export default function FortyEightHours() {
           </div>
         </div>
       </section>
+
+      <FaqSection tag={fortyEightHoursPage.faq.tag} title={fortyEightHoursPage.faq.title} items={fortyEightHoursPage.faq.items} />
 
       <CtaSection title={fortyEightHoursPage.customCtaTitle} />
     </>

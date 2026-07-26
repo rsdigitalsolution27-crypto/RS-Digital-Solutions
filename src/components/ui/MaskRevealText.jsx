@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 export default function MaskRevealText({
   text = '',
   className = '',
+  as: Tag = 'p',
   stagger = 0.08,
   duration = 0.8,
   delay = 0,
@@ -43,7 +44,7 @@ export default function MaskRevealText({
   }, [threshold]);
 
   return (
-    <p ref={ref} className={className} style={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Tag ref={ref} className={className} style={{ display: 'flex', flexWrap: 'wrap' }}>
       {words.map((word, i) => {
         const isHighlighted = highlightIndices.has(i);
         const innerClass = isHighlighted && highlight ? highlight.className : '';
@@ -75,6 +76,6 @@ export default function MaskRevealText({
           </span>
         );
       })}
-    </p>
+    </Tag>
   );
 }

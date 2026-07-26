@@ -77,6 +77,7 @@ export default function Home() {
           <div className="hero-float-wrapper">
             <MaskRevealText
               text={[homePage.hero.titleLine1, homePage.hero.titleGradient, homePage.hero.titleLine3].filter(Boolean).join(' ')}
+              as="h1"
               className="hero-title-new"
               stagger={0.16}
               duration={1.4}
@@ -149,6 +150,29 @@ export default function Home() {
               ctaLabel="Mehr erfahren"
               onCtaClick={() => navigate('/leistungen')}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Herausforderungen & Lösungen */}
+      <section id="herausforderungen" className="challenges-section landing-section">
+        <div className="container">
+          <div className="section-header" data-animate="fade-up">
+            <span className="section-tag">{homePage.challenges.tag}</span>
+            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.challenges.title }}></h2>
+            <p className="section-subtitle">{homePage.challenges.description}</p>
+          </div>
+          <div className="challenges-grid">
+            {homePage.challenges.items.map((item, i) => (
+              <div key={i} className="challenge-card" data-animate="fade-up" style={{ transitionDelay: `${(i % 3) * 100}ms` }}>
+                <div className="challenge-icon"><i className={item.icon} aria-hidden="true"></i></div>
+                <h3 className="challenge-problem">{item.problem}</h3>
+                <p className="challenge-solution">{item.solution}</p>
+                <button className="hero-text-link challenge-link" onClick={() => navigate(item.link)}>
+                  {item.linkLabel} <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </section>

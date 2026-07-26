@@ -17,7 +17,7 @@ export default function Seo({ page, customTitle, customDescription, faqItems }) 
         ? [{
             '@type': 'ListItem',
             position: 2,
-            name: title.split('–')[0]?.trim() || title,
+            name: pageData.name || title,
             item: url,
           }]
         : []),
@@ -31,7 +31,22 @@ export default function Seo({ page, customTitle, customDescription, faqItems }) 
     url: seo.siteUrl,
     email: company.email,
     description: seo.defaults.description,
-    areaServed: { '@type': 'Country', name: 'DE' },
+    image: ogImageUrl,
+    priceRange: 'Websites ab 1.500 €, Online-Shops ab 2.500 €',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: company.address.street,
+      postalCode: company.address.zip,
+      addressLocality: company.address.city,
+      addressCountry: 'DE',
+    },
+    geo: { '@type': 'GeoCoordinates', latitude: 48.8054, longitude: 9.2219 },
+    areaServed: [
+      { '@type': 'City', name: 'Stuttgart' },
+      { '@type': 'State', name: 'Baden-Württemberg' },
+      { '@type': 'Country', name: 'DE' },
+    ],
+    founder: { '@type': 'Person', name: company.owner },
     sameAs: Object.values(company.social).filter(u => u !== '#'),
   };
 

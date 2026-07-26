@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
+import FaqSection from '../components/FaqSection';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import Seo from '../components/Seo';
 import { kiPage, ctaPerPage } from '../content';
@@ -9,7 +10,7 @@ export default function KI() {
   const navigate = useNavigate();
   return (
     <>
-      <Seo page="ki" />
+      <Seo page="ki" faqItems={kiPage.faq.items} />
       <PageHero
         tag={kiPage.hero.tag}
         title={kiPage.hero.title}
@@ -64,6 +65,8 @@ export default function KI() {
           </div>
         </div>
       </section>
+
+      <FaqSection tag={kiPage.faq.tag} title={kiPage.faq.title} items={kiPage.faq.items} />
 
       <CtaSection title={ctaPerPage.ki.title} subtitle={ctaPerPage.ki.subtitle} />
     </>

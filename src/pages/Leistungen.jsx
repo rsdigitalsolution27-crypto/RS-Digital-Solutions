@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
+import FaqSection from '../components/FaqSection';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import Seo from '../components/Seo';
 import { leistungenPage, ctaPerPage } from '../content';
@@ -15,7 +16,7 @@ export default function Leistungen() {
 
   return (
     <>
-      <Seo page="leistungen" />
+      <Seo page="leistungen" faqItems={leistungenPage.faq.items} />
       <PageHero
         tag={leistungenPage.hero.tag}
         title={leistungenPage.hero.title}
@@ -106,6 +107,8 @@ export default function Leistungen() {
           </div>
         </div>
       </section>
+
+      <FaqSection tag={leistungenPage.faq.tag} title={leistungenPage.faq.title} items={leistungenPage.faq.items} />
 
       <CtaSection title={ctaPerPage.leistungen.title} subtitle={ctaPerPage.leistungen.subtitle} />
     </>
