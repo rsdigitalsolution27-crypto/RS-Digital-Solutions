@@ -43,6 +43,6 @@ jobs:
 
       - name: Smoke test
         run: |
-          code=$(curl -s -o /dev/null -w "%{http_code}" -H "Host: rs-digitalsolutions.de" "http://${{ secrets.VPS_HOST }}/")
+          code=$(curl -s -o /dev/null -w "%{http_code}" "https://rs-digitalsolutions.de/")
           echo "HTTP $code"
           test "$code" = "200"
