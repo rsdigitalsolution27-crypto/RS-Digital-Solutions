@@ -16,6 +16,8 @@ import Referenzen from './pages/Referenzen'
 import About from './pages/About'
 import FortyEightHours from './pages/FortyEightHours'
 import KI from './pages/KI'
+import Impressum from './pages/Impressum'
+import Datenschutz from './pages/Datenschutz'
 import NotFound from './pages/NotFound'
 
 class ErrorBoundary extends Component {
@@ -57,6 +59,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/48h" element={<FortyEightHours />} />
           <Route path="/ki" element={<KI />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ErrorBoundary>

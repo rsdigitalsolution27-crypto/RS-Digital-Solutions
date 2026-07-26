@@ -11,11 +11,19 @@ export const company = {
   name: 'RS Digital Solutions',
   nameShort: 'RS',
   nameSuffix: 'Digital Solutions',
-  email: 'info@rs-digitalsolutions.de',
+  legalName: 'RS DigitalSolutions',
+  owner: 'Daniel Raja-Nigl',
+  address: {
+    street: 'Rosmarinweg 69',
+    zip: '70374',
+    city: 'Stuttgart',
+    country: 'Deutschland',
+  },
+  email: 'info@rs.digitalsolutions.de',
   phone: '+49 176 1234 5678',
   phoneTel: 'tel:+4917612345678',
   whatsapp: 'https://wa.me/4917612345678',
-  location: 'Deutschland',
+  location: 'Stuttgart, Deutschland',
   copyright: `© ${new Date().getFullYear()} RS Digital Solutions. Alle Rechte vorbehalten.`,
   social: {
     instagram: '#',
@@ -85,6 +93,16 @@ export const seo = {
       title: '404 – Seite nicht gefunden | RS Digital Solutions',
       description: 'Die angeforderte Seite wurde nicht gefunden.',
       path: '/404',
+    },
+    impressum: {
+      title: 'Impressum | RS Digital Solutions',
+      description: 'Impressum und Anbieterkennzeichnung gemäß § 5 TMG.',
+      path: '/impressum',
+    },
+    datenschutz: {
+      title: 'Datenschutzerklärung | RS Digital Solutions',
+      description: 'Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.',
+      path: '/datenschutz',
     },
   },
 };
@@ -783,4 +801,143 @@ export const ui = {
   scanner: { loading: 'Screenshot wird geladen…', viewProject: 'Ansehen' },
   backToTop: { ariaLabel: 'Nach oben scrollen' },
   whatsapp: { ariaLabel: 'WhatsApp Chat' },
+};
+
+/* ─── Impressum (§ 5 TMG) ─── */
+export const impressumPage = {
+  hero: {
+    tag: 'Rechtliches',
+    title: 'Impressum',
+    subtitle: 'Anbieterkennzeichnung gemäß § 5 TMG.',
+  },
+  sections: [
+    {
+      heading: 'Angaben gemäß § 5 TMG',
+      lines: [
+        'RS DigitalSolutions',
+        'Inh. Daniel Raja-Nigl',
+        'Rosmarinweg 69',
+        '70374 Stuttgart',
+        'Deutschland',
+      ],
+    },
+    {
+      heading: 'Kontakt',
+      lines: [
+        'E-Mail: info@rs.digitalsolutions.de',
+      ],
+    },
+    {
+      heading: 'Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV',
+      lines: [
+        'Daniel Raja-Nigl',
+        'Rosmarinweg 69',
+        '70374 Stuttgart',
+      ],
+    },
+    {
+      heading: 'EU-Streitschlichtung',
+      paragraphs: [
+        'Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: https://ec.europa.eu/consumers/odr/. Unsere E-Mail-Adresse finden Sie oben im Impressum.',
+        'Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+      ],
+    },
+    {
+      heading: 'Haftung für Inhalte',
+      paragraphs: [
+        'Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.',
+        'Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.',
+      ],
+    },
+    {
+      heading: 'Haftung für Links',
+      paragraphs: [
+        'Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.',
+        'Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.',
+      ],
+    },
+    {
+      heading: 'Urheberrecht',
+      paragraphs: [
+        'Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.',
+        'Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.',
+      ],
+    },
+  ],
+};
+
+/* ─── Datenschutzerklärung (DSGVO) ─── */
+export const datenschutzPage = {
+  hero: {
+    tag: 'Rechtliches',
+    title: 'Datenschutzerklärung',
+    subtitle: 'Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.',
+  },
+  sections: [
+    {
+      heading: '1. Verantwortlicher',
+      paragraphs: [
+        'Verantwortlich für die Datenverarbeitung auf dieser Website ist:',
+      ],
+      lines: [
+        'RS DigitalSolutions',
+        'Inh. Daniel Raja-Nigl',
+        'Rosmarinweg 69',
+        '70374 Stuttgart',
+        'Deutschland',
+        'E-Mail: info@rs.digitalsolutions.de',
+      ],
+    },
+    {
+      heading: '2. Allgemeines zur Datenverarbeitung',
+      paragraphs: [
+        'Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung erfolgt regelmäßig nur nach Einwilligung des Nutzers (Art. 6 Abs. 1 lit. a DSGVO) oder wenn die Verarbeitung durch gesetzliche Vorschriften gestattet ist (Art. 6 Abs. 1 lit. b, c, f DSGVO).',
+      ],
+    },
+    {
+      heading: '3. Erhebung von Zugriffsdaten (Server-Logfiles)',
+      paragraphs: [
+        'Beim Aufruf unserer Website werden durch den Hosting-Provider automatisch Informationen erhoben und in sogenannten Server-Logfiles gespeichert. Dies sind: Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und IP-Adresse.',
+        'Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden zur Gewährleistung eines reibungslosen Verbindungsaufbaus, einer komfortablen Nutzung sowie zur Auswertung der Systemsicherheit und -stabilität verarbeitet. Eine Zusammenführung dieser Daten mit anderen Datenquellen erfolgt nicht.',
+      ],
+    },
+    {
+      heading: '4. Kontaktaufnahme',
+      paragraphs: [
+        'Bei der Kontaktaufnahme über das Kontaktformular oder per E-Mail werden die von Ihnen mitgeteilten Daten (Name, E-Mail-Adresse, Nachricht) zum Zweck der Bearbeitung Ihrer Anfrage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bzw. Art. 6 Abs. 1 lit. f DSGVO.',
+        'Wir geben Ihre Daten nicht ohne Ihre Einwilligung weiter. Die Daten werden gelöscht, sobald sie für die Erreichung des Zwecks ihrer Erhebung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
+      ],
+    },
+    {
+      heading: '5. Cookies',
+      paragraphs: [
+        'Unsere Website verwendet ausschließlich technisch notwendige Cookies, die für den Betrieb der Seite erforderlich sind (z. B. zur Speicherung des gewählten Themes). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Eine Verarbeitung zu Marketing- oder Analysezwecken findet derzeit nicht statt.',
+      ],
+    },
+    {
+      heading: '6. SSL-/TLS-Verschlüsselung',
+      paragraphs: [
+        'Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://“ auf „https://“ wechselt und am Schloss-Symbol in Ihrer Browserzeile.',
+      ],
+    },
+    {
+      heading: '7. Ihre Rechte',
+      paragraphs: [
+        'Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft, Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung, Einschränkung der Verarbeitung, Datenübertragbarkeit oder Löschung dieser Daten (Art. 15–21 DSGVO).',
+        'Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Ferner steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu (Art. 77 DSGVO). Zuständig ist der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg.',
+      ],
+    },
+    {
+      heading: '8. Widerruf Ihrer Einwilligung',
+      paragraphs: [
+        'Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Eine formlose Mitteilung per E-Mail an uns genügt. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.',
+      ],
+    },
+    {
+      heading: '9. Änderung dieser Datenschutzerklärung',
+      paragraphs: [
+        'Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.',
+      ],
+    },
+  ],
 };

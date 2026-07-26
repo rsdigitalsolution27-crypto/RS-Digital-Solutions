@@ -7232,3 +7232,65 @@ html.light-theme .hero-scrub-overlay {
     }
 }
 
+/* ─── Legal Pages (Impressum / Datenschutz) ─── */
+.legal-section {
+    padding: 100px 0 140px;
+    background: var(--bg-dark);
+}
+
+.legal-container {
+    max-width: 820px;
+}
+
+.legal-block {
+    margin-bottom: 56px;
+}
+
+.legal-block:last-child {
+    margin-bottom: 0;
+}
+
+.legal-heading {
+    font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+    font-weight: 600;
+    color: var(--text-heading, #fff);
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+}
+
+.legal-text {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin: 0 0 16px;
+}
+
+.legal-text:last-child {
+    margin-bottom: 0;
+}
+
+.legal-address {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-style: normal;
+    font-size: 1.02rem;
+    line-height: 1.7;
+    color: var(--text-body);
+    margin: 0 0 16px;
+}
+
+.legal-address + .legal-text,
+.legal-text + .legal-address {
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .legal-section {
+        padding: 60px 0 90px;
+    }
+    .legal-block {
+        margin-bottom: 40px;
+    }
+}
+
