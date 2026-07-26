@@ -21,7 +21,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # npm ci scheitert an plattformspezifischen optionalDependencies
+        # im Lockfile (macOS vs. Linux) — npm install löst sie pro Plattform auf.
+        run: npm install --no-audit --no-fund
 
       - name: Build (Vite + Prerender)
         run: npm run build

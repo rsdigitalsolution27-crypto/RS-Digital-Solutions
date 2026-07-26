@@ -27,3 +27,4 @@ dist-ssr
 # Sibling project — separate repo, not part of this site
 my-clone/
 
+.env*
