@@ -201,6 +201,7 @@ export default function ContactForm() {
             if (formState !== 'sending') e.target.closest('form').requestSubmit();
           }}
         />
+        <p className="kf-reassure">{f.reassurance}</p>
         {formState === 'error' && (
           <p className="kf-error kf-error-global" role="alert">
             {f.error} <a href={`mailto:${company.email}`}>{company.email}</a>.

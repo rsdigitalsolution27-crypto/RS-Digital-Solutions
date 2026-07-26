@@ -22,7 +22,7 @@ export default function Footer() {
             <ul>
               <li>
                 <i className="fas fa-calendar-check"></i>
-                <a href={company.calendly} target="_blank" rel="noopener">Online-Termin buchen</a>
+                <a href={company.calendly} target="_blank" rel="noopener">Beratungstermin buchen</a>
               </li>
               <li>
                 <i className="fas fa-envelope"></i>

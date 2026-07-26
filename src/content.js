@@ -119,13 +119,14 @@ export const seo = {
 /* ─── Home Page ─── */
 export const homePage = {
   hero: {
-    titleLine1: 'KI-Systeme, die Ihre',
-    titleGradient: 'Geschäftsprozesse automatisieren',
-    titleLine3: '',
+    titleLine1: 'Website, Shop & KI —',
+    titleGradient: 'alles aus einer Hand',
+    titleLine3: 'aus Stuttgart.',
     subtitle:
-      'Websites, Online-Shops und KI-Integration — aus einer Hand.',
+      'Ihr persönlicher Ansprechpartner für Webdesign, Online-Shops und KI-Automatisierung. Websites ab 1.500 € — auf Wunsch in 48 Stunden online.',
     primaryButton: 'Beratungstermin buchen',
     secondaryButton: 'Projekte ansehen',
+    trust: ['Kostenlose Erstberatung', 'Festpreis vor Projektstart', 'Antwort innerhalb von 24 h'],
   },
   servicesOverview: {
     tag: 'Leistungen',
@@ -198,14 +199,6 @@ export const homePage = {
         link: '/leistungen',
       },
       {
-        icon: 'fas fa-moon',
-        problem: '„Anfragen kommen abends und am Wochenende — und bleiben unbeantwortet."',
-        solution:
-          'Ein KI-Chatbot, trainiert auf Ihr Unternehmen, beantwortet Fragen, bucht Termine und qualifiziert Anfragen — rund um die Uhr, auch wenn Sie schlafen.',
-        linkLabel: 'KI-Chatbots entdecken',
-        link: '/ki',
-      },
-      {
         icon: 'fas fa-hourglass-half',
         problem: '„Unsere Website ist veraltet, aber uns fehlt die Zeit für einen Relaunch."',
         solution:
@@ -219,14 +212,6 @@ export const homePage = {
         solution:
           'Lokale Suchmaschinenoptimierung für Stuttgart: technisches SEO, Google-Business-Profil und Inhalte, die Ihre Kunden wirklich suchen.',
         linkLabel: 'SEO-Leistungen ansehen',
-        link: '/leistungen',
-      },
-      {
-        icon: 'fas fa-store',
-        problem: '„Im Laden läuft es gut, aber online verkaufen wir nichts."',
-        solution:
-          'Ein Online-Shop mit Katalog, sicherer Zahlung und DSGVO-konformem Checkout — Ihr zweiter Verkaufskanal, der 24/7 geöffnet hat.',
-        linkLabel: 'E-Commerce entdecken',
         link: '/leistungen',
       },
       {
@@ -324,7 +309,7 @@ export const homePage = {
       'Haben Sie ein Projekt im Kopf? Erzählen Sie uns davon. Wir freuen uns auf Ihre Nachricht und melden uns innerhalb von 24 Stunden bei Ihnen.',
     labels: {
       booking: 'Beratungstermin',
-      bookingLink: 'Online-Termin buchen',
+      bookingLink: 'Beratungstermin buchen',
       email: 'E-Mail',
       location: 'Standort',
     },
@@ -352,6 +337,7 @@ export const homePage = {
         labelEnd: ' gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. *',
       },
       submit: { default: 'Nachricht senden', loading: 'Wird gesendet…', success: 'Gesendet!' },
+      reassurance: 'Kostenlos & unverbindlich — wir antworten innerhalb von 24 Stunden.',
       successTitle: 'Vielen Dank für Ihre Anfrage!',
       successText:
         'Ihre Nachricht ist bei uns angekommen. Wir melden uns innerhalb von 24 Stunden bei Ihnen — meist deutlich schneller.',
