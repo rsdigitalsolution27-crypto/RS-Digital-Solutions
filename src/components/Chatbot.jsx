@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { chatbot, referenzenPage } from '../content';
+import { chatbot, company, referenzenPage } from '../content';
 
 const TYPING_DELAY_MIN = 600;
 const TYPING_DELAY_PER_CHAR = 18;
@@ -28,7 +28,11 @@ function scrollToId(id) {
 
 function handleFollowUpAction(label) {
   const lower = label.toLowerCase();
-  if (lower.includes('kontakt') || lower.includes('formular') || lower.includes('termin') || lower.includes('anfrage') || lower.includes('anfragen') || lower.includes('aufnehmen') || lower.includes('projekt starten') || lower.includes('angebot') || lower.includes('vereinbaren')) {
+  if (lower.includes('termin') || lower.includes('vereinbaren')) {
+    window.open(company.calendly, '_blank', 'noopener');
+    return true;
+  }
+  if (lower.includes('kontakt') || lower.includes('formular') || lower.includes('anfrage') || lower.includes('anfragen') || lower.includes('aufnehmen') || lower.includes('projekt starten') || lower.includes('angebot')) {
     scrollToContact();
     return true;
   }

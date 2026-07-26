@@ -21,6 +21,10 @@ export default function Footer() {
             <h4>{footer.contactHeading}</h4>
             <ul>
               <li>
+                <i className="fas fa-calendar-check"></i>
+                <a href={company.calendly} target="_blank" rel="noopener">Online-Termin buchen</a>
+              </li>
+              <li>
                 <i className="fas fa-envelope"></i>
                 <a href={`mailto:${company.email}`}>{company.email}</a>
               </li>

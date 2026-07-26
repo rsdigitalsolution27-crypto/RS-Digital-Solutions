@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import ShimmerButton from './ui/shimmer-button.tsx';
-import { ctaDefaults } from '../content';
+import { ctaDefaults, company } from '../content';
 
 export default function CtaSection({ title, subtitle }) {
   const navigate = useNavigate();
@@ -13,7 +13,13 @@ export default function CtaSection({ title, subtitle }) {
           <h2 dangerouslySetInnerHTML={{ __html: title || ctaDefaults.title }}></h2>
           <p>{subtitle || ctaDefaults.subtitle}</p>
           <div className="cta-buttons">
-            <ShimmerButton label={ctaDefaults.primaryButton} onClick={() => navigate('/#kontakt')} />
+            <ShimmerButton
+              label={ctaDefaults.primaryButton}
+              onClick={() => window.open(company.calendly, '_blank', 'noopener')}
+            />
+            <button className="hero-text-link" onClick={() => navigate('/#kontakt')}>
+              {ctaDefaults.secondaryButton} <span aria-hidden="true">→</span>
+            </button>
           </div>
         </div>
       </div>

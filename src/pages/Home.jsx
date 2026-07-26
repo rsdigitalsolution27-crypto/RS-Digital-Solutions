@@ -88,7 +88,7 @@ export default function Home() {
             {homePage.hero.subtitle}
           </p>
           <div className="hero-buttons-new">
-            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { smoothScrollTo('kontakt'); }} />
+            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => window.open(company.calendly, '_blank', 'noopener')} />
             <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
               {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
             </button>
@@ -211,6 +211,13 @@ export default function Home() {
                 {homePage.contact.intro}
               </p>
               <div className="kontakt-details">
+                <div className="kontakt-item">
+                  <div className="kontakt-icon"><i className="fas fa-calendar-check"></i></div>
+                  <div>
+                    <span className="kontakt-label">{homePage.contact.labels.booking}</span>
+                    <a href={company.calendly} target="_blank" rel="noopener">{homePage.contact.labels.bookingLink}</a>
+                  </div>
+                </div>
                 <div className="kontakt-item">
                   <div className="kontakt-icon"><i className="fas fa-envelope"></i></div>
                   <div>

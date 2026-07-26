@@ -20,6 +20,7 @@ export const company = {
     country: 'Deutschland',
   },
   email: 'info@rs-digitalsolutions.de',
+  calendly: 'https://calendly.com/info-rs-digitalsolutions',
   location: 'Stuttgart, Deutschland',
   copyright: `© ${new Date().getFullYear()} RS Digital Solutions. Alle Rechte vorbehalten.`,
   social: {
@@ -112,7 +113,7 @@ export const homePage = {
     titleLine3: '',
     subtitle:
       'Websites, Online-Shops und KI-Integration — aus einer Hand.',
-    primaryButton: 'Beratungsgespräch',
+    primaryButton: 'Beratungstermin buchen',
     secondaryButton: 'Projekte ansehen',
   },
   servicesOverview: {
@@ -255,6 +256,8 @@ export const homePage = {
     intro:
       'Haben Sie ein Projekt im Kopf? Erzählen Sie uns davon. Wir freuen uns auf Ihre Nachricht und melden uns innerhalb von 24 Stunden bei Ihnen.',
     labels: {
+      booking: 'Beratungstermin',
+      bookingLink: 'Online-Termin buchen',
       email: 'E-Mail',
       location: 'Standort',
     },
@@ -612,7 +615,8 @@ export const ctaDefaults = {
   title: 'Bereit für eine Website,<br><span class="highlight">die Kunden bringt</span> – nicht nur gut aussieht?',
   subtitle:
     'Ein kurzes Gespräch, null Verpflichtung – und Sie wissen genau, was möglich ist.',
-  primaryButton: 'Beratungsgespräch',
+  primaryButton: 'Beratungstermin buchen',
+  secondaryButton: 'Nachricht schreiben',
 };
 
 export const ctaPerPage = {
@@ -715,8 +719,8 @@ export const chatbot = {
     {
       keywords: ['kontakt', 'anruf', 'anrufen', 'telefon', 'email', 'mail', 'termin', 'beratung', 'gespräch'],
       reply:
-        'Gerne! Sie erreichen uns per E-Mail oder direkt über das Kontaktformular — auf Wunsch rufen wir Sie auch zurück. Soll ich Sie zum Formular weiterleiten?',
-      followUps: ['Zum Kontaktformular'],
+        'Gerne! Buchen Sie direkt online einen Beratungstermin — oder schreiben Sie uns über das Kontaktformular, auf Wunsch rufen wir Sie zurück.',
+      followUps: ['Termin vereinbaren', 'Zum Kontaktformular'],
     },
     {
       keywords: ['shop', 'e-commerce', 'ecommerce', 'verkauf', 'bestell'],
