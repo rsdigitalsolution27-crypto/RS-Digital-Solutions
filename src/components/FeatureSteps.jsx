@@ -106,7 +106,7 @@ export default function FeatureSteps({ steps, autoPlayInterval = DEFAULT_INTERVA
                 src={activeStep.image}
                 alt={activeStep.title}
                 className="feature-steps-image"
-                loading="lazy"
+                loading="lazy" decoding="async"
               />
               <div className="feature-steps-image-shine" aria-hidden="true" />
               <div className="feature-steps-image-badge">{activeStep.number}</div>

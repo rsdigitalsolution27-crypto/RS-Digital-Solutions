@@ -69,6 +69,7 @@ export default function Home() {
       <section id="hero" className="hero-section">
         <VideoMedia
           src="/videos/hero-rs-loop"
+          poster="/videos/hero-rs-poster.jpg"
           className="hero-bg-video"
           aria-hidden="true"
         />

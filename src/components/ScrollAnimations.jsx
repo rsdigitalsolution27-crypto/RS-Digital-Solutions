@@ -5,48 +5,54 @@ export function useScrollAnimations() {
   const location = useLocation();
 
   useEffect(() => {
-    // Small delay to ensure DOM is rendered after route change
-    const timer = setTimeout(() => {
-      const animatedElements = document.querySelectorAll('[data-animate]');
-      const delayTimeouts = new Map();
+    const delayTimeouts = new Map();
+    const observed = new Set();
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const el = entry.target;
-          const delay = parseInt(el.getAttribute('data-delay') || 0);
-          if (entry.isIntersecting) {
-            const timeoutId = setTimeout(() => {
-              el.classList.add('animated');
-              delayTimeouts.delete(el);
-            }, delay);
-            delayTimeouts.set(el, timeoutId);
-          } else {
-            if (delayTimeouts.has(el)) {
-              clearTimeout(delayTimeouts.get(el));
-              delayTimeouts.delete(el);
-            }
-            el.classList.remove('animated');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        const delay = parseInt(el.getAttribute('data-delay') || 0);
+        if (entry.isIntersecting) {
+          const timeoutId = setTimeout(() => {
+            el.classList.add('animated');
+            delayTimeouts.delete(el);
+          }, delay);
+          delayTimeouts.set(el, timeoutId);
+        } else {
+          if (delayTimeouts.has(el)) {
+            clearTimeout(delayTimeouts.get(el));
+            delayTimeouts.delete(el);
           }
-        });
-      }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.01 });
+          el.classList.remove('animated');
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.01 });
 
-      // Force-check elements already in viewport
-      animatedElements.forEach(el => {
+    const attach = () => {
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        if (observed.has(el)) return;
+        observed.add(el);
+        // Force-check elements already in viewport
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           const delay = parseInt(el.getAttribute('data-delay') || 0);
           setTimeout(() => el.classList.add('animated'), delay);
         }
+        observer.observe(el);
       });
+    };
 
-      animatedElements.forEach(el => observer.observe(el));
+    attach();
 
-      return () => {
-        observer.disconnect();
-        delayTimeouts.forEach(id => clearTimeout(id));
-      };
-    }, 50);
+    // Lazy-geladene Routen mounten ihre Inhalte erst nach dem Chunk-Load —
+    // neu auftauchende [data-animate]-Elemente daher per MutationObserver anbinden.
+    const mo = new MutationObserver(() => attach());
+    mo.observe(document.body, { childList: true, subtree: true });
 
-    return () => clearTimeout(timer);
+    return () => {
+      mo.disconnect();
+      observer.disconnect();
+      delayTimeouts.forEach(id => clearTimeout(id));
+    };
   }, [location.pathname]);
 }

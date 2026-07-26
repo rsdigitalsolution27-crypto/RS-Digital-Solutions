@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { Component } from 'react'
+import { Component, Suspense, lazy } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -10,14 +10,17 @@ import GrainOverlay from './components/GrainOverlay'
 import { useScrollAnimations } from './components/ScrollAnimations'
 import { ui } from './content'
 import Home from './pages/Home'
-import Leistungen from './pages/Leistungen'
-import Referenzen from './pages/Referenzen'
-import About from './pages/About'
-import FortyEightHours from './pages/FortyEightHours'
-import KI from './pages/KI'
-import Impressum from './pages/Impressum'
-import Datenschutz from './pages/Datenschutz'
-import NotFound from './pages/NotFound'
+
+// Route-Splitting: nur Home ist im Haupt-Bundle (LCP), alle anderen Seiten
+// laden als eigene Chunks — three.js (~125 KB gzip) landet so nur auf /referenzen.
+const Leistungen = lazy(() => import('./pages/Leistungen'))
+const Referenzen = lazy(() => import('./pages/Referenzen'))
+const About = lazy(() => import('./pages/About'))
+const FortyEightHours = lazy(() => import('./pages/FortyEightHours'))
+const KI = lazy(() => import('./pages/KI'))
+const Impressum = lazy(() => import('./pages/Impressum'))
+const Datenschutz = lazy(() => import('./pages/Datenschutz'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -51,17 +54,19 @@ function App() {
       <GrainOverlay />
       <Navbar />
       <ErrorBoundary>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/leistungen" element={<Leistungen />} />
-          <Route path="/referenzen" element={<Referenzen />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/48h" element={<FortyEightHours />} />
-          <Route path="/ki" element={<KI />} />
-          <Route path="/impressum" element={<Impressum />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/leistungen" element={<Leistungen />} />
+            <Route path="/referenzen" element={<Referenzen />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/48h" element={<FortyEightHours />} />
+            <Route path="/ki" element={<KI />} />
+            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </ErrorBoundary>
       <Footer />
       <Chatbot />

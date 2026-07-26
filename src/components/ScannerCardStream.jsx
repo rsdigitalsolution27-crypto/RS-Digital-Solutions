@@ -37,7 +37,7 @@ function ScreenshotImg({ src, alt }) {
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading="lazy" decoding="async"
         onLoad={() => setStatus('loaded')}
         onError={() => setStatus('error')}
         style={{

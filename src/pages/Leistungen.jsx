@@ -46,7 +46,7 @@ export default function Leistungen() {
                     }}
                     onClick={() => setActiveIndex(i)}
                   >
-                    <img src={item.image} alt={item.label} loading="lazy" />
+                    <img src={item.image} alt={item.label} loading="lazy" decoding="async" />
                     <div className="accordion-overlay"></div>
                     <div className="accordion-icon"><i className={item.icon}></i></div>
                     <span className="accordion-label">{item.label}</span>

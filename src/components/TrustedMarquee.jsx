@@ -4,7 +4,7 @@ function ClientItem({ client }) {
   return (
     <span className="marquee-client">
       {client.logo && (
-        <img src={client.logo} alt={client.name} className="marquee-logo" loading="lazy" />
+        <img src={client.logo} alt={client.name} className="marquee-logo" loading="lazy" decoding="async" />
       )}
       {client.showName && (
         <span className="marquee-text-logo">{client.name}</span>

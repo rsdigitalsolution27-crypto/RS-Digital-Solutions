@@ -139,7 +139,7 @@ export const homePage = {
         label: 'KI & Automatisierung',
         title: 'KI-Automatisierung & Zeitersparnis',
         desc: 'Intelligente Chatbots, Terminbuchung und Lead-Qualifizierung — 24/7 automatisch. Bis zu 15 Stunden Zeitersparnis pro Woche.',
-        image: '/images/ki-automation.png',
+        image: '/images/ki-automation.webp',
       },
       {
         id: 'webdesign',
@@ -147,7 +147,7 @@ export const homePage = {
         label: 'Webdesign',
         title: 'Professionelles Webdesign',
         desc: 'Moderne, performante Websites, die konvertieren — responsiv, SEO-optimiert und auf Ihre Marke zugeschnitten.',
-        image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop',
+        image: '/images/webdesign.webp',
       },
       {
         id: 'ecommerce',
@@ -155,7 +155,7 @@ export const homePage = {
         label: 'E-Commerce',
         title: 'E-Commerce & Shops',
         desc: 'Voll funktionsfähige Online-Shops mit Produktkatalog, Warenkorb und sicherer Zahlungsabwicklung — startklar in Rekordzeit.',
-        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop',
+        image: '/images/ecommerce.webp',
       },
       {
         id: 'relaunch',
@@ -163,7 +163,7 @@ export const homePage = {
         label: '48h Relaunch',
         title: '48h Website-Relaunch',
         desc: 'Vom Briefing zur fertigen Website in nur zwei Tagen — ohne Qualitätskompromisse und zum Festpreis.',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+        image: '/images/relaunch-48h.webp',
       },
       {
         id: 'seo',
@@ -171,7 +171,7 @@ export const homePage = {
         label: 'SEO & Marketing',
         title: 'SEO & Online-Marketing',
         desc: 'Sichtbar werden, wo Ihre Kunden suchen. Wir sorgen für bessere Rankings und mehr qualifizierten Traffic.',
-        image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1200&auto=format&fit=crop',
+        image: '/images/seo.webp',
       },
       {
         id: 'termine',
@@ -179,7 +179,7 @@ export const homePage = {
         label: 'Terminbuchung',
         title: 'Terminbuchungssoftware',
         desc: 'Professionelle Buchungssysteme direkt in Ihre Website integriert — mit Google-Calendar-Sync und automatischen Bestätigungen.',
-        image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop',
+        image: '/images/terminbuchung.webp',
       },
     ],
   },
@@ -249,28 +249,28 @@ export const homePage = {
         name: 'Briefing',
         title: 'Briefing & Analyse',
         desc: 'Wir hören zu, analysieren Ihre Branche und Wettbewerb und definieren gemeinsam klare Ziele für Ihren digitalen Auftritt.',
-        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop',
+        image: '/images/process-briefing.webp',
       },
       {
         number: '02',
         name: 'Konzept & Design',
         title: 'Konzept & Design',
         desc: 'Unser Team erstellt ein maßgeschneidertes Konzept inklusive Wireframes und finalem Design — perfekt auf Ihre Marke abgestimmt.',
-        image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=1600&auto=format&fit=crop',
+        image: '/images/process-design.webp',
       },
       {
         number: '03',
         name: 'Entwicklung',
         title: 'Entwicklung & KI-Integration',
         desc: 'Technische Umsetzung mit modernsten Technologien: responsiv, schnell, SEO-optimiert und mit KI-Automatisierung ausgestattet.',
-        image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=1600&auto=format&fit=crop',
+        image: '/images/process-entwicklung.webp',
       },
       {
         number: '04',
         name: 'Go Live',
         title: 'Go Live & Full-Service',
         desc: 'Nach finalem Testing geht Ihre Website live. Domain, Hosting, Wartung und Support übernehmen wir — Sie kümmern sich ums Business.',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop',
+        image: '/images/process-golive.webp',
       },
     ],
   },
@@ -374,7 +374,7 @@ export const leistungenPage = {
   services: [
     {
       label: 'KI-Automa\u00ADtisierung & Zeitersparnis',
-      image: '/images/ki-automation.png',
+      image: '/images/ki-automation.webp',
       icon: 'fas fa-robot',
       headline: 'Ihr digitaler Mitarbeiter — 24/7.',
       intro:
@@ -390,7 +390,7 @@ export const leistungenPage = {
     },
     {
       label: 'Profes\u00ADsionelles Webdesign',
-      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=800&auto=format&fit=crop',
+      image: '/images/webdesign.webp',
       icon: 'fas fa-laptop-code',
       headline: 'Websites, die verkaufen.',
       intro: 'Individuelles Design, schnell und auf allen Geräten perfekt.',
@@ -405,7 +405,7 @@ export const leistungenPage = {
     },
     {
       label: 'E-Commerce & Shops',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop',
+      image: '/images/ecommerce.webp',
       icon: 'fas fa-store',
       headline: 'Verkaufen, auch wenn Sie schlafen.',
       intro:
@@ -421,7 +421,7 @@ export const leistungenPage = {
     },
     {
       label: '48h Website-Relaunch',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
+      image: '/images/relaunch-48h.webp',
       icon: 'fas fa-bolt',
       headline: 'In 2 Tagen online. Versprochen.',
       intro: 'Vom Briefing zur fertigen Website in 48 Stunden — zum Festpreis.',
@@ -436,7 +436,7 @@ export const leistungenPage = {
     },
     {
       label: 'SEO & Online-Marketing',
-      image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=800&auto=format&fit=crop',
+      image: '/images/seo.webp',
       icon: 'fas fa-search',
       headline: 'Sichtbar, wo Ihre Kunden suchen.',
       intro: 'Ihre Website bei Google ganz oben — ohne teure Anzeigen.',
@@ -451,7 +451,7 @@ export const leistungenPage = {
     },
     {
       label: 'Termin\u00ADbuchungs\u00ADsoftware',
-      image: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop',
+      image: '/images/terminbuchung.webp',
       icon: 'fas fa-calendar-check',
       headline: 'Schluss mit Telefon-Pingpong.',
       intro:

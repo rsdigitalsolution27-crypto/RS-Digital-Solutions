@@ -68,7 +68,7 @@ function AccordionItem({ item, index, isOpen, onToggle, onCtaClick, ctaLabel }) 
                     className="sa-content-image"
                     src={item.image}
                     alt={item.title}
-                    loading="lazy"
+                    loading="lazy" decoding="async"
                   />
                 )}
                 <div className="sa-content-image-overlay" aria-hidden="true" />
