@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/((?!leistungen$|referenzen$|about$|48h$|ki$|assets/|videos/|images/|screenshots/|hero-video/|fonts/|sitemap.xml|robots.txt|favicon|icons.svg).*)",
+      "source": "/((?!leistungen$|referenzen$|about$|48h$|ki$|impressum$|datenschutz$|assets/|videos/|images/|screenshots/|fonts/|sitemap.xml|robots.txt|llms.txt|og-image.jpg|favicon|icons.svg).*)",
       "destination": "/index.html"
     }
   ],
