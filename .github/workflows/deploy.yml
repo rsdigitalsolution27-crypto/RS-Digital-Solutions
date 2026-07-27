@@ -33,7 +33,12 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+          for i in 1 2 3; do
+            ssh-keyscan -T 15 -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts && break
+            echo "ssh-keyscan attempt $i failed, retrying..."
+            sleep 5
+          done
+          grep -q . ~/.ssh/known_hosts
 
       - name: Deploy via rsync
         run: |
