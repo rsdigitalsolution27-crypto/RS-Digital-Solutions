@@ -7805,3 +7805,193 @@ html.light-theme .hero-calm-glow {
         radial-gradient(ellipse 40% 30% at 30% 35%, rgba(53, 91, 140, 0.07) 0%, transparent 70%),
         radial-gradient(ellipse 35% 28% at 72% 60%, rgba(95, 131, 179, 0.06) 0%, transparent 70%);
 }
+
+/* ═══════════════════════════════════════════════
+   Standort-Landingpages
+   ═══════════════════════════════════════════════ */
+.standort-section {
+    padding: 90px 0;
+    background: var(--bg-dark);
+}
+
+.standort-alt {
+    background: linear-gradient(180deg, rgba(53, 91, 140, 0.05) 0%, rgba(53, 91, 140, 0.00) 100%);
+    border-top: 1px solid rgba(159, 184, 217, 0.08);
+    border-bottom: 1px solid rgba(159, 184, 217, 0.08);
+}
+
+.standort-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 44px;
+}
+
+.standort-fact {
+    padding: 28px 26px;
+    border-radius: 18px;
+    background: var(--kf-bg);
+    border: 1px solid var(--kf-border);
+}
+
+.standort-fact p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 0.93rem;
+}
+
+.standort-leistungen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 36px;
+}
+
+.standort-leistung {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    border-radius: 14px;
+    background: var(--kf-bg);
+    border: 1px solid var(--kf-border);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.standort-leistung:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.standort-leistung i {
+    color: var(--accent);
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.standort-preise {
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.standort-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+
+.standort-nachbarn-section {
+    padding: 60px 0 80px;
+}
+
+.standort-nachbarn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.standort-nachbar {
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--kf-border);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.standort-nachbar:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.standort-nachbar-alle {
+    background: var(--kf-bg);
+}
+
+.standorte-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.standorte-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 28px 24px;
+    border-radius: 18px;
+    background: var(--kf-bg);
+    border: 1px solid var(--kf-border);
+    text-decoration: none;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.standorte-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+}
+
+.standorte-card h2 {
+    font-size: 1.15rem;
+    color: var(--text-primary);
+}
+
+.standorte-card p {
+    flex: 1;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.standorte-card .hero-text-link {
+    font-size: 0.85rem;
+}
+
+@media (max-width: 992px) {
+    .standort-facts,
+    .standort-leistungen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .standorte-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .standort-facts,
+    .standort-leistungen,
+    .standorte-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.standort-figure {
+    margin: 44px 0 0;
+}
+
+.standort-figure img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 1px solid var(--kf-border);
+}
+
+.standort-figure figcaption {
+    margin-top: 8px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}

@@ -39,6 +39,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>{company.copyright}</p>
           <div className="footer-bottom-links">
+            <Link to="/standorte">Standorte</Link>
             {footer.legalLinks.map((link) => (
               <a key={link.href} href={link.href}>{link.label}</a>
             ))}

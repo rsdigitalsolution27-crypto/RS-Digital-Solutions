@@ -18,6 +18,8 @@ const Leistungen = lazy(() => import('./pages/Leistungen'))
 const About = lazy(() => import('./pages/About'))
 const FortyEightHours = lazy(() => import('./pages/FortyEightHours'))
 const KI = lazy(() => import('./pages/KI'))
+const Standorte = lazy(() => import('./pages/Standorte'))
+const Standort = lazy(() => import('./pages/Standort'))
 const Impressum = lazy(() => import('./pages/Impressum'))
 const Datenschutz = lazy(() => import('./pages/Datenschutz'))
 const NotFound = lazy(() => import('./pages/NotFound'))
@@ -63,6 +65,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/48h" element={<FortyEightHours />} />
             <Route path="/ki" element={<KI />} />
+            <Route path="/standorte" element={<Standorte />} />
+            <Route path="/webagentur/:ort" element={<Standort />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/datenschutz" element={<Datenschutz />} />
             <Route path="*" element={<NotFound />} />

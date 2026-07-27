@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet-async';
 import { seo, company, navigation } from '../content';
 
-export default function Seo({ page, customTitle, customDescription, faqItems }) {
+export default function Seo({ page, customTitle, customDescription, customPath, customName, faqItems }) {
   const pageData = seo.pages[page] || {};
   const title = customTitle || pageData.title || seo.defaults.title;
   const description = customDescription || pageData.description || seo.defaults.description;
-  const url = `${seo.siteUrl}${pageData.path || '/'}`;
+  const url = `${seo.siteUrl}${customPath || pageData.path || '/'}`;
   const ogImageUrl = `${seo.siteUrl}${seo.defaults.ogImage}`;
 
   const breadcrumbList = {
@@ -13,11 +13,11 @@ export default function Seo({ page, customTitle, customDescription, faqItems }) 
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: seo.siteUrl },
-      ...(page && page !== 'home'
+      ...((page && page !== 'home') || customPath
         ? [{
             '@type': 'ListItem',
             position: 2,
-            name: pageData.name || title,
+            name: customName || pageData.name || title,
             item: url,
           }]
         : []),

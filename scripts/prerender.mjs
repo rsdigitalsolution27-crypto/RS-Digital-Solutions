@@ -42,7 +42,13 @@ async function launchBrowser() {
 
 const PORT = 5174;
 const DIST = resolve('dist');
-const ROUTES = ['/', '/leistungen', '/about', '/48h', '/ki', '/impressum', '/datenschutz'];
+import { standorte } from '../src/data/standorte.js';
+
+const ROUTES = [
+  '/', '/leistungen', '/about', '/48h', '/ki', '/impressum', '/datenschutz',
+  '/standorte',
+  ...standorte.map((s) => `/webagentur/${s.slug}`),
+];
 const SETTLE_MS = 3000;
 
 const MIME = {
