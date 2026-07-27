@@ -641,9 +641,22 @@ html.light-theme section + section::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     overflow: hidden;
-    padding: 18vh 24px 80px;
+    padding: 120px 24px 80px;
+    background:
+        radial-gradient(ellipse 90% 65% at 50% -12%, rgba(95, 131, 179, 0.26) 0%, transparent 62%),
+        radial-gradient(ellipse 70% 55% at 88% 112%, rgba(53, 91, 140, 0.22) 0%, transparent 62%),
+        linear-gradient(180deg, #0b1424 0%, #0d1626 55%, #0a0f1a 100%);
+}
+
+.hero-calm-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 40% 30% at 30% 35%, rgba(123, 167, 204, 0.10) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 28% at 72% 60%, rgba(159, 184, 217, 0.08) 0%, transparent 70%);
 }
 
 .aurora-canvas {
@@ -750,10 +763,9 @@ html.light-theme section + section::before {
     font-family: var(--font-primary);
     font-size: clamp(0.95rem, 1.8vw, 1.15rem);
     font-weight: 400;
-    color: #ffffff;
-    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+    color: var(--text-secondary);
     max-width: 620px;
-    margin: 40vh auto 0;
+    margin: 28px auto 0;
     line-height: 1.8;
     letter-spacing: 0.2px;
 }
@@ -7735,16 +7747,6 @@ html.light-theme {
     scroll-margin-top: 90px;
 }
 
-/* Im Hero (über Video) bleiben Textlinks hell — unabhängig vom Theme */
-.hero-section .hero-text-link {
-    color: rgba(255, 255, 255, 0.85);
-    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
-}
-
-.hero-section .hero-text-link:hover {
-    color: #ffffff;
-}
-
 .hero-trust {
     display: flex;
     justify-content: center;
@@ -7761,18 +7763,12 @@ html.light-theme {
     gap: 7px;
     font-size: 0.85rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    color: var(--text-secondary);
 }
 
 .hero-trust svg {
     color: #34c98e;
     flex-shrink: 0;
-}
-
-/* Light-Mode: kräftiges Scrim, damit weißer Hero-Text lesbar bleibt */
-html.light-theme .hero-overlay {
-    background: linear-gradient(180deg, rgba(8, 14, 24, 0.42) 0%, rgba(8, 14, 24, 0.55) 100%);
 }
 
 /* Herausforderungen: 4 Karten → 2×2 */
@@ -7796,53 +7792,16 @@ html.light-theme .hero-overlay {
     }
 }
 
-/* Light-Mode-Hero: über dem dunklen Video bleibt Text hell (Scrim statt Weiß-Wäsche) */
-html.light-theme .hero-title-new {
-    color: #ffffff;
+/* Light-Mode-Hero: ruhiger heller Verlauf */
+html.light-theme .hero-section {
+    background:
+        radial-gradient(ellipse 90% 65% at 50% -12%, rgba(95, 131, 179, 0.16) 0%, transparent 62%),
+        radial-gradient(ellipse 70% 55% at 88% 112%, rgba(53, 91, 140, 0.10) 0%, transparent 62%),
+        linear-gradient(180deg, #f4f7fb 0%, #eef3f9 55%, #f7f9fc 100%);
 }
 
-html.light-theme .hero-gradient-text {
-    background: linear-gradient(135deg,
-        #5f83b3 0%,
-        #7ba7cc 20%,
-        #c2d9ec 40%,
-        #ffffff 50%,
-        #c2d9ec 60%,
-        #7ba7cc 80%,
-        #5f83b3 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-html.light-theme .hero-subtitle-new,
-html.light-theme .hero-subtitle-new strong {
-    color: #ffffff;
-}
-
-html.light-theme .hero-section .hero-text-link {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-html.light-theme .hero-section .hero-text-link:hover {
-    color: #ffffff;
-}
-
-/* Light-Mode: transparente Navbar über dem dunklen Hero-Video braucht helle Links */
-html.light-theme .navbar:not(.scrolled):not(.nav-fixed):not(.mobile-open) .nav-link {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-html.light-theme .navbar:not(.scrolled):not(.nav-fixed):not(.mobile-open) .nav-link:hover,
-html.light-theme .navbar:not(.scrolled):not(.nav-fixed):not(.mobile-open) .nav-link.active {
-    color: #ffffff;
-}
-
-html.light-theme .navbar:not(.scrolled):not(.nav-fixed):not(.mobile-open) .logo-text {
-    color: #ffffff !important;
-}
-
-html.light-theme .navbar:not(.scrolled):not(.nav-fixed):not(.mobile-open) .theme-toggle-btn {
-    color: rgba(255, 255, 255, 0.85);
+html.light-theme .hero-calm-glow {
+    background:
+        radial-gradient(ellipse 40% 30% at 30% 35%, rgba(53, 91, 140, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 35% 28% at 72% 60%, rgba(95, 131, 179, 0.06) 0%, transparent 70%);
 }

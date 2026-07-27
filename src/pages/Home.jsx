@@ -40,13 +40,7 @@ export default function Home() {
       <Seo page="home" />
       {/* Hero Section */}
       <section id="hero" className="hero-section">
-        <VideoMedia
-          src="/videos/hero-rs-loop"
-          poster="/videos/hero-rs-poster.jpg"
-          className="hero-bg-video"
-          aria-hidden="true"
-        />
-        <div className="hero-overlay"></div>
+        <div className="hero-calm-glow" aria-hidden="true"></div>
         <div className="hero-content" ref={heroContentRef}>
           <div className="hero-float-wrapper">
             <MaskRevealText
