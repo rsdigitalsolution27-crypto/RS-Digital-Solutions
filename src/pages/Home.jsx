@@ -2,14 +2,14 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ContactForm from '../components/ContactForm';
 import VideoMedia from '../components/VideoMedia';
+
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import MaskRevealText from '../components/ui/MaskRevealText';
 import Seo from '../components/Seo';
-import TrustedMarquee from '../components/TrustedMarquee';
 import FeatureSteps from '../components/FeatureSteps';
 import ServicesAccordion from '../components/ServicesAccordion';
 import { smoothScrollTo } from '../utils/smoothScroll';
-import { homePage, company, referenzenPage } from '../content';
+import { homePage, company } from '../content';
 
 
 export default function Home() {
@@ -58,7 +58,7 @@ export default function Home() {
           </p>
           <div className="hero-buttons-new">
             <ShimmerButton label={homePage.hero.primaryButton} onClick={() => window.open(company.calendly, '_blank', 'noopener')} />
-            <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
+            <button className="hero-text-link" onClick={() => navigate('/leistungen')}>
               {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
             </button>
           </div>
@@ -165,39 +165,6 @@ export default function Home() {
           </div>
           <div data-animate="fade-up">
             <FeatureSteps steps={homePage.process.steps} />
-          </div>
-        </div>
-      </section>
-
-      {/* Trusted By Marquee (Social Proof vor Testimonials) */}
-      <TrustedMarquee />
-
-      {/* Testimonials */}
-      <section id="kundenstimmen" className="testimonials-section landing-section">
-        <div className="container">
-          <div className="section-header" data-animate="fade-up">
-            <span className="section-tag">{homePage.testimonials.tag}</span>
-            <h2 className="section-title" dangerouslySetInnerHTML={{ __html: homePage.testimonials.title }}></h2>
-            <p className="section-subtitle">{homePage.testimonials.description}</p>
-          </div>
-          <div className="testimonials-grid">
-            {referenzenPage.testimonials.map((t, i) => (
-              <div key={i} className="testimonial-card" data-animate="fade-up" data-delay={i * 100}>
-                <div className="testimonial-stars">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <i key={j} className="fas fa-star"></i>
-                  ))}
-                </div>
-                <p className="testimonial-text">{t.text}</p>
-                <div className="testimonial-author">
-                  <div className="author-avatar">{t.avatar}</div>
-                  <div className="author-info">
-                    <span className="author-name">{t.name}</span>
-                    <span className="author-role">{t.role}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -48,13 +48,12 @@ Die Website ist der Vertriebskanal der Agentur RS Digital Solutions: Sie soll po
 
 ## Evidence on Hand
 
-Drei echte Referenzen (dürfen namentlich mit Zitaten verwendet werden):
+**Es gibt derzeit KEINE echten Kundenreferenzen** (Stand Juli 2026, vom Inhaber bestätigt). Die früher genannten Projekte (Akkilinc, Antephaus, Bera Gold) wurden am 27.07.2026 vollständig von der Website entfernt — inklusive Testimonials und „Echtes Projekt"-Labels. Alle Praxisbeispiele sind als **typische Szenarien** gekennzeichnet.
 
-- **Akkilinc Buchhaltungsservice, Stuttgart** — Unternehmenswebsite in 6 Sprachen (`/screenshots/akkilinc.webp`)
-- **Antephaus Stuttgart** — Restaurant mit Online-Bestellsystem (läuft auf demselben VPS; öffentlicher Link derzeit nur nackte IP — nicht prominent verlinken, bis Domain existiert)
-- **Bera Gold & Diamond** — Juwelier-E-Commerce (`/screenshots/bera-gold.webp`)
+Vorhandene Demonstrationen (dürfen gezeigt werden):
+- **Löwenhof-Demo** (`/restaurants/demo/`) — fiktives Restaurant, klar als Demo gekennzeichnet, noindex
 
-**Nicht vorhanden (nie erfinden):** quantitative Projekt-Kennzahlen (Conversion-Raten, Umsatzzahlen), weitere Testimonials, Zertifikate/Auszeichnungen, Social-Media-Präsenzen. Ergebnisse werden qualitativ beschrieben.
+**Nicht vorhanden (nie erfinden):** Kundenreferenzen, Testimonials, quantitative Projekt-Kennzahlen, Zertifikate/Auszeichnungen, Social-Media-Präsenzen.
 
 ## Product Principles
 

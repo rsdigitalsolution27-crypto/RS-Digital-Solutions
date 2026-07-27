@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { chatbot, company, referenzenPage } from '../content';
+import { chatbot, company } from '../content';
 
 const TYPING_DELAY_MIN = 600;
 const TYPING_DELAY_PER_CHAR = 18;
@@ -36,13 +36,8 @@ function handleFollowUpAction(label) {
     scrollToContact();
     return true;
   }
-  if (lower.includes('referenz') || lower.includes('beispiel')) {
-    const referenzLink = referenzenPage?.projects?.[0]?.url;
-    if (window.location.pathname === '/') {
-      window.location.href = '/referenzen';
-    } else {
-      window.location.href = '/referenzen';
-    }
+  if (lower.includes('referenz') || lower.includes('beispiel') || lower.includes('leistungen')) {
+    window.location.href = '/leistungen';
     return true;
   }
   return false;

@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/((?!leistungen$|referenzen$|about$|48h$|ki$|impressum$|datenschutz$|restaurants|assets/|videos/|images/|screenshots/|fonts/|sitemap.xml|robots.txt|llms.txt|og-image.jpg|favicon|icons.svg).*)",
+      "source": "/((?!leistungen$|about$|48h$|ki$|impressum$|datenschutz$|restaurants|webagentur/|standorte$|assets/|videos/|images/|fonts/|sitemap.xml|robots.txt|llms.txt|og-image.jpg|favicon|icons.svg).*)",
       "destination": "/index.html"
     }
   ],

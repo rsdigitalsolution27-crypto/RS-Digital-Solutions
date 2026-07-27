@@ -42,7 +42,7 @@ async function launchBrowser() {
 
 const PORT = 5174;
 const DIST = resolve('dist');
-const ROUTES = ['/', '/leistungen', '/referenzen', '/about', '/48h', '/ki', '/impressum', '/datenschutz'];
+const ROUTES = ['/', '/leistungen', '/about', '/48h', '/ki', '/impressum', '/datenschutz'];
 const SETTLE_MS = 3000;
 
 const MIME = {

@@ -36,7 +36,6 @@ export const navigation = [
   { label: 'Leistungen', path: '/leistungen' },
   { label: 'KI', path: '/ki' },
   { label: '48h-Website', path: '/48h' },
-  { label: 'Referenzen', path: '/referenzen' },
   { label: 'Über uns', path: '/about' },
   { label: 'Kontakt', path: '#kontakt', isAnchor: true },
 ];
@@ -66,13 +65,6 @@ export const seo = {
       description:
         'Webdesign ab 1.500 €, Online-Shops ab 2.500 €, KI-Chatbots, SEO & Terminbuchung – alles aus einer Hand von Ihrer Webagentur in Stuttgart.',
       path: '/leistungen',
-    },
-    referenzen: {
-      name: 'Referenzen',
-      title: 'Referenzen – Projekte aus Stuttgart | RS Digital Solutions',
-      description:
-        'Erfolgreiche Projekte aus Stuttgart und Umgebung: Unternehmenswebsites, Restaurant mit Online-Bestellung, E-Commerce für Juweliere.',
-      path: '/referenzen',
     },
     about: {
       name: 'Über uns',
@@ -125,7 +117,7 @@ export const homePage = {
     subtitle:
       'Ihr persönlicher Ansprechpartner für Webdesign, Online-Shops und KI-Automatisierung. Websites ab 1.500 € — auf Wunsch in 48 Stunden online.',
     primaryButton: 'Beratungstermin buchen',
-    secondaryButton: 'Projekte ansehen',
+    secondaryButton: 'Leistungen ansehen',
     trust: ['Kostenlose Erstberatung', 'Festpreis vor Projektstart', 'Antwort innerhalb von 24 h'],
   },
   servicesOverview: {
@@ -218,9 +210,9 @@ export const homePage = {
         icon: 'fas fa-utensils',
         problem: '„Unsere Gäste rufen an, statt online zu bestellen oder zu reservieren."',
         solution:
-          'Websites für Gastronomie mit Online-Bestellung und Reservierung — wie beim Stuttgarter Restaurant Antephaus, dessen Kunden heute bequem online bestellen.',
-        linkLabel: 'Referenzen ansehen',
-        link: '/referenzen',
+          'Websites für Gastronomie mit digitaler Speisekarte, Online-Bestellung und Reservierung rund um die Uhr — Ihre Gäste bestellen und reservieren selbst, auch wenn die Küche voll ist.',
+        linkLabel: 'Restaurant-Lösung ansehen',
+        link: '/restaurants',
       },
     ],
   },
@@ -258,11 +250,6 @@ export const homePage = {
         image: '/images/process-golive.webp',
       },
     ],
-  },
-  testimonials: {
-    tag: 'Kundenstimmen',
-    title: 'Was unsere <span class="highlight">Kunden</span> sagen',
-    description: 'Echte Stimmen aus echten Projekten — Unternehmen, die mit uns den Sprung gemacht haben.',
   },
   allInOne: {
     tag: 'Alles aus einer Hand',
@@ -503,15 +490,14 @@ export const leistungenPage = {
       description:
         'Ihre Website ist oft der erste Kontakt mit Ihrem Unternehmen — und entscheidet in Sekunden, ob jemand bleibt oder geht. Wir gestalten individuelle, schnelle Websites, die Ihre Marke transportieren: responsiv auf allen Geräten, mit Ladezeiten unter 2 Sekunden und SEO-Grundlagen ab dem ersten Tag.',
       useCase: {
-        type: 'real',
-        intro: 'Aus der Praxis: Akkilinc Buchhaltungsservice, Stuttgart',
+        type: 'typical',
+        intro: 'Ein typisches Beispiel aus unserer Zielgruppe:',
         situation:
-          'Der Buchhaltungsservice betreut Mandanten aus vielen Kulturen und Sprachräumen — hatte aber keinen Webauftritt, der diese Vielfalt abbildete. Interessenten konnten sich vorab kein Bild von den Leistungen machen.',
+          'Ein Buchhaltungsbüro betreut Mandanten aus vielen Kulturen und Sprachräumen — hat aber keinen Webauftritt, der diese Vielfalt abbildet. Interessenten können sich vorab kein Bild von den Leistungen machen.',
         solution:
-          'Eine moderne Unternehmenswebsite in sechs Sprachen: klare Leistungsdarstellung, Vertrauenselemente und direkte Kontaktmöglichkeiten — jede Sprachversion vollwertig gepflegt statt automatisch übersetzt.',
+          'Eine moderne Unternehmenswebsite in mehreren Sprachen: klare Leistungsdarstellung, Vertrauenselemente und direkte Kontaktmöglichkeiten — jede Sprachversion vollwertig gepflegt statt automatisch übersetzt.',
         result:
-          'Mandanten finden alle Informationen in ihrer Sprache und kommen besser vorbereitet ins Erstgespräch. Der Auftritt ist so hochwertig wie die Beratung selbst — „modern, mehrsprachig und perfekt auf unsere Mandanten zugeschnitten“, so der Inhaber.',
-        link: { label: 'Projekt ansehen', href: '/referenzen' },
+          'Mandanten finden alle Informationen in ihrer Sprache und kommen besser vorbereitet ins Erstgespräch. Der Auftritt wird so hochwertig wie die Beratung selbst.',
       },
       process: [
         'Briefing: Wir analysieren Ihre Marke, Zielgruppe und Wettbewerber',
@@ -527,15 +513,14 @@ export const leistungenPage = {
       description:
         'Ob Produkte, Gutscheine oder Bestellungen: Ein eigener Online-Shop macht Sie unabhängig von Ladenöffnungszeiten und Plattform-Gebühren. Wir bauen Shops mit Produktkatalog, Warenkorb und sicherer Zahlung über Stripe, PayPal, Klarna und Apple Pay — inklusive automatischer Rechnungen und DSGVO-konformem Checkout.',
       useCase: {
-        type: 'real',
-        intro: 'Aus der Praxis: Bera Gold & Diamond, Juwelier',
+        type: 'typical',
+        intro: 'Ein typisches Beispiel aus unserer Zielgruppe:',
         situation:
-          'Hochwertiger Schmuck, der bislang nur im Laden zu sehen war. Online fanden Kunden weder Sortiment noch Preise — Kaufinteresse entstand ausschließlich vor Ort.',
+          'Ein Juwelier mit hochwertigem Schmuck, der bislang nur im Laden zu sehen ist. Online finden Kunden weder Sortiment noch Preise — Kaufinteresse entsteht ausschließlich vor Ort.',
         solution:
-          'Ein E-Commerce-Auftritt mit hochwertiger Produktpräsentation, die dem Schmuck gerecht wird: professionelle Darstellung, Katalog und direkte Kaufmöglichkeit.',
+          'Ein E-Commerce-Auftritt mit Produktpräsentation, die dem Schmuck gerecht wird: professionelle Darstellung, Katalog, sichere Zahlung und direkte Kaufmöglichkeit.',
         result:
-          'Die Online-Präsentation ist heute „genauso hochwertig wie unser Schmuck“ (so der Inhaber) — Kunden stöbern von zu Hause und kommen gezielt zum Kauf. Auch für Gastronomie funktioniert das Prinzip: Für das Stuttgarter Restaurant Antephaus haben wir ein komplettes Online-Bestellsystem umgesetzt.',
-        link: { label: 'Beide Projekte ansehen', href: '/referenzen' },
+          'Kunden stöbern von zu Hause, vergleichen in Ruhe und kommen gezielt zum Kauf in den Laden — oder bestellen direkt online. Der Laden verkauft auch außerhalb der Öffnungszeiten.',
       },
       process: [
         'Sortiment & Zahlwege klären: Was wird verkauft, wie wird bezahlt, wie wird geliefert?',
@@ -660,66 +645,6 @@ export const leistungenPage = {
       },
     ],
   },
-};
-
-/* ─── Referenzen Page ─── */
-export const referenzenPage = {
-  hero: {
-    tag: 'Referenzen',
-    title: 'Beispiele unserer <span class="highlight">Arbeit</span>',
-    subtitle: 'Was wir gestalten, soll nicht nur gut aussehen – es soll wirken.',
-  },
-  projectsSection: {
-    tag: 'Live Projekte',
-    title: 'Unsere Projekte <span class="highlight">im Überblick</span>',
-  },
-  testimonialsSection: {
-    tag: 'Kundenstimmen',
-    title: 'Was unsere <span class="highlight">Kunden</span> sagen',
-  },
-  projects: [
-    {
-      title: 'Akkilinc Buchhaltung',
-      desc: 'Unternehmenswebsite · 6 Sprachen',
-      image: '/screenshots/akkilinc.webp',
-      url: 'https://akkilinc-fq2f.vercel.app',
-    },
-    {
-      title: 'Antephaus Stuttgart',
-      desc: 'Restaurant · Online-Bestellung',
-      image: '/screenshots/antephaus.png',
-      url: 'http://76.13.0.11',
-    },
-    {
-      title: 'Bera Gold & Diamond',
-      desc: 'Juwelier · E-Commerce',
-      image: '/screenshots/bera-gold.webp',
-      url: 'https://bera-gold-diamond.vercel.app',
-    },
-  ],
-  testimonials: [
-    {
-      stars: 5,
-      text: '„Unsere neue Website ist genau so geworden, wie wir es uns vorgestellt haben – modern, mehrsprachig und perfekt auf unsere Mandanten zugeschnitten. Die Zusammenarbeit war hervorragend!"',
-      avatar: 'AA',
-      name: 'Akkilinc Buchhaltungsservice',
-      role: 'Buchhaltung, Stuttgart',
-    },
-    {
-      stars: 5,
-      text: '„Die Website mit Online-Bestellsystem hat unseren Betrieb auf ein neues Level gebracht. Unsere Kunden können jetzt bequem online bestellen und abholen. Absolute Empfehlung!"',
-      avatar: 'AH',
-      name: 'Antephaus',
-      role: 'Restaurant, Stuttgart Nord',
-    },
-    {
-      stars: 5,
-      text: '„Professionelles Webdesign, schnelle Umsetzung und ein Team, das wirklich zuhört. Unsere Produktpräsentation online ist jetzt genauso hochwertig wie unser Schmuck."',
-      avatar: 'BG',
-      name: 'Bera Gold & Diamond',
-      role: 'Juwelier',
-    },
-  ],
 };
 
 /* ─── KI Page ─── */
@@ -933,10 +858,6 @@ export const ctaPerPage = {
     title: 'Lassen Sie uns Ihr <span class="highlight">Projekt besprechen</span>',
     subtitle: 'Von der Idee zur fertigen Website – erzählen Sie uns, was Sie brauchen.',
   },
-  referenzen: {
-    title: 'Ihr Projekt könnte<br><span class="highlight">das nächste</span> sein',
-    subtitle: 'Lassen Sie uns gemeinsam etwas Großartiges schaffen.',
-  },
   about: {
     title: 'Lernen Sie uns kennen –<br><span class="highlight">unverbindlich</span>',
     subtitle: 'Ein Gespräch, kein Verkaufspitch. Wir hören zu und beraten ehrlich.',
@@ -945,16 +866,6 @@ export const ctaPerPage = {
     title: 'KI-Demo für <span class="highlight">Ihre Website</span> anfragen',
     subtitle: 'Erleben Sie live, wie ein KI-Chatbot Ihr Business unterstützen kann.',
   },
-};
-
-/* ─── Trusted-By / Logo Marquee ─── */
-export const trustedBy = {
-  label: 'Vertrauen schenken uns unter anderem',
-  clients: [
-    { name: 'Akkilinc Buchhaltung', logo: '/logos/akkilinc.webp', showName: true },
-    { name: 'Antephaus Stuttgart', logo: '/logos/antephaus.svg', showName: true },
-    { name: 'Bera Gold & Diamond', logo: null, showName: true },
-  ],
 };
 
 /* ─── Footer ─── */
@@ -1052,8 +963,8 @@ export const chatbot = {
     {
       keywords: ['referenz', 'projekt', 'beispiel', 'kunden'],
       reply:
-        'Gerne! Unsere Referenzen finden Sie auf der Seite /referenzen — von Buchhaltung über Restaurant bis Juwelier. Ich kann Sie auch dorthin leiten.',
-      followUps: ['Referenzen ansehen', 'Termin vereinbaren'],
+        'Auf unserer Leistungsseite finden Sie zu jeder Leistung ausführliche Praxisbeispiele — und unter /restaurants eine anklickbare Demo-Website für Gastronomie. Soll ich Sie dorthin leiten?',
+      followUps: ['Leistungen ansehen', 'Termin vereinbaren'],
     },
     {
       keywords: ['hallo', 'hi', 'servus', 'guten tag', 'moin', 'hey', 'hallo!'],
@@ -1109,7 +1020,6 @@ export const ui = {
     button: 'Zur Startseite',
   },
   errorBoundary: { heading: 'Etwas ist schiefgelaufen.', message: 'Bitte laden Sie die Seite neu.' },
-  scanner: { loading: 'Screenshot wird geladen…', viewProject: 'Ansehen' },
   backToTop: { ariaLabel: 'Nach oben scrollen' },
 };
 

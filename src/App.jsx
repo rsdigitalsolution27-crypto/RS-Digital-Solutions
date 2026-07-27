@@ -13,9 +13,8 @@ import { ui } from './content'
 import Home from './pages/Home'
 
 // Route-Splitting: nur Home ist im Haupt-Bundle (LCP), alle anderen Seiten
-// laden als eigene Chunks — three.js (~125 KB gzip) landet so nur auf /referenzen.
+// laden als eigene Chunks.
 const Leistungen = lazy(() => import('./pages/Leistungen'))
-const Referenzen = lazy(() => import('./pages/Referenzen'))
 const About = lazy(() => import('./pages/About'))
 const FortyEightHours = lazy(() => import('./pages/FortyEightHours'))
 const KI = lazy(() => import('./pages/KI'))
@@ -61,7 +60,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/leistungen" element={<Leistungen />} />
-            <Route path="/referenzen" element={<Referenzen />} />
             <Route path="/about" element={<About />} />
             <Route path="/48h" element={<FortyEightHours />} />
             <Route path="/ki" element={<KI />} />
