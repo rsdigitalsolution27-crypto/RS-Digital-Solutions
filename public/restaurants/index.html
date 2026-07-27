@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website für Restaurants — RS Digital Solutions</title>
+<meta name="description" content="Digitale Speisekarte, QR-Code am Tisch und Reservierung ohne Anruf. Für Restaurants in Stuttgart und Umgebung.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Deine Speisekarte ist ein PDF von 2019?">
+<meta property="og:description" content="Digitale Karte, QR am Tisch, Reservierung rund um die Uhr. Demo zum Ausprobieren.">
+<meta property="og:type" content="website">
+
+<style>
+  /* Schriften liegen lokal — keine Verbindung zu Google, damit kein Consent nötig ist */
+  @font-face { font-family: "Space Grotesk"; font-weight: 500; font-display: swap;
+    src: url("fonts/space-grotesk-v22-latin-500.woff2") format("woff2"); }
+  @font-face { font-family: "Space Grotesk"; font-weight: 700; font-display: swap;
+    src: url("fonts/space-grotesk-v22-latin-700.woff2") format("woff2"); }
+  @font-face { font-family: "Inter Tight"; font-weight: 400; font-display: swap;
+    src: url("fonts/inter-tight-v9-latin-regular.woff2") format("woff2"); }
+  @font-face { font-family: "Inter Tight"; font-weight: 500; font-display: swap;
+    src: url("fonts/inter-tight-v9-latin-500.woff2") format("woff2"); }
+  @font-face { font-family: "Inter Tight"; font-weight: 600; font-display: swap;
+    src: url("fonts/inter-tight-v9-latin-600.woff2") format("woff2"); }
+
+  :root {
+    --tinte:   #0C1117;
+    --flaeche: #141C25;
+    --rand:    #1F2A35;
+    --weiss:   #E9EEF3;
+    --matt:    #8FA0B0;
+    --honig:   #F0B429;
+    --honig-d: #C08D14;
+    --gruen:   #3FBF7F;
+    --display: "Space Grotesk", system-ui, sans-serif;
+    --body: "Inter Tight", -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--tinte); color: var(--weiss);
+    font-family: var(--body); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+  a { color: inherit; }
+
+  /* Kopf */
+  .kopf { position: sticky; top: 0; z-index: 50; background: rgba(12,17,23,.9);
+          backdrop-filter: blur(12px); border-bottom: 1px solid var(--rand); }
+  .kopf-inner { display: flex; align-items: center; justify-content: space-between; padding: 13px 0; gap: 14px; }
+  .marke { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+  .marke b { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+  .wabe { width: 30px; height: 34px; flex: 0 0 auto; }
+
+  .knopf { font-family: var(--body); font-size: 15px; font-weight: 600; border: 0;
+           border-radius: 10px; padding: 13px 22px; cursor: pointer; text-decoration: none;
+           display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+           transition: transform .15s ease, background .2s ease; }
+  .knopf:hover { transform: translateY(-1px); }
+  .knopf-honig { background: var(--honig); color: #1A1204; }
+  .knopf-honig:hover { background: #FFC63D; }
+  .knopf-rand { background: transparent; color: var(--weiss); box-shadow: inset 0 0 0 1.5px var(--rand); }
+  .knopf-rand:hover { box-shadow: inset 0 0 0 1.5px var(--matt); }
+  .knopf-gruen { background: var(--gruen); color: #04180E; }
+
+  /* Hero mit Wabenmuster */
+  .hero { position: relative; overflow: hidden; padding: 60px 0 56px; }
+  .hero:before {
+    content: ""; position: absolute; inset: -20% -10% auto -10%; height: 620px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath d='M28 0l24 14v28L28 56 4 42V14z' fill='none' stroke='%231C2733' stroke-width='1.5'/%3E%3Cpath d='M28 48l24 14v28L28 104 4 90V62z' fill='none' stroke='%231C2733' stroke-width='1.5'/%3E%3C/svg%3E");
+    -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 68%);
+    mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .hero > * { position: relative; }
+  .augenbraue { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600;
+    background: rgba(240,180,41,.12); color: var(--honig); border-radius: 999px;
+    padding: 7px 15px; margin-bottom: 22px; }
+  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 7.4vw, 62px);
+       line-height: 1.02; letter-spacing: -.03em; margin: 0 0 20px; max-width: 17ch; }
+  h1 em { font-style: normal; color: var(--honig); }
+  .lead { font-size: 19px; color: var(--matt); max-width: 52ch; margin: 0 0 30px; }
+  .hero-knoepfe { display: flex; flex-wrap: wrap; gap: 12px; }
+  .kleingedruckt { font-size: 14px; color: #6F8093; margin-top: 18px; }
+
+  /* Abschnitte */
+  section { padding: 62px 0; }
+  h2 { font-family: var(--display); font-weight: 700; font-size: clamp(27px, 4.6vw, 38px);
+       letter-spacing: -.025em; line-height: 1.08; margin: 0 0 12px; }
+  .sub { color: var(--matt); margin: 0 0 32px; max-width: 56ch; }
+
+  /* Demo */
+  .demo-rahmen { background: var(--flaeche); border: 1px solid var(--rand);
+                 border-radius: 22px; padding: 18px; }
+  .demo-leiste { display: flex; align-items: center; gap: 9px; padding: 4px 6px 14px; }
+  .ampel { width: 11px; height: 11px; border-radius: 50%; }
+  .demo-adresse { flex: 1; background: var(--tinte); border-radius: 8px; padding: 7px 14px;
+                  font-size: 13px; color: var(--matt); font-family: var(--display);
+                  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .demo-rahmen iframe { width: 100%; height: 620px; border: 0; border-radius: 14px;
+                        background: #17140F; display: block; }
+  .demo-hinweis { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 18px;
+                  font-size: 15px; color: var(--matt); }
+  .demo-hinweis span:before { content: "→ "; color: var(--honig); }
+
+  /* Vergleich */
+  .vergleich { display: grid; gap: 16px; }
+  @media (min-width: 780px) { .vergleich { grid-template-columns: 1fr 1fr; } }
+  .spalte { background: var(--flaeche); border: 1px solid var(--rand); border-radius: 18px;
+            padding: 24px 22px 26px; }
+  .spalte.alt { border-color: #3A2020; }
+  .etikett { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+             margin-bottom: 14px; }
+  .etikett.rot { color: #E06B5C; }
+  .etikett.gruen { color: var(--gruen); }
+  .liste { list-style: none; padding: 0; margin: 0; }
+  .liste li { display: flex; gap: 11px; padding: 9px 0; font-size: 16px; line-height: 1.45;
+              border-bottom: 1px solid rgba(255,255,255,.05); }
+  .liste li:last-child { border: 0; }
+  .zeichen { flex: 0 0 auto; font-weight: 700; }
+  .zeichen.rot { color: #E06B5C; }
+  .zeichen.gruen { color: var(--gruen); }
+
+  /* Leistungen */
+  .karten { display: grid; gap: 14px; }
+  @media (min-width: 720px) { .karten { grid-template-columns: repeat(2, 1fr); } }
+  .karte { background: var(--flaeche); border: 1px solid var(--rand); border-radius: 16px; padding: 24px 22px; }
+  .karte h3 { font-family: var(--display); font-size: 19px; margin: 0 0 7px; letter-spacing: -.01em; }
+  .karte p { margin: 0; font-size: 15.5px; color: var(--matt); }
+  .karte .nr { font-family: var(--display); font-size: 13px; color: var(--honig); font-weight: 700;
+               letter-spacing: .1em; display: block; margin-bottom: 12px; }
+
+  /* Ablauf */
+  .ablauf { display: grid; gap: 14px; counter-reset: schritt; }
+  @media (min-width: 780px) { .ablauf { grid-template-columns: repeat(3, 1fr); } }
+  .schritt { background: var(--flaeche); border: 1px solid var(--rand); border-radius: 16px;
+             padding: 26px 22px; position: relative; }
+  .schritt:before { counter-increment: schritt; content: counter(schritt);
+    font-family: var(--display); font-weight: 700; font-size: 15px; color: #1A1204;
+    background: var(--honig); width: 32px; height: 32px; border-radius: 9px;
+    display: grid; place-items: center; margin-bottom: 15px; }
+  .schritt h3 { font-family: var(--display); font-size: 18px; margin: 0 0 6px; }
+  .schritt p { margin: 0; font-size: 15.5px; color: var(--matt); }
+
+  /* Anfrage */
+  .anfrage { background: linear-gradient(165deg, #17212B, var(--tinte));
+             border: 1px solid var(--rand); border-radius: 24px; padding: 34px 24px 38px; }
+  @media (min-width: 880px) { .anfrage { padding: 46px 44px 50px; display: grid;
+    grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: start; } }
+  .direkt { display: grid; gap: 10px; margin-top: 22px; }
+  .direkt a { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.04);
+              border: 1px solid var(--rand); border-radius: 13px; padding: 14px 16px;
+              text-decoration: none; transition: transform .15s ease, border-color .2s ease; }
+  .direkt a:hover { transform: translateX(3px); border-color: var(--matt); }
+  .direkt b { display: block; font-size: 15.5px; }
+  .direkt small { color: var(--matt); font-size: 13.5px; }
+  .kreis { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; flex: 0 0 auto; }
+
+  .feld { margin-bottom: 14px; }
+  .feld label { display: block; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .feld input, .feld textarea, .feld select {
+    width: 100%; font-family: var(--body); font-size: 16px; padding: 13px 15px;
+    border-radius: 11px; border: 1.5px solid var(--rand); background: rgba(0,0,0,.25);
+    color: var(--weiss); }
+  .feld input:focus, .feld textarea:focus, .feld select:focus {
+    outline: 2px solid var(--honig); outline-offset: 1px; border-color: transparent; }
+  .feld textarea { min-height: 104px; resize: vertical; }
+  .zustimmung { display: flex; gap: 11px; align-items: flex-start; font-size: 14px;
+                color: var(--matt); margin: 16px 0 18px; line-height: 1.45; }
+  .zustimmung input { width: 19px; height: 19px; margin-top: 2px; flex: 0 0 auto; accent-color: var(--honig); }
+  .zustimmung a { color: var(--honig); }
+  .rueckmeldung { font-size: 15px; margin-top: 14px; min-height: 22px; }
+
+  /* Fuß */
+  .fuss { border-top: 1px solid var(--rand); padding: 32px 0 34px; font-size: 14.5px; color: var(--matt); }
+  .fuss-inner { display: flex; flex-wrap: wrap; gap: 14px 26px; justify-content: space-between; }
+  .fuss a { text-decoration: none; }
+  .fuss a:hover { color: var(--weiss); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="kopf">
+  <div class="wrap kopf-inner">
+    <a class="marke" href="/">
+      <svg class="wabe" viewBox="0 0 30 34" aria-hidden="true">
+        <path d="M15 1l12.1 7v16L15 31 2.9 24V8z" fill="none" stroke="#F0B429" stroke-width="2"/>
+        <path d="M15 10l4.4 2.5v5L15 20l-4.4-2.5v-5z" fill="#F0B429"/>
+      </svg>
+      <b>RS Digital Solutions</b>
+    </a>
+    <a class="knopf knopf-honig" href="#anfrage">Kostenlos anfragen</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="augenbraue">Für Gastronomie in Stuttgart und Umgebung</div>
+    <h1>Deine Speisekarte ist ein <em>PDF von 2019</em>?</h1>
+    <p class="lead">
+      Digitale Karte, QR-Code auf jedem Tisch und Reservierung rund um die Uhr.
+      Unten steht eine fertige Demo. Probier die Reservierung aus, sie funktioniert wirklich.
+    </p>
+    <div class="hero-knoepfe">
+      <a class="knopf knopf-honig" href="#demo">Demo ausprobieren</a>
+      <a class="knopf knopf-rand" href="#anfrage">Was kostet das?</a>
+    </div>
+    <p class="kleingedruckt">Antwort in der Regel am selben Werktag. Kein Vertrag, kein Abo-Zwang.</p>
+  </div>
+</div>
+
+<section class="wrap" id="demo">
+  <h2>Die Demo zum Anfassen</h2>
+  <p class="sub">
+    Das ist ein erfundenes Restaurant, aber eine echte Seite. Scroll runter zur
+    Reservierung, wähle einen Tisch und bestätige. Genau so erlebt es dein Gast.
+  </p>
+
+  <div class="demo-rahmen">
+    <div class="demo-leiste">
+      <span class="ampel" style="background:#E06B5C"></span>
+      <span class="ampel" style="background:#E8B93E"></span>
+      <span class="ampel" style="background:#3FBF7F"></span>
+      <span class="demo-adresse">loewenhof-stuttgart.de</span>
+    </div>
+    <iframe src="demo/restaurant-neu.html" title="Demo einer modernen Restaurant-Website" loading="lazy"></iframe>
+  </div>
+
+  <div class="demo-hinweis">
+    <span>Speisekarte ohne PDF</span>
+    <span>QR-Code für den Tisch</span>
+    <span>Reservierung in drei Tipps</span>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Was sich konkret ändert</h2>
+  <p class="sub">Links das, was die meisten Gastro-Seiten heute machen. Rechts das, was danach passiert.</p>
+
+  <div class="vergleich">
+    <div class="spalte alt">
+      <div class="etikett rot">Vorher</div>
+      <ul class="liste">
+        <li><span class="zeichen rot">✕</span> Speisekarte als PDF, 4,8 MB, unlesbar am Handy</li>
+        <li><span class="zeichen rot">✕</span> Reservierung nur telefonisch, mitten im Service</li>
+        <li><span class="zeichen rot">✕</span> Preise ändern heißt Karte neu drucken</li>
+        <li><span class="zeichen rot">✕</span> Öffnungszeiten bei Google falsch</li>
+        <li><span class="zeichen rot">✕</span> Bilder von 2019, teils kaputt</li>
+      </ul>
+    </div>
+    <div class="spalte">
+      <div class="etikett gruen">Nachher</div>
+      <ul class="liste">
+        <li><span class="zeichen gruen">✓</span> Karte lädt sofort, auf Deutsch und Englisch</li>
+        <li><span class="zeichen gruen">✓</span> Gast reserviert selbst, auch sonntags um elf</li>
+        <li><span class="zeichen gruen">✓</span> Preis ändern dauert dreißig Sekunden</li>
+        <li><span class="zeichen gruen">✓</span> Google-Profil gepflegt und aktuell</li>
+        <li><span class="zeichen gruen">✓</span> Ausverkaufte Gerichte einfach ausblenden</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Das ist drin</h2>
+  <p class="sub">Kein Baukasten. Eine Seite, die zu deinem Haus passt, und Technik, die du selbst bedienen kannst.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <span class="nr">01</span>
+      <h3>Digitale Speisekarte</h3>
+      <p>Kategorien, Allergene, Preise. Du änderst sie selbst am Handy, ohne uns anzurufen.</p>
+    </div>
+    <div class="karte">
+      <span class="nr">02</span>
+      <h3>QR-Code für jeden Tisch</h3>
+      <p>Aufsteller zum Ausdrucken. Gast scannt, Karte ist da. Ohne App, ohne Download.</p>
+    </div>
+    <div class="karte">
+      <span class="nr">03</span>
+      <h3>Reservierung ohne Anruf</h3>
+      <p>Personen, Tag, Uhrzeit. Bestätigung per SMS oder Mail. Du siehst alles im Kalender.</p>
+    </div>
+    <div class="karte">
+      <span class="nr">04</span>
+      <h3>Google und Bewertungen</h3>
+      <p>Profil eingerichtet, Öffnungszeiten korrekt, Fotos aktuell. Damit dich Leute überhaupt finden.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Wie es abläuft</h2>
+  <p class="sub">Zwei Wochen von der ersten Nachricht bis online.</p>
+  <div class="ablauf">
+    <div class="schritt">
+      <h3>Gespräch</h3>
+      <p>Zwanzig Minuten am Telefon oder bei dir vor Ort. Ich schaue mir an, was du hast.</p>
+    </div>
+    <div class="schritt">
+      <h3>Entwurf</h3>
+      <p>Du bekommst die fertige Seite mit deinen Gerichten zum Anschauen. Änderungen inklusive.</p>
+    </div>
+    <div class="schritt">
+      <h3>Online</h3>
+      <p>Wir schalten live, drucken die QR-Aufsteller und zeigen dir, wie du selbst Preise änderst.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="anfrage">
+  <div class="anfrage">
+    <div>
+      <h2>Frag einfach</h2>
+      <p class="sub" style="margin-bottom:0">
+        Sag mir kurz, wie dein Laden heißt, und ich schaue mir deine jetzige Seite an.
+        Das kostet dich nichts und dauert bei mir zehn Minuten.
+      </p>
+
+      <div class="direkt">
+        <a href="https://calendly.com/info-rs-digitalsolutions" target="_blank" rel="noopener">
+          <span class="kreis" style="background:rgba(63,191,127,.15)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FBF7F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+          </span>
+          <span><b>Beratungstermin buchen</b><br><small>Online-Kalender, dauert 30 Sekunden</small></span>
+        </a>
+        <a href="mailto:info@rs-digitalsolutions.de?subject=Website%20f%C3%BCr%20mein%20Restaurant">
+          <span class="kreis" style="background:rgba(240,180,41,.15)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg>
+          </span>
+          <span><b>E-Mail schreiben</b><br><small>Antwort innerhalb von 24 Stunden</small></span>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="feld">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" autocomplete="name" placeholder="Vor- und Nachname">
+      </div>
+      <div class="feld">
+        <label for="f-lokal">Name vom Lokal</label>
+        <input id="f-lokal" type="text" autocomplete="organization" placeholder="z. B. Gasthaus Sonne, Fellbach">
+      </div>
+      <div class="feld">
+        <label for="f-kontakt">Telefon oder E-Mail</label>
+        <input id="f-kontakt" type="text" autocomplete="email" placeholder="Damit ich mich melden kann">
+      </div>
+      <div class="feld">
+        <label for="f-text">Was brauchst du?</label>
+        <textarea id="f-text" placeholder="Speisekarte digital und Reservierung. Seite ist von 2018."></textarea>
+      </div>
+
+      <label class="zustimmung">
+        <input type="checkbox" id="f-ok">
+        <span>Ich habe die <a href="/datenschutz">Datenschutzerklärung</a> gelesen und bin
+        damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden.</span>
+      </label>
+
+      <button class="knopf knopf-honig" id="f-senden" style="width:100%">Anfrage senden</button>
+      <div class="rueckmeldung" id="f-info"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="fuss">
+  <div class="wrap fuss-inner">
+    <div>RS Digital Solutions · Stuttgart</div>
+    <div>
+      <a href="/impressum">Impressum</a> &nbsp;·&nbsp;
+      <a href="/datenschutz">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ---------------------------------------------------------------
+     Kein Backend nötig: das Formular oeffnet eine vorbereitete Mail.
+     Wenn du einen echten Endpunkt hast (Formspree, eigenes NestJS),
+     trag ihn hier ein — dann wird stattdessen gepostet.
+  ----------------------------------------------------------------*/
+  var ENDPUNKT = "https://formsubmit.co/ajax/info@rs-digitalsolutions.de";
+  var MAIL     = "info@rs-digitalsolutions.de";
+
+  var info = document.getElementById("f-info");
+
+  function wert(id) { return document.getElementById(id).value.trim(); }
+
+  document.getElementById("f-senden").addEventListener("click", function () {
+    var name = wert("f-name"), lokal = wert("f-lokal"),
+        kontakt = wert("f-kontakt"), text = wert("f-text");
+
+    if (!name || !kontakt) {
+      info.textContent = "Bitte Name und eine Kontaktmöglichkeit angeben.";
+      info.style.color = "#E06B5C";
+      return;
+    }
+    if (!document.getElementById("f-ok").checked) {
+      info.textContent = "Bitte bestätige noch kurz die Datenschutzerklärung.";
+      info.style.color = "#E06B5C";
+      return;
+    }
+
+    /* Herkunft aus der URL mitgeben, damit du siehst was wirkt */
+    var quelle = new URLSearchParams(location.search).get("utm_source") || "direkt";
+
+    var daten = {
+      name: name, lokal: lokal, kontakt: kontakt, text: text, quelle: quelle,
+      _subject: "Restaurant-Anfrage über /restaurants von " + name,
+      _template: "table"
+    };
+
+    if (ENDPUNKT) {
+      fetch(ENDPUNKT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(daten)
+      }).then(function (r) {
+        if (!r.ok) throw new Error();
+        info.textContent = "Danke, ist angekommen. Ich melde mich heute noch.";
+        info.style.color = "#3FBF7F";
+      }).catch(function () {
+        info.textContent = "Hat nicht geklappt. Schreib mir bitte kurz an info@rs-digitalsolutions.de.";
+        info.style.color = "#E06B5C";
+      });
+    } else {
+      var betreff = "Anfrage von " + name + (lokal ? " (" + lokal + ")" : "");
+      var koerper = "Name: " + name + "\nLokal: " + lokal + "\nKontakt: " + kontakt +
+                    "\nHerkunft: " + quelle + "\n\n" + text;
+      location.href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(betreff) +
+                      "&body=" + encodeURIComponent(koerper);
+      info.textContent = "Dein Mailprogramm öffnet sich. Alternativ einfach direkt an " + MAIL + " schreiben.";
+      info.style.color = "#8FA0B0";
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

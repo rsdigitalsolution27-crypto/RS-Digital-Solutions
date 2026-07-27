@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Löwenhof — Küche & Weinstube, Stuttgart (Demo)</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root {
+    --nacht:  #17140F;
+    --kohle:  #211D17;
+    --tiefer: #100E0A;
+    --creme:  #EDE7DA;
+    --flamme: #E2703A;
+    --gold:   #C9A227;
+    --salbei: #8A9480;
+    --display: Georgia, "Times New Roman", serif;
+    --body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--nacht); color: var(--creme);
+    font-family: var(--body); font-size: 17px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: min(1080px, 100% - 40px); margin-inline: auto; }
+
+  .kopf {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(23,20,15,.86); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(237,231,218,.10);
+  }
+  .kopf-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 14px; }
+  .marke { font-family: var(--display); font-weight: 800; font-size: 23px; letter-spacing: -.02em; line-height: 1; }
+  .marke small { display: block; font-family: var(--body); font-size: 10px; font-weight: 600;
+    letter-spacing: .2em; color: var(--salbei); text-transform: uppercase; margin-top: 3px; }
+
+  .knopf {
+    font-family: var(--body); font-size: 15px; font-weight: 600; border: 0;
+    border-radius: 999px; padding: 12px 22px; cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform .15s ease;
+  }
+  .knopf:hover { transform: translateY(-1px); }
+  .knopf-flamme { background: var(--flamme); color: #1A0F08; }
+  .knopf-creme { background: var(--creme); color: var(--nacht); }
+  .knopf-rand { background: transparent; color: var(--creme); box-shadow: inset 0 0 0 1.5px rgba(237,231,218,.3); }
+
+  /* Hero */
+  .hero { padding: 52px 0 40px; }
+  .offen {
+    display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 600;
+    background: rgba(138,148,128,.16); color: #B9C4AE; padding: 8px 16px; border-radius: 999px;
+    margin-bottom: 22px;
+  }
+  .punkt { width: 8px; height: 8px; border-radius: 50%; background: #7BC47F; box-shadow: 0 0 0 4px rgba(123,196,127,.2); }
+  h1 {
+    font-family: var(--display); font-weight: 800; font-size: clamp(42px, 9vw, 76px);
+    line-height: .96; letter-spacing: -.03em; margin: 0 0 20px;
+  }
+  h1 em { font-style: italic; color: var(--flamme); font-weight: 600; }
+  .lead { font-size: 19px; color: #B3AA99; max-width: 44ch; margin: 0 0 28px; }
+  .hero-knoepfe { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .teller {
+    margin-top: 40px; display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 760px) { .teller { grid-template-columns: repeat(4, 1fr); } }
+  .bildplatz {
+    aspect-ratio: 3/4; border-radius: 16px; position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 16px;
+    font-family: var(--display); font-size: 17px; font-weight: 600; line-height: 1.15;
+  }
+  .bildplatz:after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(16,14,10,.85) 100%);
+  }
+  .bildplatz span { position: relative; z-index: 2; }
+
+  /* Speisekarte */
+  section { padding: 60px 0; }
+  h2 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 5.5vw, 44px);
+       letter-spacing: -.025em; margin: 0 0 10px; line-height: 1.02; }
+  .unterzeile { color: #9C9384; margin: 0 0 30px; max-width: 50ch; }
+
+  .reiter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 26px; }
+  .reiter button {
+    font-family: var(--body); font-size: 14px; font-weight: 600; cursor: pointer;
+    background: transparent; color: #9C9384; border: 1.5px solid rgba(237,231,218,.18);
+    border-radius: 999px; padding: 9px 18px; transition: all .18s ease;
+  }
+  .reiter button[aria-pressed="true"] { background: var(--creme); color: var(--nacht); border-color: var(--creme); }
+
+  .gericht {
+    display: flex; align-items: baseline; gap: 12px; padding: 15px 0;
+    border-bottom: 1px solid rgba(237,231,218,.09);
+  }
+  .gericht .name { font-family: var(--display); font-size: 20px; font-weight: 600; white-space: nowrap; }
+  .gericht .fuellung { flex: 1; border-bottom: 1.5px dotted rgba(237,231,218,.22); transform: translateY(-4px); }
+  .gericht .preis { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--gold); }
+  .gericht .zusatz { display: block; font-family: var(--body); font-size: 14px; color: #948B7C; font-weight: 400; white-space: normal; margin-top: 3px; }
+  .marker { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+            color: #B9C4AE; background: rgba(138,148,128,.18); border-radius: 5px; padding: 2px 7px; margin-left: 7px; }
+
+  /* QR */
+  .qr-block { background: var(--kohle); border-radius: 26px; padding: 36px 24px; }
+  @media (min-width: 860px) { .qr-block { padding: 52px; display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; } }
+  .aufsteller {
+    background: var(--creme); border-radius: 18px; padding: 26px 22px 22px; text-align: center;
+    color: var(--nacht); max-width: 330px; margin: 26px auto 0;
+    box-shadow: 0 24px 50px rgba(0,0,0,.45);
+  }
+  @media (min-width: 860px) { .aufsteller { margin: 0 auto; } }
+  .aufsteller .titel { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .aufsteller .sub { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #6E6455; margin-top: 2px; }
+  .aufsteller img { width: 178px; height: 178px; margin: 16px 0 12px; }
+  .aufsteller .hinweis { font-size: 13px; color: #4E4638; line-height: 1.35; }
+  .vorteile { list-style: none; padding: 0; margin: 22px 0 0; }
+  .vorteile li { display: flex; gap: 12px; padding: 10px 0; font-size: 16px; color: #B3AA99; }
+  .vorteile b { color: var(--creme); font-weight: 600; }
+  .haken-klein { color: var(--flamme); font-weight: 700; }
+
+  /* Reservierung */
+  .res-block { background: linear-gradient(160deg, #2A231A, var(--tiefer)); border-radius: 26px; padding: 36px 24px 42px; }
+  @media (min-width: 860px) { .res-block { padding: 52px 48px 56px; } }
+  .schritt { font-size: 12px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold);
+             font-weight: 600; margin: 26px 0 12px; }
+  .optionen { display: flex; flex-wrap: wrap; gap: 10px; }
+  .option {
+    background: rgba(237,231,218,.06); color: var(--creme); border: 1.5px solid rgba(237,231,218,.15);
+    border-radius: 12px; padding: 12px 18px; font-family: var(--body); font-size: 15px; cursor: pointer;
+    transition: all .18s ease; text-align: center; min-width: 62px;
+  }
+  .option:hover { border-color: rgba(237,231,218,.4); }
+  .option[aria-pressed="true"] { background: var(--flamme); color: #1A0F08; border-color: var(--flamme); font-weight: 600; }
+  .option .tag { display: block; font-size: 12px; opacity: .8; }
+
+  .res-fuss { margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(237,231,218,.13);
+              display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .zus { font-size: 15px; color: #B3AA99; }
+  .zus b { color: var(--creme); }
+
+  .bestaetigt { display: none; text-align: center; padding: 26px 8px 6px; }
+  .bestaetigt.an { display: block; }
+  .kreis { width: 62px; height: 62px; border-radius: 50%; background: var(--flamme);
+           display: grid; place-items: center; margin: 0 auto 18px; }
+  .bestaetigt h3 { font-family: var(--display); font-size: 28px; margin: 0 0 8px; }
+  .bestaetigt p { color: #B3AA99; margin: 0; }
+
+  .social { display: flex; gap: 10px; margin-top: 22px; }
+  .social a { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center;
+              background: rgba(237,231,218,.08); color: var(--creme); transition: all .18s ease; }
+  .social a:hover { background: var(--flamme); color: #1A0F08; transform: translateY(-3px); }
+  .social svg { width: 21px; height: 21px; fill: currentColor; }
+
+  .fuss { border-top: 1px solid rgba(237,231,218,.1); padding: 34px 0 30px; font-size: 14px; color: #857C6E; }
+  .fuss-inner { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="kopf">
+  <div class="wrap kopf-inner">
+    <div class="marke">Löwenhof<small>Küche & Weinstube</small></div>
+    <a class="knopf knopf-flamme" href="#reservieren">Tisch reservieren</a>
+  </div>
+</header>
+
+<div class="hero wrap">
+  <div class="offen"><span class="punkt"></span> Heute geöffnet bis 22:00 Uhr</div>
+  <h1>Schwäbisch,<br>aber <em>nicht von gestern</em>.</h1>
+  <p class="lead">
+    Seit 1961 am selben Platz. Küche von 11:30 bis 21:30, Wein aus dem Remstal,
+    Tisch in zehn Sekunden reserviert.
+  </p>
+  <div class="hero-knoepfe">
+    <a class="knopf knopf-creme" href="#reservieren">Freien Tisch finden</a>
+    <a class="knopf knopf-rand" href="#karte">Speisekarte ansehen</a>
+  </div>
+
+  <div class="teller">
+    <div class="bildplatz" style="background:linear-gradient(150deg,#5C3A22,#2A1C11)"><span>Maultaschen<br>in der Brühe</span></div>
+    <div class="bildplatz" style="background:linear-gradient(150deg,#6B4A1F,#2E2010)"><span>Rostbraten<br>mit Zwiebeln</span></div>
+    <div class="bildplatz" style="background:linear-gradient(150deg,#3F4A2C,#1B2013)"><span>Linsen<br>& Spätzle</span></div>
+    <div class="bildplatz" style="background:linear-gradient(150deg,#5A2A2A,#241010)"><span>Ofenschlupfer</span></div>
+  </div>
+</div>
+
+<section class="wrap" id="karte">
+  <h2>Speisekarte</h2>
+  <p class="unterzeile">Immer aktuell. Kein PDF, kein Zoomen, keine Karte von 2019.</p>
+
+  <div class="reiter">
+    <button aria-pressed="true">Hauptgerichte</button>
+    <button aria-pressed="false">Vorspeisen</button>
+    <button aria-pressed="false">Vesper</button>
+    <button aria-pressed="false">Nachtisch</button>
+    <button aria-pressed="false">Weine</button>
+  </div>
+
+  <div class="gericht">
+    <div><span class="name">Schwäbische Maultaschen</span><span class="marker">Hausgemacht</span>
+      <span class="zusatz">In kräftiger Rinderbrühe, dazu Kartoffelsalat</span></div>
+    <div class="fuellung"></div><div class="preis">16,50</div>
+  </div>
+  <div class="gericht">
+    <div><span class="name">Zwiebelrostbraten</span>
+      <span class="zusatz">Vom Weiderind, handgeschabte Spätzle, Röstzwiebeln</span></div>
+    <div class="fuellung"></div><div class="preis">28,90</div>
+  </div>
+  <div class="gericht">
+    <div><span class="name">Linsen mit Spätzle</span><span class="marker">Vegetarisch möglich</span>
+      <span class="zusatz">Mit zwei Saitenwürsten oder ohne</span></div>
+    <div class="fuellung"></div><div class="preis">15,80</div>
+  </div>
+  <div class="gericht">
+    <div><span class="name">Kalbsrahmgeschnetzeltes</span>
+      <span class="zusatz">Champignons, Butterspätzle, Marktsalat</span></div>
+    <div class="fuellung"></div><div class="preis">24,50</div>
+  </div>
+  <div class="gericht">
+    <div><span class="name">Ofenschlupfer</span><span class="marker">Nur Fr & Sa</span>
+      <span class="zusatz">Mit Vanillesoße und Zimtapfel</span></div>
+    <div class="fuellung"></div><div class="preis">8,90</div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="qr-block">
+    <div>
+      <h2>Die Karte am Tisch</h2>
+      <p class="unterzeile">Ein QR-Code auf jedem Tisch. Der Gast scannt, die Karte
+        ist sofort da — auf Deutsch, Englisch und mit allen Allergenen.</p>
+      <ul class="vorteile">
+        <li><span class="haken-klein">✓</span><span><b>Preise ändern in 30 Sekunden.</b> Kein Neudruck, keine Druckerei.</span></li>
+        <li><span class="haken-klein">✓</span><span><b>Ausverkauft ausblenden.</b> Mittags weg, abends nicht mehr sichtbar.</span></li>
+        <li><span class="haken-klein">✓</span><span><b>Du siehst, was gelesen wird.</b> Welches Gericht wie oft angeklickt wird.</span></li>
+      </ul>
+    </div>
+    <div class="aufsteller">
+      <div class="titel">Löwenhof</div>
+      <div class="sub">Speisekarte</div>
+      <img src="data:image/png;base64,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" alt="QR-Code zur Speisekarte">
+      <div class="hinweis">Kamera öffnen, Code scannen.<br>Karte ohne App, ohne Download.</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="reservieren">
+  <div class="res-block">
+    <h2>Tisch reservieren</h2>
+    <p class="unterzeile">Ohne Anruf, ohne Warteschleife. Auch sonntags um elf Uhr nachts.</p>
+
+    <div id="resformular">
+      <div class="schritt">1 · Personen</div>
+      <div class="optionen" id="personen">
+        <button class="option" aria-pressed="false">2</button>
+        <button class="option" aria-pressed="false">3</button>
+        <button class="option" aria-pressed="true">4</button>
+        <button class="option" aria-pressed="false">6</button>
+        <button class="option" aria-pressed="false">8+</button>
+      </div>
+
+      <div class="schritt">2 · Tag</div>
+      <div class="optionen" id="tage"></div>
+
+      <div class="schritt">3 · Uhrzeit</div>
+      <div class="optionen" id="zeiten">
+        <button class="option" aria-pressed="false">17:30</button>
+        <button class="option" aria-pressed="false">18:00</button>
+        <button class="option" aria-pressed="true">19:30</button>
+        <button class="option" aria-pressed="false">20:00</button>
+        <button class="option" aria-pressed="false">20:30</button>
+      </div>
+
+      <div class="res-fuss">
+        <div class="zus" id="zus"></div>
+        <button class="knopf knopf-flamme" id="reservieren-knopf">Tisch reservieren</button>
+      </div>
+    </div>
+
+    <div class="bestaetigt" id="bestaetigt">
+      <div class="kreis">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1A0F08" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3>Tisch ist reserviert</h3>
+      <p id="bestaetigt-text"></p>
+      <div class="social" style="justify-content:center">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.68A6.16 6.16 0 1018.16 12 6.16 6.16 0 0012 5.84zm0 10.16A4 4 0 1116 12a4 4 0 01-4 4zm6.4-10.4a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.45 2.89h-2.33v6.99A10 10 0 0022 12z"/></svg></a>
+        <a href="#" aria-label="Google"><svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.26L21.5 9l-5 4.66L17.8 21 12 17.5 6.2 21l1.3-7.34-5-4.66 6.6-.74z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="fuss">
+  <div class="wrap fuss-inner">
+    <div>Löwenhof · Marktstraße 8 · 70173 Stuttgart · 0711 98 76 54</div>
+    <div>Impressum · Datenschutz</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var wt = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+  var mo = ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"];
+  var box = document.getElementById("tage");
+  var g = { personen: "4", tag: "", zeit: "19:30" };
+
+  var d = new Date();
+  for (var i = 0; i < 5; i++) {
+    d.setDate(d.getDate() + 1);
+    var b = document.createElement("button");
+    b.className = "option";
+    b.setAttribute("aria-pressed", i === 1 ? "true" : "false");
+    b.innerHTML = wt[d.getDay()] + "<span class='tag'>" + d.getDate() + ". " + mo[d.getMonth()] + "</span>";
+    b.dataset.wert = wt[d.getDay()] + ", " + d.getDate() + ". " + mo[d.getMonth()];
+    if (i === 1) g.tag = b.dataset.wert;
+    box.appendChild(b);
+  }
+
+  function gruppe(id, key) {
+    var el = document.getElementById(id);
+    el.addEventListener("click", function (e) {
+      var b = e.target.closest(".option"); if (!b) return;
+      el.querySelectorAll(".option").forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+      g[key] = b.dataset.wert || b.childNodes[0].textContent.trim();
+      zeig();
+    });
+  }
+  function zeig() {
+    document.getElementById("zus").innerHTML =
+      "<b>" + g.personen + " Personen</b> am <b>" + g.tag + "</b> um <b>" + g.zeit + " Uhr</b>";
+  }
+  gruppe("personen", "personen"); gruppe("tage", "tag"); gruppe("zeiten", "zeit"); zeig();
+
+  document.getElementById("reservieren-knopf").addEventListener("click", function () {
+    document.getElementById("resformular").style.display = "none";
+    document.getElementById("bestaetigt-text").innerHTML =
+      g.personen + " Personen, " + g.tag + " um " + g.zeit + " Uhr. Bestätigung per SMS.";
+    document.getElementById("bestaetigt").classList.add("an");
+  });
+
+  var r = document.querySelector(".reiter");
+  r.addEventListener("click", function (e) {
+    if (e.target.tagName !== "BUTTON") return;
+    r.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    e.target.setAttribute("aria-pressed", "true");
+  });
+})();
+</script>
+</body>
+</html>

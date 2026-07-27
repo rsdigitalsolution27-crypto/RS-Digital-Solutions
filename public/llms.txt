@@ -27,6 +27,7 @@ Kleine und mittlere Unternehmen in Stuttgart und Umgebung: Gastronomie (Online-B
 - [KI-Chatbots](https://rs-digitalsolutions.de/ki): KI-Integration für Websites mit FAQ
 - [48h-Website](https://rs-digitalsolutions.de/48h): Das 48-Stunden-Versprechen mit FAQ
 - [Referenzen](https://rs-digitalsolutions.de/referenzen): Projekte aus Stuttgart und Umgebung
+- [Websites für Restaurants](https://rs-digitalsolutions.de/restaurants): Digitale Speisekarte, QR-Code am Tisch, Online-Reservierung — mit anklickbarer Demo
 - [Über uns](https://rs-digitalsolutions.de/about): Team, Werte und allgemeine FAQ
 
 ## Kontakt
